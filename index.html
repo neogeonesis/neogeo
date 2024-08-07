@@ -32,7 +32,8 @@
         document.body.appendChild(renderer.domElement);
 
         const loader = new THREE.GLTFLoader();
-        loader.load('models/model.glb', function(gltf) {
+        loader.load('model.glb', function(gltf) {
+            console.log('Modelo cargado correctamente:', gltf);
             scene.add(gltf.scene);
             camera.position.z = 5;
             animate();
