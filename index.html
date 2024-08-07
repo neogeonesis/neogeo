@@ -25,7 +25,7 @@
       document.body.appendChild(renderer.domElement);
 
       const loader = new THREE.GLTFLoader();
-      loader.load('https://threejs.org/examples/models/gltf/RobotExpressive/glTF/RobotExpressive.glb', function (gltf) {
+      loader.load('model.glb', function (gltf) {
         model = gltf.scene;
         scene.add(model);
         model.position.set(0, 0, 0);
