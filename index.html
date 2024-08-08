@@ -1,81 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GLB with p5.js</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio Multimedia</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- El script de p5.js y otros scripts están al final del cuerpo -->
-  <script type="module">
-    // Importar THREE.js y GLTFLoader como módulos ES
-    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.module.js';
-    import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.153.0/examples/jsm/loaders/GLTFLoader.js';
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">Sobre Mí</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    let scene, camera, renderer, loader, model;
+    <section id="hero">
+        <h1>Bienvenido a Mi Portafolio Multimedia</h1>
+        <p>Explora mis trabajos creativos y proyectos</p>
+    </section>
 
-    function setup() {
-      // Crear un lienzo de p5.js en el contexto WEBGL
-      createCanvas(windowWidth, windowHeight, WEBGL);
+    <section id="about">
+        <h2>Sobre Mí</h2>
+        <p>Texto sobre tu experiencia, habilidades y objetivos.</p>
+        <img src="assets/images/profile.jpg" alt="Mi Foto">
+    </section>
 
-      // Configurar la escena de THREE.js
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-      camera.position.z = 5;
+    <section id="projects">
+        <h2>Proyectos</h2>
+        <div class="project-grid">
+            <div class="project-item">
+                <img src="assets/images/project1.jpg" alt="Proyecto 1">
+                <h3>Proyecto 1</h3>
+                <p>Descripción breve del proyecto.</p>
+            </div>
+            <!-- Añade más proyectos según sea necesario -->
+        </div>
+    </section>
 
-      // Configurar el renderizador de THREE.js con el lienzo de p5.js
-      renderer = new THREE.WebGLRenderer({ canvas: canvas });
-      renderer.setSize(width, height);
+    <section id="contact">
+        <h2>Contacto</h2>
+        <form action="https://formspree.io/f/{your-form-id}" method="POST">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
 
-      // Cargar el modelo GLB
-      loader = new GLTFLoader();
-      loader.load('model.glb', function (gltf) {
-        model = gltf.scene;
-        scene.add(model);
-        model.position.set(0, 0, 0);
-      }, undefined, function (error) {
-        console.error('An error happened:', error);
-      });
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
 
-      // Agregar una luz ambiental a la escena
-      const light = new THREE.AmbientLight(0x404040);
-      scene.add(light);
-    }
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" required></textarea>
 
-    function draw() {
-      background(200);
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
 
-      if (model) {
-        model.rotation.x += 0.01;
-        model.rotation.y += 0.01;
-      }
+    <footer>
+        <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
+    </footer>
 
-      // Renderizar la escena con el renderizador de THREE.js
-      renderer.render(scene, camera);
-    }
-
-    function windowResized() {
-      resizeCanvas(windowWidth, windowHeight);
-      renderer.setSize(windowWidth, windowHeight);
-      camera.aspect = windowWidth / windowHeight;
-      camera.updateProjectionMatrix();
-    }
-
-    // Asegurarse de que el contexto de audio esté activado por una interacción del usuario
-    document.addEventListener('click', () => {
-      if (typeof Tone !== 'undefined') {
-        Tone.start().then(() => {
-          console.log('Audio Context resumed');
-        });
-      }
-    });
-  </script>
-
-  <!-- Scripts de p5.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 
