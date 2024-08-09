@@ -3,32 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelo 3D</title>
+    <title>Mi Portafolio Multimedia</title>
     <style>
         body {
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+        }
+        #hero {
+            text-align: center;
+        }
+        #3d-model {
+            margin-top: 20px;
+            text-align: center;
         }
         model-viewer {
             width: 80vw;
-            height: 80vh;
+            height: 60vh;
+            margin-top: 20px;
+            display: block;
+            margin: 0 auto;
+        }
+        section {
+            margin: 40px 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .project, .media {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .project img, .media img {
+            width: 100%;
+            height: auto;
+        }
+        .project p, .media p {
+            margin-top: 10px;
         }
     </style>
     <!-- Cargar model-viewer -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-    <model-viewer src="model.glb"
-                  alt="Modelo 3D"
-                  auto-rotate
-                  camera-controls
-                  background-color="#ffffff">
-    </model-viewer>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#media">Medios</a></li>
+                <li><a href="#music">Música</a></li>
+                <li><a href="#visuals">Visuales</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Bienvenido a Mi Portafolio Multimedia</h1>
+            <p>Explora mis trabajos creativos y proyectos</p>
+            <div id="3d-model">
+                <model-viewer src="model.glb"
+                              alt="Modelo 3D"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
+            </div>
+        </section>
+
+        <section id="projects" class="container">
+            <h2>Proyectos</h2>
+            <div class="project">
+                <img src="project1.jpg" alt="Proyecto 1">
+                <p>Descripción del proyecto 1.</p>
+            </div>
+            <!-- Añadir más proyectos aquí -->
+        </section>
+
+        <section id="media" class="container">
+            <h2>Medios</h2>
+            <div class="media">
+                <img src="media1.jpg" alt="Medio 1">
+                <p>Descripción del medio 1.</p>
+            </div>
+            <!-- Añadir más medios aquí -->
+        </section>
+
+        <section id="music" class="container">
+            <h2>Música</h2>
+            <p>Descripción de tus trabajos musicales.</p>
+            <!-- Añadir contenido de música aquí -->
+        </section>
+
+        <section id="visuals" class="container">
+            <h2>Visuales</h2>
+            <p>Descripción de tus trabajos visuales.</p>
+            <!-- Añadir contenido visual aquí -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
 
