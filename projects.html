@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyectos - Mi Portafolio Multimedia</title>
+    <title>Inicio - Mi Portafolio Multimedia</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Cargar model-viewer -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
@@ -20,19 +22,33 @@
     </header>
 
     <main>
-        <section id="projects">
-            <h2>Proyectos</h2>
-            <div class="project">
-                <h3>MEDIA ART PLASTIC GENESIS</h3>
-                <iframe src="https://www.behance.net/embed/project/168021093?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
-                <p>Descripción breve del Proyecto.</p>
+        <section id="hero">
+            <h1>Bienvenido a Mi Portafolio Multimedia</h1>
+            <p>Explora mis trabajos creativos y proyectos</p>
+            <div id="3d-model">
+                <model-viewer id="mi-modelo" src="model.glb"
+                              alt="Modelo 3D"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
             </div>
-            <!-- Añadir más proyectos aquí -->
         </section>
     </main>
 
     <footer>
         <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        // Obtener el modelo
+        const modelViewer = document.getElementById('mi-modelo');
+
+        // Agregar evento de clic para redirigir a la página de Proyectos
+        modelViewer.addEventListener('click', () => {
+            window.location.href = 'projects.html';  // Asegúrate de que la URL sea correcta
+        });
+    </script>
 </body>
 </html>
+
