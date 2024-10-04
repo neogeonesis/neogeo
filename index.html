@@ -26,7 +26,7 @@
             <h1>Bienvenido a Mi Portafolio Multimedia</h1>
             <p>Explora mis trabajos creativos y proyectos</p>
             <div id="3d-model">
-                <model-viewer src="model.glb"
+                <model-viewer id="mi-modelo" src="model.glb"
                               alt="Modelo 3D"
                               auto-rotate
                               camera-controls
@@ -39,5 +39,15 @@
     <footer>
         <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        // Obtener el modelo
+        const modelViewer = document.getElementById('mi-modelo');
+
+        // Agregar evento de clic para redirigir
+        modelViewer.addEventListener('click', () => {
+            window.location.href = 'instalaciones.html';  // Cambia la URL a la página de "instalaciones"
+        });
+    </script>
 </body>
 </html>
