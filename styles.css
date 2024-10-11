@@ -51,11 +51,13 @@ main {
     justify-content: space-around;
     align-items: center;
     margin: 20px 0;
+    flex-direction: row; /* Asegurar disposición horizontal */
+    gap: 20px;
 }
 
 model-viewer {
     width: 30vw;
-    height: 40vh;
+    height: auto;
     margin: 0 10px;
 }
 
