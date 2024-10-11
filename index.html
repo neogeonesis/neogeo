@@ -1,31 +1,70 @@
-<main>
-    <section id="hero">
-        <h1>Bienvenido a Mi Portafolio Multimedia</h1>
-        <p>Explora mis trabajos creativos y proyectos</p>
-        <div id="3d-models-container">
-            <!-- Primer modelo 3D (nuevo) -->
-            <model-viewer id="modelo-izquierdo" src="model-left.glb"
-                          alt="Modelo 3D Izquierdo"
-                          auto-rotate
-                          camera-controls
-                          background-color="#ffffff">
-            </model-viewer>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Mi Portafolio Multimedia</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Cargar model-viewer -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="projects.html">Proyectos</a></li>
+                <li><a href="media.html">Medios</a></li>
+                <li><a href="music.html">Música</a></li>
+                <li><a href="visuals.html">Visuales</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            <!-- Modelo 3D central (el que ya tienes) -->
-            <model-viewer id="mi-modelo" src="model.glb"
-                          alt="Modelo 3D"
-                          auto-rotate
-                          camera-controls
-                          background-color="#ffffff">
-            </model-viewer>
+    <main>
+        <section id="hero">
+            <h1>Bienvenido a Mi Portafolio Multimedia</h1>
+            <p>Explora mis trabajos creativos y proyectos</p>
+            <div id="3d-models-container">
+                <!-- Primer modelo 3D (nuevo) -->
+                <model-viewer id="modelo-izquierdo" src="model-left.glb"
+                              alt="Modelo 3D Izquierdo"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
 
-            <!-- Segundo modelo 3D (nuevo) -->
-            <model-viewer id="modelo-derecho" src="model-right.glb"
-                          alt="Modelo 3D Derecho"
-                          auto-rotate
-                          camera-controls
-                          background-color="#ffffff">
-            </model-viewer>
-        </div>
-    </section>
-</main>
+                <!-- Modelo 3D central (tu modelo original) -->
+                <model-viewer id="mi-modelo" src="model.glb"
+                              alt="Modelo 3D"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
+
+                <!-- Segundo modelo 3D (nuevo) -->
+                <model-viewer id="modelo-derecho" src="model-right.glb"
+                              alt="Modelo 3D Derecho"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        
+    </footer>
+
+    <script>
+        // Obtener el modelo
+        const modelViewer = document.getElementById('mi-modelo');
+
+        // Agregar evento de clic para redirigir a la página de Proyectos
+        modelViewer.addEventListener('click', () => {
+            window.location.href = 'projects.html';  // Cambia esto a tu página de proyectos
+        });
+    </script>
+</body>
+</html>
