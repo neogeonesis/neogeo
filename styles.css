@@ -47,25 +47,22 @@ main {
 }
 
 #3d-models-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 20px 0;
-    flex-direction: row; /* Asegurar disposición horizontal */
-    gap: 20px;
+    display: flex; /* Disposición horizontal */
+    justify-content: center; /* Centrar los modelos */
+    align-items: center; /* Alinear verticalmente */
+    margin: 20px 0; /* Espaciado alrededor del contenedor */
 }
 
 model-viewer {
-    flex: 1;
-    max-width: 30vw;
-    height: auto;
-    margin: 0 10px;
+    width: 30vw; /* Ajustar el ancho de cada modelo 3D */
+    height: 40vh; /* Ajustar la altura de cada modelo 3D */
+    margin: 0 10px; /* Espaciado entre los modelos */
 }
 
 /* Hacer que los modelos sean responsivos */
 @media (max-width: 768px) {
     model-viewer {
-        width: 80vw;
-        height: 50vh;
+        width: 80vw; /* Ancho más grande en pantallas pequeñas */
+        height: 50vh; /* Altura más grande en pantallas pequeñas */
     }
 }
