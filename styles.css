@@ -66,3 +66,17 @@ model-viewer {
         height: 50vh;
     }
 }
+#3d-models-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row; /* Asegura que los modelos estén en fila */
+    gap: 20px; /* Espaciado entre los modelos */
+}
+
+model-viewer {
+    flex: 1;
+    max-width: 30vw;
+    height: auto;
+    margin: 0 10px;
+}
