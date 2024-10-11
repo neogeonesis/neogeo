@@ -1,63 +1,20 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    background-color: #222;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    display: inline-block;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    background-color: #555;
-    border-radius: 5px;
-}
-
-main {
-    padding: 20px;
-}
-
 #3d-models-container {
-    display: flex;
-    justify-content: space-around; /* Espacio uniforme entre modelos */
-    align-items: center; /* Centra los modelos verticalmente */
+    display: flex; /* Hacer que el contenedor sea flex */
+    justify-content: center; /* Centrar los modelos horizontalmente */
+    align-items: center; /* Centrar verticalmente */
     margin: 20px 0; /* Espacio alrededor del contenedor */
+    flex-wrap: wrap; /* Permitir que los modelos se envuelvan en pantallas más pequeñas */
 }
 
 model-viewer {
-    width: 30vw; /* Ajustar el tamaño del modelo */
-    height: 60vh; /* Ajustar el tamaño del modelo */
+    width: 30vw; /* Ancho del modelo 3D (ajustar según sea necesario) */
+    height: 40vh; /* Altura del modelo 3D (ajustar según sea necesario) */
+    margin: 0 10px; /* Espacio entre los modelos */
 }
 
-section {
-    margin-top: 20px;
+@media (max-width: 768px) {
+    model-viewer {
+        width: 80vw; /* Ancho más grande en pantallas pequeñas */
+        height: 50vh; /* Altura más grande en pantallas pequeñas */
+    }
 }
