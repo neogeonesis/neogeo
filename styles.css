@@ -7,13 +7,52 @@ body {
     color: #333;
 }
 
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+main {
+    padding: 20px;
+}
+
 /* Contenedor para los tres modelos 3D */
 #3d-models-container {
     display: flex;                  /* Alinea los modelos horizontalmente */
     justify-content: center;        /* Centra los modelos */
     align-items: flex-start;        /* Alinea los modelos en la parte superior del contenedor */
     margin-bottom: 40px;           /* Espacio en la parte inferior del contenedor */
-    flex-wrap: wrap;               /* Permite que los modelos se envuelvan en pantallas más pequeñas */
 }
 
 /* Ajuste para cada modelo 3D */
@@ -39,4 +78,3 @@ model-viewer {
         height: 25vh;              /* Ajusta la altura para móviles */
     }
 }
-
