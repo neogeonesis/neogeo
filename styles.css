@@ -46,31 +46,17 @@ main {
     padding: 20px;
 }
 
-/* Contenedor de los modelos 3D */
 #3d-models-container {
     display: flex;
     justify-content: center;
-    align-items: center;  /* Alinea los modelos verticalmente */
-    gap: 20px;  /* Espacio entre los modelos */
-    margin-bottom: 40px;
-    flex-wrap: wrap;  /* Permite que los modelos se ajusten en pantallas pequeñas */
+    gap: 20px; /* Espacio entre los modelos */
 }
 
-/* Ajuste de cada modelo 3D */
 model-viewer {
-    width: 30%;  /* Ajusta el ancho de cada modelo */
-    height: 50vh;
-}
-
-/* Asegurar que la página se vea bien en pantallas pequeñas */
-@media (max-width: 768px) {
-    model-viewer {
-        width: 80%;  /* En pantallas más pequeñas, ocuparán el 80% del ancho */
-        height: auto;
-    }
+    width: 250px;  /* Tamaño ajustado para cada modelo 3D */
+    height: 350px;
 }
 
 section {
     margin-top: 20px;
 }
-
