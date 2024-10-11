@@ -1,3 +1,4 @@
+/* styles.css */
 body {
     margin: 0;
     padding: 0;
@@ -51,7 +52,7 @@ main {
     justify-content: space-around;
     align-items: center;
     margin: 20px 0;
-    flex-direction: row;
+    flex-direction: row; /* Asegurar disposición horizontal */
     gap: 20px;
 }
 
