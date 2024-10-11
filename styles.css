@@ -46,18 +46,20 @@ main {
     padding: 20px;
 }
 
-#3d-model {
-    text-align: center;
+#3d-models-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre los modelos */
     margin-bottom: 40px;
 }
 
 model-viewer {
-    width: 80vw;
-    height: 60vh;
-    margin-top: 20px;
+    width: 30vw;  /* Ajuste para que las tres figuras se vean bien en pantallas grandes */
+    height: 50vh;
     display: block;
     margin: 0 auto;
 }
 
 section {
-    margin-top
+    margin-top: 20px;
+}
