@@ -1,17 +1,17 @@
 #3d-models-container {
-    display: flex; /* Hacer que el contenedor sea flex */
-    justify-content: center; /* Centrar los modelos horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-    margin: 20px 0; /* Espacio alrededor del contenedor */
-    flex-wrap: wrap; /* Permitir que los modelos se envuelvan en pantallas más pequeñas */
+    display: flex; /* Disposición horizontal */
+    justify-content: center; /* Centrar los modelos */
+    align-items: center; /* Alinear verticalmente */
+    margin: 20px 0; /* Espaciado alrededor del contenedor */
 }
 
 model-viewer {
-    width: 30vw; /* Ancho del modelo 3D (ajustar según sea necesario) */
-    height: 40vh; /* Altura del modelo 3D (ajustar según sea necesario) */
-    margin: 0 10px; /* Espacio entre los modelos */
+    width: 30vw; /* Ajustar el ancho de cada modelo 3D */
+    height: 40vh; /* Ajustar la altura de cada modelo 3D */
+    margin: 0 10px; /* Espaciado entre los modelos */
 }
 
+/* Hacer que los modelos sean responsivos */
 @media (max-width: 768px) {
     model-viewer {
         width: 80vw; /* Ancho más grande en pantallas pequeñas */
