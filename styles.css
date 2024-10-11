@@ -1,4 +1,3 @@
-/* Estilos generales */
 body {
     margin: 0;
     padding: 0;
@@ -47,34 +46,18 @@ main {
     padding: 20px;
 }
 
-/* Contenedor para los tres modelos 3D */
 #3d-models-container {
-    display: flex;                  /* Alinea los modelos horizontalmente */
-    justify-content: center;        /* Centra los modelos */
-    align-items: flex-start;        /* Alinea los modelos en la parte superior del contenedor */
-    margin-bottom: 40px;           /* Espacio en la parte inferior del contenedor */
+    display: flex;
+    justify-content: space-around; /* Espacio uniforme entre modelos */
+    align-items: center; /* Centra los modelos verticalmente */
+    margin: 20px 0; /* Espacio alrededor del contenedor */
 }
 
-/* Ajuste para cada modelo 3D */
 model-viewer {
-    width: 30vw;                   /* Usar unidades de viewport para el ancho */
-    height: 40vh;                  /* Usar unidades de viewport para la altura */
-    margin: 10px;                  /* Añade un margen alrededor de cada modelo */
-    max-width: 300px;              /* Tamaño máximo para pantallas grandes */
-    max-height: 400px;             /* Tamaño máximo para pantallas grandes */
+    width: 30vw; /* Ajustar el tamaño del modelo */
+    height: 60vh; /* Ajustar el tamaño del modelo */
 }
 
-/* Media queries para pantallas pequeñas */
-@media (max-width: 768px) {
-    model-viewer {
-        width: 80vw;               /* Aumenta el ancho para pantallas pequeñas */
-        height: 30vh;              /* Ajusta la altura para pantallas pequeñas */
-    }
-}
-
-@media (max-width: 480px) {
-    model-viewer {
-        width: 90vw;               /* Aumenta aún más el ancho para móviles */
-        height: 25vh;              /* Ajusta la altura para móviles */
-    }
+section {
+    margin-top: 20px;
 }
