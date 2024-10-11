@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medios - Mi Portafolio Multimedia</title>
+    <title>Inicio - Mi Portafolio Multimedia</title>
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
@@ -20,18 +21,44 @@
     </header>
 
     <main>
-        <section id="media">
-            <h2>Medios</h2>
-            <div class="media">
-                <img src="media1-thumbnail.jpg" alt="Medio 1">
-                <p>Descripción del medio 1.</p>
+        <section id="hero">
+            <h1>Bienvenido a Mi Portafolio Multimedia</h1>
+            <p>Explora mis trabajos creativos y proyectos</p>
+            <div id="3d-models-container">
+                <model-viewer id="modelo-izquierdo" src="model-left.glb"
+                              alt="Modelo 3D Izquierdo"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
+
+                <model-viewer id="mi-modelo" src="model.glb"
+                              alt="Modelo 3D"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
+
+                <model-viewer id="modelo-derecho" src="model-right.glb"
+                              alt="Modelo 3D Derecho"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
             </div>
-            <!-- Añadir más medios aquí -->
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
+        <!-- Contenido del pie de página -->
     </footer>
+
+    <script>
+        const modelViewer = document.getElementById('mi-modelo');
+
+        modelViewer.addEventListener('click', () => {
+            window.location.href = 'projects.html';
+        });
+    </script>
 </body>
 </html>
