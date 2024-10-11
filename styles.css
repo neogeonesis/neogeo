@@ -1,14 +1,13 @@
 /* Contenedor para los tres modelos 3D */
 #3d-models-container {
     display: flex;
-    justify-content: center;
-    gap: 20px;  /* Espacio entre los modelos */
+    justify-content: space-between; /* Espacio entre los modelos */
+    align-items: center;  /* Centrar verticalmente si es necesario */
     margin-bottom: 40px;
 }
 
-/* Mantiene el tamaño para cada modelo 3D */
+/* Ajuste para cada modelo 3D */
 model-viewer {
-    width: 250px;  /* Ajusta el tamaño del modelo */
-    height: 350px;
+    width: 250px;  /* Tamaño ajustado para cada modelo */
+    height: 350px;  /* Ajusta la altura según sea necesario */
 }
-
