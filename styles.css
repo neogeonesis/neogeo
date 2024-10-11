@@ -51,11 +51,14 @@ main {
     justify-content: space-around;
     align-items: center;
     margin: 20px 0;
+    flex-direction: row; /* Asegurar disposición horizontal */
+    gap: 20px;
 }
 
 model-viewer {
-    width: 30vw;
-    height: 40vh;
+    flex: 1;
+    max-width: 30vw;
+    height: auto;
     margin: 0 10px;
 }
 
@@ -65,18 +68,4 @@ model-viewer {
         width: 80vw;
         height: 50vh;
     }
-}
-#3d-models-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row; /* Asegura que los modelos estén en fila */
-    gap: 20px; /* Espaciado entre los modelos */
-}
-
-model-viewer {
-    flex: 1;
-    max-width: 30vw;
-    height: auto;
-    margin: 0 10px;
 }
