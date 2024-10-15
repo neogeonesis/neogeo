@@ -52,36 +52,38 @@ main {
 /* Contenedor de los modelos 3D */
 #3d-models-container {
     display: flex;                     /* Usar flexbox para la disposición */
-    justify-content: space-around;     /* Espacio entre modelos */
+    justify-content: center;           /* Centrar modelos */
     align-items: center;               /* Centrar verticalmente los modelos */
     margin: 20px 0;
     gap: 20px;                         /* Espacio entre modelos */
+    flex-wrap: wrap;                   /* Permitir que los modelos se envuelvan */
 }
 
 /* Modelos 3D */
 model-viewer {
-    width: 300px;                      /* Ancho fijo para cada modelo */
-    height: 300px;                     /* Altura fija para cada modelo */
+    width: 30vw;                       /* Ancho relativo al 30% de la ventana */
+    height: auto;                      /* Altura automática para mantener la proporción */
+    max-width: 300px;                 /* Ancho máximo para pantallas grandes */
 }
 
 /* Estilos responsivos */
 @media (max-width: 1024px) {
     model-viewer {
-        width: 200px;                  /* Ancho ajustado en pantallas medianas */
-        height: 200px;                 /* Altura ajustada en pantallas medianas */
+        width: 45vw;                  /* Ancho ajustado en pantallas medianas */
+        max-width: 200px;             /* Ancho máximo ajustado */
     }
 }
 
 @media (max-width: 768px) {
     model-viewer {
-        width: 150px;                  /* Ancho ajustado en pantallas pequeñas */
-        height: 150px;                 /* Altura ajustada en pantallas pequeñas */
+        width: 70vw;                  /* Ancho ajustado en pantallas pequeñas */
+        max-width: 150px;             /* Ancho máximo ajustado */
     }
 }
 
 @media (max-width: 480px) {
     model-viewer {
-        width: 100px;                  /* Ancho ajustado en pantallas muy pequeñas */
-        height: 100px;                 /* Altura ajustada en pantallas muy pequeñas */
+        width: 90vw;                  /* Ancho ajustado en pantallas muy pequeñas */
+        max-width: 100px;             /* Ancho máximo ajustado */
     }
 }
