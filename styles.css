@@ -52,16 +52,14 @@ main {
 /* Contenedor de los modelos 3D */
 #3d-models-container {
     display: flex;                     /* Usar flexbox para la disposición */
-    justify-content: center;           /* Centrar los modelos horizontalmente */
+    justify-content: space-around;     /* Espacio entre modelos */
     align-items: center;               /* Centrar verticalmente los modelos */
     margin: 20px 0;
-    flex-direction: row;               /* Asegurar disposición horizontal */
     gap: 20px;                         /* Espacio entre modelos */
 }
 
 /* Modelos 3D */
 model-viewer {
-    flex: 0 0 auto;                    /* Evitar que el modelo crezca automáticamente */
     width: 300px;                      /* Ancho fijo para cada modelo */
     height: 300px;                     /* Altura fija para cada modelo */
 }
