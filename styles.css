@@ -57,20 +57,25 @@ main {
     margin: 20px 0;
     flex-wrap: wrap;                   /* Permitir que los modelos se envuelvan en nuevas filas */
     gap: 20px;                         /* Espacio entre modelos */
+    width: 100%;                       /* Asegurarse de que ocupe todo el ancho disponible */
+    min-height: 300px;                 /* Establecer una altura mínima para el contenedor */
 }
 
 /* Modelos 3D */
 model-viewer {
     flex: 1;                           /* Permitir que cada modelo tome espacio igual */
-    max-width: 30vw;                  /* Ancho máximo del modelo */
-    height: 300px;                    /* Altura fija para los modelos */
+    width: 30%;                        /* Establecer un ancho base */
+    height: auto;                      /* Mantener proporciones */
+    min-height: 300px;                 /* Altura mínima para los modelos */
+    margin: 0 10px;                   /* Espacio entre modelos */
 }
 
 /* Estilos responsivos */
 @media (max-width: 1024px) {
     model-viewer {
-        max-width: 45vw;              /* Aumentar el ancho en pantallas medianas */
-        height: 250px;                /* Ajustar la altura para pantallas medianas */
+        width: 45%;                   /* Aumentar el ancho en pantallas medianas */
+        height: auto;                 /* Mantener proporciones */
+        min-height: 250px;           /* Ajustar altura mínima */
     }
 }
 
@@ -81,14 +86,16 @@ model-viewer {
     }
 
     model-viewer {
-        max-width: 80vw;              /* 80% del ancho en pantallas pequeñas */
-        height: 200px;                /* Ajustar la altura para pantallas pequeñas */
+        width: 80%;                   /* 80% del ancho en pantallas pequeñas */
+        height: auto;                 /* Mantener proporciones */
+        min-height: 200px;           /* Ajustar altura mínima */
     }
 }
 
 @media (max-width: 480px) {
     model-viewer {
-        max-width: 90vw;              /* 90% del ancho en pantallas muy pequeñas */
-        height: 150px;                /* Ajustar la altura para pantallas muy pequeñas */
+        width: 90%;                   /* 90% del ancho en pantallas muy pequeñas */
+        height: auto;                 /* Mantener proporciones */
+        min-height: 150px;           /* Ajustar altura mínima */
     }
 }
