@@ -1,3 +1,4 @@
+/* Estilos globales */
 body {
     margin: 0;
     padding: 0;
@@ -6,6 +7,7 @@ body {
     color: #333;
 }
 
+/* Estilos del header y el menú de navegación */
 header {
     background-color: #333;
     color: white;
@@ -42,10 +44,12 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
+/* Estilos principales */
 main {
     padding: 20px;
 }
 
+/* Contenedor de los modelos 3D */
 #3d-models-container {
     display: flex;
     justify-content: space-around;
@@ -55,6 +59,7 @@ main {
     gap: 20px;
 }
 
+/* Modelos 3D */
 model-viewer {
     flex: 1;
     max-width: 30vw;
@@ -62,10 +67,28 @@ model-viewer {
     margin: 0 10px;
 }
 
-/* Hacer que los modelos sean responsivos */
-@media (max-width: 768px) {
+/* Estilos responsivos */
+@media (max-width: 1024px) {
     model-viewer {
-        width: 80vw;
+        max-width: 45vw; /* Aumentar el ancho en pantallas medianas */
+    }
+}
+
+@media (max-width: 768px) {
+    #3d-models-container {
+        flex-direction: column; /* Colocar los modelos en vertical en pantallas pequeñas */
+    }
+
+    model-viewer {
+        max-width: 80vw;
         height: 50vh;
     }
 }
+
+@media (max-width: 480px) {
+    model-viewer {
+        max-width: 90vw;
+        height: 40vh;
+    }
+}
+
