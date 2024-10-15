@@ -1,6 +1,6 @@
 /* Estilos globales */
 body {
-    margin: 10;
+    margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -51,39 +51,43 @@ main {
 
 /* Contenedor de los modelos 3D */
 #3d-models-container {
-   /*display: flex;                     /* Usar flexbox para la disposición */
+    display: flex;                     /* Usar flexbox para disposición horizontal */
     justify-content: center;           /* Centrar los modelos horizontalmente */
     align-items: center;               /* Centrar verticalmente los modelos */
-    margin: 40px 0;
+    margin: 20px 0;
     gap: 40px;                         /* Espacio entre modelos */
-    width: 0%;                       /* Hacer que el contenedor ocupe todo el ancho */
+    flex-wrap: wrap;                   /* Permitir que los modelos se envuelvan si es necesario */
 }
 
 /* Modelos 3D */
 model-viewer {
-    flex: 0 0 auto;                    /* Evitar que el modelo crezca automáticamente */
-    width: 500px;                      /* Aumento del ancho de cada modelo */
-    height: 500px;                     /* Aumento de la altura de cada modelo */
+    width: 500px;                      /* Ancho mayor para ver bien los modelos */
+    height: 500px;                     /* Altura ajustada */
+    transition: transform 0.3s ease;   /* Efecto de ampliación suave */
+}
+
+model-viewer:hover {
+    transform: scale(1.2);             /* Ampliar el modelo al pasar el cursor */
 }
 
 /* Estilos responsivos */
 @media (max-width: 1024px) {
     model-viewer {
-        width: 350px;                  /* Ancho ajustado en pantallas medianas */
-        height: 1050px;                 /* Altura ajustada en pantallas medianas */
+        width: 350px;                  /* Ajustar tamaño en pantallas medianas */
+        height: 350px;
     }
 }
 
 @media (max-width: 768px) {
     model-viewer {
-        width: 250px;                  /* Ancho ajustado en pantallas pequeñas */
-        height: 250px;                 /* Altura ajustada en pantallas pequeñas */
+        width: 250px;                  /* Ajustar tamaño en pantallas pequeñas */
+        height: 250px;
     }
 }
 
 @media (max-width: 480px) {
     model-viewer {
-        width: 200px;                  /* Ancho ajustado en pantallas muy pequeñas */
-        height: 200px;                 /* Altura ajustada en pantallas muy pequeñas */
+        width: 200px;                  /* Ajustar tamaño en pantallas muy pequeñas */
+        height: 200px;
     }
 }
