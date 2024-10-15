@@ -52,47 +52,38 @@ main {
 /* Contenedor de los modelos 3D */
 #3d-models-container {
     display: flex;                     /* Usar flexbox para la disposición */
-    justify-content: space-between;    /* Espacio uniforme entre los modelos */
+    justify-content: center;           /* Centrar los modelos horizontalmente */
     align-items: center;               /* Centrar verticalmente los modelos */
     margin: 20px 0;
     flex-direction: row;               /* Asegurar disposición horizontal */
-    flex-wrap: nowrap;                 /* Mantener modelos en una sola fila */
     gap: 20px;                         /* Espacio entre modelos */
-    width: 100%;                       /* Asegurarse de que ocupe todo el ancho disponible */
-    min-height: 300px;                 /* Establecer una altura mínima para el contenedor */
 }
 
 /* Modelos 3D */
 model-viewer {
     flex: 1;                           /* Permitir que cada modelo tome espacio igual */
-    width: 30%;                        /* Establecer un ancho base */
+    max-width: 30%;                    /* Establecer un ancho máximo para cada modelo */
     height: 300px;                    /* Establecer una altura específica para asegurarse de que sean visibles */
-    margin: 0 10px;                   /* Espacio entre modelos */
 }
 
 /* Estilos responsivos */
 @media (max-width: 1024px) {
     model-viewer {
-        width: 45%;                   /* Aumentar el ancho en pantallas medianas */
-        height: 250px;               /* Ajustar altura para pantallas medianas */
+        max-width: 45%;               /* Aumentar el ancho en pantallas medianas */
+        height: 250px;                /* Ajustar altura para pantallas medianas */
     }
 }
 
 @media (max-width: 768px) {
-    #3d-models-container {
-        flex-direction: row;          /* Mantener en fila en pantallas pequeñas */
-        flex-wrap: nowrap;            /* Mantener modelos en una sola fila */
-    }
-
     model-viewer {
-        width: 80%;                   /* 80% del ancho en pantallas pequeñas */
-        height: 200px;               /* Ajustar altura para pantallas pequeñas */
+        max-width: 80%;               /* 80% del ancho en pantallas pequeñas */
+        height: 200px;                /* Ajustar altura para pantallas pequeñas */
     }
 }
 
 @media (max-width: 480px) {
     model-viewer {
-        width: 90%;                   /* 90% del ancho en pantallas muy pequeñas */
-        height: 150px;               /* Ajustar altura para pantallas muy pequeñas */
+        max-width: 90%;               /* 90% del ancho en pantallas muy pequeñas */
+        height: 150px;                /* Ajustar altura para pantallas muy pequeñas */
     }
 }
