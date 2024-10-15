@@ -3,41 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neogeo Portfolio</title>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <title>Inicio - Mi Portafolio Multimedia</title>
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Neogeo - Portafolio Multimedia</h1>
         <nav>
             <ul>
-                <li><a href="#about">Acerca de</a></li>
-                <li><a href="#3d-models-container">Modelos 3D</a></li>
-                <li><a href="#contact">Contacto</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="projects.html">Proyectos</a></li>
+                <li><a href="media.html">Medios</a></li>
+                <li><a href="music.html">Música</a></li>
+                <li><a href="visuals.html">Visuales</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="about">
-            <h2>Acerca de mí</h2>
-            <p>Soy Neogeo, un artista medial especializado en la creación de experiencias audiovisuales contemporáneas.</p>
-        </section>
+        <section id="hero">
+            <h1>Bienvenido a Mi Portafolio Multimedia</h1>
+            <p>Explora mis trabajos creativos y proyectos</p>
+            <div id="3d-models-container">
+                <!-- Modelo izquierdo -->
+                <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                              alt="Modelo 3D Izquierdo"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
 
-        <section id="3d-models-container">
-            <h2>Mis Modelos 3D</h2>
-            <div class="model-container">
-                <model-viewer src="model1.glb" alt="Modelo 1" auto-rotate camera-controls></model-viewer>
-                <model-viewer src="model2.glb" alt="Modelo 2" auto-rotate camera-controls></model-viewer>
-                <model-viewer src="model3.glb" alt="Modelo 3" auto-rotate camera-controls></model-viewer>
+                <!-- Modelo central -->
+                <model-viewer src="model.glb"
+                              alt="Modelo 3D"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
+
+                <!-- Modelo derecho -->
+                <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                              alt="Modelo 3D Derecho"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
             </div>
         </section>
-
-        <section id="contact">
-            <h2>Contacto</h2>
-            <p>Para más información, contáctame en: <a href="mailto:contacto@neogeo.com">contacto@neogeo.com</a></p>
-        </section>
     </main>
+
+    <footer>
+        <!-- Contenido del pie de página -->
+    </footer>
+
+    <script>
+        // Agregar interacción para redirigir al hacer clic en los modelos
+        const modelViewer = document.getElementsByTagName('model-viewer');
+
+        for (let i = 0; i < modelViewer.length; i++) {
+            modelViewer[i].addEventListener('click', () => {
+                window.location.href = 'projects.html';
+            });
+        }
+    </script>
 </body>
 </html>
