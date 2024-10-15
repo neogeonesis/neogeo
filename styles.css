@@ -12,34 +12,28 @@ body {
 header {
     background-color: #333;
     color: white;
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    position: relative;
     width: 250px;                      /* Ancho fijo para el menú */
-    height: 100vh;                    /* Altura completa para el menú */
 }
 
 nav {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;           /* Alinear a la izquierda */
 }
 
-.nav-button {
+/* Estilo para el botón de menú */
+.nav-toggle {
+    cursor: pointer;
+    padding: 10px;
     background-color: #222;
     color: white;
-    padding: 10px;
-    cursor: pointer;
-    border: none;
-    font-weight: bold;
-    width: 100%;                       /* El botón ocupa todo el ancho */
-    margin-bottom: 5px;                /* Margen entre el botón y el menú */
+    text-align: center;
 }
 
+/* Contenido del menú */
 .nav-content {
     display: none;                     /* Oculta el contenido inicialmente */
-    background-color: #333;
+    background-color: #444;
     width: 100%;                       /* Ancho fijo para el menú */
 }
 
