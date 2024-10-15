@@ -54,9 +54,9 @@ main {
     display: flex;                     /* Usar flexbox para la disposición */
     justify-content: center;           /* Centrar los modelos horizontalmente */
     align-items: center;               /* Centrar verticalmente los modelos */
-    margin: 20px 0;
+    margin: 40px 0;
     gap: 40px;                         /* Espacio entre modelos */
-    width: 100%;                       /* Hacer que el contenedor ocupe todo el ancho */
+    width: 50%;                       /* Hacer que el contenedor ocupe todo el ancho */
 }
 
 /* Modelos 3D */
