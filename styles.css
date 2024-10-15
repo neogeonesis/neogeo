@@ -57,13 +57,15 @@ main {
     margin: 20px 0;
     flex-direction: row;               /* Asegurar disposición horizontal */
     gap: 20px;                         /* Espacio entre modelos */
+    flex-wrap: wrap;                   /* Permitir que los modelos se envuelvan si no hay suficiente espacio */
 }
 
 /* Modelos 3D */
 model-viewer {
     flex: 1;                           /* Permitir que cada modelo tome espacio igual */
     max-width: 30%;                    /* Establecer un ancho máximo para cada modelo */
-    height: 300px;                    /* Establecer una altura específica para asegurarse de que sean visibles */
+    height: 300px;                     /* Establecer una altura específica para asegurarse de que sean visibles */
+    background-color: #fff;           /* Color de fondo para cada modelo */
 }
 
 /* Estilos responsivos */
