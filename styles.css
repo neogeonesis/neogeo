@@ -56,34 +56,34 @@ main {
     align-items: center;               /* Centrar verticalmente los modelos */
     margin: 20px 0;
     flex-direction: row;               /* Asegurar disposición horizontal */
-    gap: 20px;                         /* Espacio entre modelos */
+    gap: 40px;                         /* Espacio entre modelos */
 }
 
 /* Modelos 3D */
 model-viewer {
     flex: 0 0 auto;                    /* Evitar que el modelo crezca automáticamente */
-    width: 300px;                      /* Ancho fijo para cada modelo */
-    height: 300px;                     /* Altura fija para cada modelo */
+    width: 400px;                      /* Aumento del ancho de cada modelo */
+    height: 400px;                     /* Aumento de la altura de cada modelo */
 }
 
 /* Estilos responsivos */
 @media (max-width: 1024px) {
     model-viewer {
-        width: 200px;                  /* Ancho ajustado en pantallas medianas */
-        height: 200px;                 /* Altura ajustada en pantallas medianas */
+        width: 300px;                  /* Ancho ajustado en pantallas medianas */
+        height: 300px;                 /* Altura ajustada en pantallas medianas */
     }
 }
 
 @media (max-width: 768px) {
     model-viewer {
-        width: 150px;                  /* Ancho ajustado en pantallas pequeñas */
-        height: 150px;                 /* Altura ajustada en pantallas pequeñas */
+        width: 200px;                  /* Ancho ajustado en pantallas pequeñas */
+        height: 200px;                 /* Altura ajustada en pantallas pequeñas */
     }
 }
 
 @media (max-width: 480px) {
     model-viewer {
-        width: 100px;                  /* Ancho ajustado en pantallas muy pequeñas */
-        height: 100px;                 /* Altura ajustada en pantallas muy pequeñas */
+        width: 150px;                  /* Ancho ajustado en pantallas muy pequeñas */
+        height: 150px;                 /* Altura ajustada en pantallas muy pequeñas */
     }
 }
