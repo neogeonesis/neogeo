@@ -57,35 +57,33 @@ main {
     margin: 20px 0;
     flex-direction: row;               /* Asegurar disposición horizontal */
     gap: 20px;                         /* Espacio entre modelos */
-    flex-wrap: wrap;                   /* Permitir que los modelos se envuelvan si no hay suficiente espacio */
 }
 
 /* Modelos 3D */
 model-viewer {
-    flex: 1;                           /* Permitir que cada modelo tome espacio igual */
-    max-width: 30%;                    /* Establecer un ancho máximo para cada modelo */
-    height: 300px;                     /* Establecer una altura específica para asegurarse de que sean visibles */
-    background-color: #fff;           /* Color de fondo para cada modelo */
+    flex: 0 0 auto;                    /* Evitar que el modelo crezca automáticamente */
+    width: 300px;                      /* Ancho fijo para cada modelo */
+    height: 300px;                     /* Altura fija para cada modelo */
 }
 
 /* Estilos responsivos */
 @media (max-width: 1024px) {
     model-viewer {
-        max-width: 45%;               /* Aumentar el ancho en pantallas medianas */
-        height: 250px;                /* Ajustar altura para pantallas medianas */
+        width: 200px;                  /* Ancho ajustado en pantallas medianas */
+        height: 200px;                 /* Altura ajustada en pantallas medianas */
     }
 }
 
 @media (max-width: 768px) {
     model-viewer {
-        max-width: 80%;               /* 80% del ancho en pantallas pequeñas */
-        height: 200px;                /* Ajustar altura para pantallas pequeñas */
+        width: 150px;                  /* Ancho ajustado en pantallas pequeñas */
+        height: 150px;                 /* Altura ajustada en pantallas pequeñas */
     }
 }
 
 @media (max-width: 480px) {
     model-viewer {
-        max-width: 90%;               /* 90% del ancho en pantallas muy pequeñas */
-        height: 150px;                /* Ajustar altura para pantallas muy pequeñas */
+        width: 100px;                  /* Ancho ajustado en pantallas muy pequeñas */
+        height: 100px;                 /* Altura ajustada en pantallas muy pequeñas */
     }
 }
