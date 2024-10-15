@@ -55,7 +55,7 @@ main {
     justify-content: space-around;     /* Espacio uniforme entre los modelos */
     align-items: center;               /* Centrar verticalmente los modelos */
     margin: 20px 0;
-    flex-direction: row;               /* Asegurar que los modelos estén en fila */
+    flex-wrap: wrap;                   /* Permitir que los modelos se envuelvan en nuevas filas */
     gap: 20px;                         /* Espacio entre modelos */
 }
 
@@ -63,31 +63,32 @@ main {
 model-viewer {
     flex: 1;                           /* Permitir que cada modelo tome espacio igual */
     max-width: 30vw;                  /* Ancho máximo del modelo */
-    height: auto;                      /* Altura automática para mantener proporciones */
-    margin: 0 10px;
+    height: 300px;                    /* Altura fija para los modelos */
 }
 
 /* Estilos responsivos */
 @media (max-width: 1024px) {
     model-viewer {
         max-width: 45vw;              /* Aumentar el ancho en pantallas medianas */
+        height: 250px;                /* Ajustar la altura para pantallas medianas */
     }
 }
 
 @media (max-width: 768px) {
     #3d-models-container {
-        flex-direction: column;       /* Cambiar a columna en pantallas pequeñas */
+        flex-direction: row;          /* Mantener en fila en pantallas pequeñas */
+        flex-wrap: wrap;              /* Permitir que los modelos se envuelvan */
     }
 
     model-viewer {
         max-width: 80vw;              /* 80% del ancho en pantallas pequeñas */
-        height: 50vh;                 /* Altura de 50% de la ventana */
+        height: 200px;                /* Ajustar la altura para pantallas pequeñas */
     }
 }
 
 @media (max-width: 480px) {
     model-viewer {
         max-width: 90vw;              /* 90% del ancho en pantallas muy pequeñas */
-        height: 40vh;                 /* Altura de 40% de la ventana */
+        height: 150px;                /* Ajustar la altura para pantallas muy pequeñas */
     }
 }
