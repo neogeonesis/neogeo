@@ -18,76 +18,82 @@ header {
     z-index: 1000;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+nav {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-button {
     background-color: #222;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
     color: white;
-    text-decoration: none;
     padding: 10px;
-    display: inline-block;
+    cursor: pointer;
+    border: none;
     font-weight: bold;
+    width: 100%;
+    text-align: left;
+    border-radius: 5px;  /* Agrega un borde redondeado */
 }
 
-nav ul li a:hover {
+.nav-content {
+    display: none; /* Oculta el contenido inicialmente */
+    background-color: #333;
+    width: 100%;
+}
+
+.nav-content a {
+    display: block;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+.nav-content a:hover {
     background-color: #555;
-    border-radius: 5px;
 }
 
 /* Estilos principales */
 main {
     padding: 20px;
+    text-align: center;
 }
 
 /* Contenedor de los modelos 3D */
 #3d-models-container {
-    display: flex;                     /* Usar flexbox para disposición horizontal */
+    display: flex;                     /* Usar flexbox para la disposición */
     justify-content: center;           /* Centrar los modelos horizontalmente */
     align-items: center;               /* Centrar verticalmente los modelos */
     margin: 20px 0;
     gap: 40px;                         /* Espacio entre modelos */
-    flex-wrap: wrap;                   /* Permitir que los modelos se envuelvan si es necesario */
 }
 
 /* Modelos 3D */
 model-viewer {
-    width: 500px;                      /* Ancho mayor para ver bien los modelos */
-    height: 500px;                     /* Altura ajustada */
-    transition: transform 0.3s ease;   /* Efecto de ampliación suave */
-}
-
-model-viewer:hover {
-    transform: scale(1.2);             /* Ampliar el modelo al pasar el cursor */
+    flex: 0 0 auto;                    /* Evitar que el modelo crezca automáticamente */
+    width: 500px;                      /* Ancho fijo para cada modelo */
+    height: 500px;                     /* Altura fija para cada modelo */
 }
 
 /* Estilos responsivos */
 @media (max-width: 1024px) {
     model-viewer {
-        width: 350px;                  /* Ajustar tamaño en pantallas medianas */
-        height: 350px;
+        width: 350px;                  /* Ancho ajustado en pantallas medianas */
+        height: 350px;                 /* Altura ajustada en pantallas medianas */
     }
 }
 
 @media (max-width: 768px) {
     model-viewer {
-        width: 250px;                  /* Ajustar tamaño en pantallas pequeñas */
-        height: 250px;
+        width: 250px;                  /* Ancho ajustado en pantallas pequeñas */
+        height: 250px;                 /* Altura ajustada en pantallas pequeñas */
     }
 }
 
 @media (max-width: 480px) {
     model-viewer {
-        width: 200px;                  /* Ajustar tamaño en pantallas muy pequeñas */
-        height: 200px;
+        width: 200px;                  /* Ancho ajustado en pantallas muy pequeñas */
+        height: 200px;                 /* Altura ajustada en pantallas muy pequeñas */
     }
 }
