@@ -70,7 +70,7 @@ model-viewer {
 @media (max-width: 1024px) {
     model-viewer {
         width: 350px;                  /* Ancho ajustado en pantallas medianas */
-        height: 350px;                 /* Altura ajustada en pantallas medianas */
+        height: 1050px;                 /* Altura ajustada en pantallas medianas */
     }
 }
 
