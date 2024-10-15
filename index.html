@@ -6,110 +6,11 @@
     <title>Inicio - Mi Portafolio Multimedia</title>
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <style>
-        /* Estilos globales */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        /* Estilos del header y el menú de navegación */
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .nav-button {
-            background-color: #222;
-            color: white;
-            padding: 10px;
-            cursor: pointer;
-            border: none;
-            font-weight: bold;
-            width: 100%;
-            text-align: left;
-        }
-
-        .nav-content {
-            display: none;
-            background-color: #333;
-            width: 100%;
-        }
-
-        .nav-content a {
-            display: block;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-        }
-
-        .nav-content a:hover {
-            background-color: #555;
-        }
-
-        /* Estilos principales */
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-
-        /* Contenedor de los modelos 3D */
-        #3d-models-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-            gap: 40px;
-        }
-
-        /* Modelos 3D */
-        model-viewer {
-            width: 500px;
-            height: 500px;
-        }
-
-        /* Estilos responsivos */
-        @media (max-width: 1024px) {
-            model-viewer {
-                width: 350px;
-                height: 350px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            model-viewer {
-                width: 250px;
-                height: 250px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            model-viewer {
-                width: 200px;
-                height: 200px;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
         <nav>
-            <button class="nav-button" onclick="toggleNav()">Menú</button>
+            <button class="nav-button" onclick="toggleMenu()">Menu</button>
             <div class="nav-content" id="nav-content">
                 <a href="index.html">Inicio</a>
                 <a href="projects.html">Proyectos</a>
@@ -154,21 +55,17 @@
     </footer>
 
     <script>
+        function toggleMenu() {
+            const navContent = document.getElementById('nav-content');
+            navContent.style.display = navContent.style.display === 'block' ? 'none' : 'block';
+        }
+
         const modelViewer = document.getElementsByTagName('model-viewer');
 
         for (let i = 0; i < modelViewer.length; i++) {
             modelViewer[i].addEventListener('click', () => {
                 window.location.href = 'projects.html';
             });
-        }
-
-        function toggleNav() {
-            const navContent = document.getElementById('nav-content');
-            if (navContent.style.display === "block") {
-                navContent.style.display = "none";
-            } else {
-                navContent.style.display = "block";
-            }
         }
     </script>
 </body>
