@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Mi Portafolio Multimedia</title>
+    <title>Mi Portafolio Multimedia</title>
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
@@ -25,21 +25,21 @@
             <h1>Bienvenido a Mi Portafolio Multimedia</h1>
             <p>Explora mis trabajos creativos y proyectos</p>
             <div id="3d-models-container">
-                <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                <model-viewer id="modelo-izquierdo" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
                               alt="Modelo 3D Izquierdo"
                               auto-rotate
                               camera-controls
                               background-color="#ffffff">
                 </model-viewer>
 
-                <model-viewer src="model.glb"
+                <model-viewer id="mi-modelo" src="model.glb"
                               alt="Modelo 3D"
                               auto-rotate
                               camera-controls
                               background-color="#ffffff">
                 </model-viewer>
 
-                <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                <model-viewer id="modelo-derecho" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
                               alt="Modelo 3D Derecho"
                               auto-rotate
                               camera-controls
@@ -54,13 +54,11 @@
     </footer>
 
     <script>
-        const modelViewer = document.getElementsByTagName('model-viewer');
+        const modelViewer = document.getElementById('mi-modelo');
 
-        for (let i = 0; i < modelViewer.length; i++) {
-            modelViewer[i].addEventListener('click', () => {
-                window.location.href = 'projects.html';
-            });
-        }
+        modelViewer.addEventListener('click', () => {
+            window.location.href = 'projects.html';
+        });
     </script>
 </body>
 </html>
