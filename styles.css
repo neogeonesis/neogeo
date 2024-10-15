@@ -51,7 +51,7 @@ main {
 
 /* Contenedor de los modelos 3D */
 #3d-models-container {
-    display: flex;                     /* Usar flexbox para la disposición */
+   /*display: flex;                     /* Usar flexbox para la disposición */
     justify-content: center;           /* Centrar los modelos horizontalmente */
     align-items: center;               /* Centrar verticalmente los modelos */
     margin: 40px 0;
