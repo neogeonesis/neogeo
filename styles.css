@@ -5,6 +5,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
+    display: flex;                     /* Usar flexbox para el diseño */
 }
 
 /* Estilos del header y el menú de navegación */
@@ -16,13 +17,13 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 250px;                      /* Ancho fijo para el menú */
 }
 
 nav {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;           /* Alinear a la izquierda */
 }
 
 .nav-button {
@@ -32,15 +33,13 @@ nav {
     cursor: pointer;
     border: none;
     font-weight: bold;
-    width: 100%;
-    text-align: left;
-    border-radius: 5px;  /* Agrega un borde redondeado */
+    width: 100%;                       /* El botón ocupa todo el ancho */
 }
 
 .nav-content {
-    display: none; /* Oculta el contenido inicialmente */
+    display: none;                     /* Oculta el contenido inicialmente */
     background-color: #333;
-    width: 100%;
+    width: 100%;                       /* Ancho fijo para el menú */
 }
 
 .nav-content a {
@@ -57,13 +56,16 @@ nav {
 /* Estilos principales */
 main {
     padding: 20px;
-    text-align: center;
+    flex-grow: 1;                      /* Permite que el main ocupe el espacio restante */
+    display: flex;                     /* Usar flexbox para alinear modelos 3D */
+    justify-content: flex-start;       /* Alinear modelos a la izquierda */
+    align-items: center;
 }
 
 /* Contenedor de los modelos 3D */
 #3d-models-container {
     display: flex;                     /* Usar flexbox para la disposición */
-    justify-content: center;           /* Centrar los modelos horizontalmente */
+    justify-content: flex-start;       /* Alinear los modelos a la izquierda */
     align-items: center;               /* Centrar verticalmente los modelos */
     margin: 20px 0;
     gap: 40px;                         /* Espacio entre modelos */
