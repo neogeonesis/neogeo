@@ -25,7 +25,6 @@
             <h1>Bienvenido a Mi Portafolio Multimedia</h1>
             <p>Explora mis trabajos creativos y proyectos</p>
             <div id="3d-models-container">
-                <!-- Modelo izquierdo -->
                 <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
                               alt="Modelo 3D Izquierdo"
                               auto-rotate
@@ -33,15 +32,13 @@
                               background-color="#ffffff">
                 </model-viewer>
 
-                <!-- Modelo central -->
-                <model-viewer src="model.glb"
+                <model-viewer src="model.glb" <!-- Asegúrate de que este archivo está en la misma carpeta -->
                               alt="Modelo 3D"
                               auto-rotate
                               camera-controls
                               background-color="#ffffff">
                 </model-viewer>
 
-                <!-- Modelo derecho -->
                 <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
                               alt="Modelo 3D Derecho"
                               auto-rotate
@@ -57,7 +54,6 @@
     </footer>
 
     <script>
-        // Agregar interacción para redirigir al hacer clic en los modelos
         const modelViewer = document.getElementsByTagName('model-viewer');
 
         for (let i = 0; i < modelViewer.length; i++) {
