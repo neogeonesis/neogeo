@@ -52,7 +52,7 @@ main {
 /* Contenedor de los modelos 3D */
 #3d-models-container {
     display: flex;                     /* Usar flexbox para la disposición */
-    justify-content: space-around;     /* Espacio uniforme entre los modelos */
+    justify-content: space-between;     /* Espacio uniforme entre los modelos */
     align-items: center;               /* Centrar verticalmente los modelos */
     margin: 20px 0;
     flex-wrap: wrap;                   /* Permitir que los modelos se envuelvan en nuevas filas */
@@ -65,8 +65,7 @@ main {
 model-viewer {
     flex: 1;                           /* Permitir que cada modelo tome espacio igual */
     width: 30%;                        /* Establecer un ancho base */
-    height: auto;                      /* Mantener proporciones */
-    min-height: 300px;                 /* Altura mínima para los modelos */
+    height: 300px;                    /* Establecer una altura específica para asegurarse de que sean visibles */
     margin: 0 10px;                   /* Espacio entre modelos */
 }
 
