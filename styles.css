@@ -52,10 +52,11 @@ main {
 /* Contenedor de los modelos 3D */
 #3d-models-container {
     display: flex;                     /* Usar flexbox para la disposición */
-    justify-content: space-between;     /* Espacio uniforme entre los modelos */
+    justify-content: space-between;    /* Espacio uniforme entre los modelos */
     align-items: center;               /* Centrar verticalmente los modelos */
     margin: 20px 0;
-    flex-wrap: wrap;                   /* Permitir que los modelos se envuelvan en nuevas filas */
+    flex-direction: row;               /* Asegurar disposición horizontal */
+    flex-wrap: nowrap;                 /* Mantener modelos en una sola fila */
     gap: 20px;                         /* Espacio entre modelos */
     width: 100%;                       /* Asegurarse de que ocupe todo el ancho disponible */
     min-height: 300px;                 /* Establecer una altura mínima para el contenedor */
@@ -73,28 +74,25 @@ model-viewer {
 @media (max-width: 1024px) {
     model-viewer {
         width: 45%;                   /* Aumentar el ancho en pantallas medianas */
-        height: auto;                 /* Mantener proporciones */
-        min-height: 250px;           /* Ajustar altura mínima */
+        height: 250px;               /* Ajustar altura para pantallas medianas */
     }
 }
 
 @media (max-width: 768px) {
     #3d-models-container {
         flex-direction: row;          /* Mantener en fila en pantallas pequeñas */
-        flex-wrap: wrap;              /* Permitir que los modelos se envuelvan */
+        flex-wrap: nowrap;            /* Mantener modelos en una sola fila */
     }
 
     model-viewer {
         width: 80%;                   /* 80% del ancho en pantallas pequeñas */
-        height: auto;                 /* Mantener proporciones */
-        min-height: 200px;           /* Ajustar altura mínima */
+        height: 200px;               /* Ajustar altura para pantallas pequeñas */
     }
 }
 
 @media (max-width: 480px) {
     model-viewer {
         width: 90%;                   /* 90% del ancho en pantallas muy pequeñas */
-        height: auto;                 /* Mantener proporciones */
-        min-height: 150px;           /* Ajustar altura mínima */
+        height: 150px;               /* Ajustar altura para pantallas muy pequeñas */
     }
 }
