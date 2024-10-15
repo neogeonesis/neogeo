@@ -25,21 +25,21 @@
             <h1>Bienvenido a Mi Portafolio Multimedia</h1>
             <p>Explora mis trabajos creativos y proyectos</p>
             <div id="3d-models-container">
-                <model-viewer id="modelo-izquierdo" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                <model-viewer id="modelo" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
                               alt="Modelo 3D Izquierdo"
                               auto-rotate
                               camera-controls
                               background-color="#ffffff">
                 </model-viewer>
 
-                <model-viewer id="mi-modelo" src="model.glb"
+                <model-viewer id="modelo" src="model.glb"
                               alt="Modelo 3D"
                               auto-rotate
                               camera-controls
                               background-color="#ffffff">
                 </model-viewer>
 
-                <model-viewer id="modelo-derecho" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                <model-viewer id="modelo" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
                               alt="Modelo 3D Derecho"
                               auto-rotate
                               camera-controls
@@ -54,7 +54,7 @@
     </footer>
 
     <script>
-        const modelViewer = document.getElementById('mi-modelo');
+        const modelViewer = document.getElementById('modelo');
 
         modelViewer.addEventListener('click', () => {
             window.location.href = 'projects.html';
