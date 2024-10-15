@@ -56,7 +56,7 @@ main {
     align-items: center;               /* Centrar verticalmente los modelos */
     margin: 40px 0;
     gap: 40px;                         /* Espacio entre modelos */
-    width: 50%;                       /* Hacer que el contenedor ocupe todo el ancho */
+    width: 0%;                       /* Hacer que el contenedor ocupe todo el ancho */
 }
 
 /* Modelos 3D */
