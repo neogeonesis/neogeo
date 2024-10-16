@@ -3,52 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Mi Portafolio Multimedia</title>
+    <title>Proyectos - Neogeo Portafolio</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Cargar model-viewer -->
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="projects.html">Proyectos</a></li>
-                <li><a href="media.html">Medios</a></li>
-                <li><a href="music.html">Música</a></li>
-                <li><a href="visuals.html">Visuales</a></li>
-            </ul>
+        <div class="nav-toggle" id="nav-toggle">
+            <span>☰</span>
+        </div>
+        <nav class="nav-content" id="nav-content">
+            <a href="index.html">Inicio</a>
+            <a href="projects.html">Proyectos</a>
+            <a href="media.html">Medios</a>
+            <a href="music.html">Música</a>
+            <a href="visuals.html">Visuales</a>
         </nav>
     </header>
 
     <main>
-        <section id="hero">
-            <h1>Bienvenido a Mi Portafolio Multimedia</h1>
-            <p>Explora mis trabajos creativos y proyectos</p>
-            <div id="3d-model">
-                <model-viewer id="mi-modelo" src="model.glb"
-                              alt="Modelo 3D"
-                              auto-rotate
-                              camera-controls
-                              background-color="#ffffff">
-                </model-viewer>
-            </div>
+        <section id="projects" class="section-hero">
+            <h1>Proyectos</h1>
+            <p>Aquí encontrarás una selección de mis proyectos más destacados.</p>
+            <!-- Contenido de proyectos -->
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
-    </footer>
-
     <script>
-        // Obtener el modelo
-        const modelViewer = document.getElementById('mi-modelo');
-
-        // Agregar evento de clic para redirigir a la página de Proyectos
-        modelViewer.addEventListener('click', () => {
-            window.location.href = 'projects.html';  // Asegúrate de que la URL sea correcta
+        document.getElementById('nav-toggle').addEventListener('click', function() {
+            const navContent = document.getElementById('nav-content');
+            navContent.classList.toggle('open');
         });
     </script>
 </body>
 </html>
-
