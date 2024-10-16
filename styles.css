@@ -2,52 +2,37 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', sans-serif; /* Fuente actualizada a Inter */
-    background-color: #f4f4f4;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4; /* Color de fondo */
+    color: #333; /* Color del texto */
 }
 
 /* Estilos del header y el menú de navegación */
 header {
-    background-color: #333;
+    background-color: #000;
     color: white;
+    padding: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
-.nav-toggle {
-    cursor: pointer;
-    padding: 15px 20px;
-    background-color: #444;
-    color: white;
-    font-size: 24px;
-    transition: background-color 0.3s;
-}
-
-.nav-toggle:hover {
-    background-color: #555;
-}
-
-/* Menú desplegable */
 .nav-content {
     display: flex;
     flex-direction: column;
-    background-color: #222;
     position: fixed;
-    left: 0;
     top: 0;
-    width: 250px;
+    left: 0;
     height: 100%;
-    padding-top: 60px;
-    transition: transform 0.3s ease-in-out;
+    width: 250px;
+    background-color: #000;
     transform: translateX(-100%);
-    z-index: 1000;
+    transition: transform 0.3s ease;
+    padding-top: 60px;
 }
 
 .nav-content.open {
@@ -56,57 +41,58 @@ header {
 
 .nav-content a {
     color: white;
-    padding: 15px 20px;
+    padding: 15px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
-    font-weight: 600; /* Estilo más destacado para los enlaces */
+    font-size: 18px;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s;
 }
 
 .nav-content a:hover {
     background-color: #444;
 }
 
-/* Estilos principales */
-main {
-    padding: 20px;
-    flex-grow: 1;
+/* Sección de héroe */
+.section-hero {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    height: 100vh; /* Asegúrate de que esto se mantenga */
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding-top: 60px; /* Espacio para el header */
 }
 
-/* Contenedor de los modelos 3D */
 #3d-models-container {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 40px;
+    margin-top: 40px;
 }
 
-/* Modelos 3D */
 model-viewer {
     width: 300px;
     height: 300px;
 }
 
-/* Estilos responsivos */
-@media (max-width: 1024px) {
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #000;
+    color: white;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    #3d-models-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
     model-viewer {
         width: 250px;
         height: 250px;
-    }
-}
-
-@media (max-width: 768px) {
-    model-viewer {
-        width: 200px;
-        height: 200px;
-    }
-}
-
-@media (max-width: 480px) {
-    model-viewer {
-        width: 150px;
-        height: 150px;
     }
 }
