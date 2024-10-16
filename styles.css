@@ -2,42 +2,52 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif; /* Fuente actualizada a Inter */
     background-color: #f4f4f4;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 /* Estilos del header y el menú de navegación */
 header {
-    background-color: #000;
+    background-color: #333;
     color: white;
-    padding: 20px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
 }
 
 .nav-toggle {
     cursor: pointer;
+    padding: 15px 20px;
+    background-color: #444;
+    color: white;
     font-size: 24px;
+    transition: background-color 0.3s;
 }
 
+.nav-toggle:hover {
+    background-color: #555;
+}
+
+/* Menú desplegable */
 .nav-content {
     display: flex;
     flex-direction: column;
+    background-color: #222;
     position: fixed;
-    top: 0;
     left: 0;
-    height: 100%;
+    top: 0;
     width: 250px;
-    background-color: #000;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    height: 100%;
     padding-top: 60px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+    z-index: 1000;
 }
 
 .nav-content.open {
@@ -46,88 +56,57 @@ header {
 
 .nav-content a {
     color: white;
-    padding: 15px;
+    padding: 15px 20px;
     text-decoration: none;
-    font-size: 18px;
-    border-bottom: 1px solid #444;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+    font-weight: 600; /* Estilo más destacado para los enlaces */
 }
 
 .nav-content a:hover {
     background-color: #444;
 }
 
-/* Sección de héroe */
-.section-hero {
+/* Estilos principales */
+main {
+    padding: 20px;
+    flex-grow: 1;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #111;
-    color: white;
-    text-align: center;
-    padding-top: 60px;
+    justify-content: center;
 }
 
-.section-hero h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-}
-
-.section-hero p {
-    font-size: 1.5em;
-}
-
-/* Secciones */
-section {
-    padding: 60px 20px;
-    text-align: center;
-    margin-top: 80px; /* Asegúrate de que no esté detrás del header */
-}
-
-h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
-}
-
-/* Contenedor de modelos 3D */
+/* Contenedor de los modelos 3D */
 #3d-models-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 40px;
-    margin-top: 40px;
 }
 
+/* Modelos 3D */
 model-viewer {
     width: 300px;
     height: 300px;
 }
 
-/* Estilos para dispositivos móviles */
-@media (max-width: 768px) {
-    #3d-models-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-
+/* Estilos responsivos */
+@media (max-width: 1024px) {
     model-viewer {
         width: 250px;
         height: 250px;
     }
 }
 
-@media (max-width: 480px) {
-    .section-hero h1 {
-        font-size: 2em;
-    }
-
-    .section-hero p {
-        font-size: 1.2em;
-    }
-
+@media (max-width: 768px) {
     model-viewer {
         width: 200px;
         height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    model-viewer {
+        width: 150px;
+        height: 150px;
     }
 }
