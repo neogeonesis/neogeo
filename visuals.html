@@ -3,34 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visuales - Mi Portafolio Multimedia</title>
+    <title>Visuales - Neogeo Portafolio</title>
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="projects.html">Proyectos</a></li>
-                <li><a href="media.html">Medios</a></li>
-                <li><a href="music.html">Música</a></li>
-                <li><a href="visuals.html">Visuales</a></li>
-            </ul>
+        <div class="nav-toggle" id="nav-toggle">
+            <span>☰</span>
+        </div>
+        <nav class="nav-content" id="nav-content">
+            <a href="index.html">Inicio</a>
+            <a href="projects.html">Proyectos</a>
+            <a href="media.html">Medios</a>
+            <a href="music.html">Música</a>
+            <a href="visuals.html">Visuales</a>
         </nav>
     </header>
 
     <main>
-        <section id="visuals">
-            <h2>Visuales</h2>
-            <div class="visuals">
-                <p>Descripción de tus trabajos visuales.</p>
+        <section class="section-hero">
+            <div class="hero-content">
+                <h1>Visuales</h1>
+                <p>Descubre mis trabajos visuales y proyectos destacados en el ámbito multimedia.</p>
             </div>
-            <!-- Añadir contenido visual aquí -->
+        </section>
+
+        <section>
+            <h2>Lista de Proyectos Visuales</h2>
+            <div class="projects">
+                <p>Aquí puedes describir tus proyectos visuales, incluir enlaces, imágenes o cualquier contenido adicional.</p>
+                <!-- Ejemplo de proyecto visual -->
+                <div class="project">
+                    <h3>Nombre del Proyecto Visual 1</h3>
+                    <p>Descripción breve del proyecto visual y su propósito.</p>
+                </div>
+                <div class="project">
+                    <h3>Nombre del Proyecto Visual 2</h3>
+                    <p>Descripción breve del proyecto visual y su propósito.</p>
+                </div>
+                <!-- Añade más proyectos visuales según sea necesario -->
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Neogeo - Todos los derechos reservados</p>
     </footer>
+
+    <script>
+        // Función para desplegar y plegar el menú
+        document.getElementById('nav-toggle').addEventListener('click', function() {
+            const navContent = document.getElementById('nav-content');
+            navContent.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>
