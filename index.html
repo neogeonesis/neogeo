@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neogeo Portafolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Título de la Página</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
-        <div class="nav-toggle" id="nav-toggle">
-            <span>☰</span>
-        </div>
+        <div class="nav-toggle" id="nav-toggle">☰</div>
         <nav class="nav-content" id="nav-content">
             <a href="index.html">Inicio</a>
             <a href="projects.html">Proyectos</a>
@@ -23,33 +21,14 @@
     </header>
 
     <main>
-        <section id="hero" class="section-hero">
-            <div class="hero-content">
-                <h1>Bienvenido a Mi Portafolio Multimedia</h1>
-                <p>Explora mis trabajos creativos y proyectos</p>
-            </div>
-            <div id="3d-models-container" class="models">
-                <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-                              alt="Modelo 3D Izquierdo"
-                              auto-rotate
-                              camera-controls
-                              background-color="#ffffff">
-                </model-viewer>
+        <section class="section-hero">
+            <h1>Título de la Sección</h1>
+            <p>Descripción de la sección.</p>
+        </section>
 
-                <model-viewer src="model.glb"
-                              alt="Modelo 3D"
-                              auto-rotate
-                              camera-controls
-                              background-color="#ffffff">
-                </model-viewer>
-
-                <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-                              alt="Modelo 3D Derecho"
-                              auto-rotate
-                              camera-controls
-                              background-color="#ffffff">
-                </model-viewer>
-            </div>
+        <section>
+            <h2>Contenido de la Página</h2>
+            <p>Aquí puedes añadir más contenido.</p>
         </section>
     </main>
 
