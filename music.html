@@ -3,46 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Música - Mi Portafolio Multimedia</title>
+    <title>Música - Neogeo Portafolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
+        <!-- Botón para desplegar el menú -->
         <div class="nav-toggle" id="nav-toggle">
             <span>☰</span>
         </div>
+
+        <!-- Menú de navegación -->
         <nav class="nav-content" id="nav-content">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="projects.html">Proyectos</a></li>
-                <li><a href="media.html">Medios</a></li>
-                <li><a href="music.html">Música</a></li>
-                <li><a href="visuals.html">Visuales</a></li>
-            </ul>
+            <a href="index.html">Inicio</a>
+            <a href="projects.html">Proyectos</a>
+            <a href="media.html">Medios</a>
+            <a href="music.html">Música</a>
+            <a href="visuals.html">Visuales</a>
         </nav>
     </header>
 
     <main>
         <section class="section-hero">
-            <h1>Música</h1>
-            <p>Explora mis trabajos musicales y proyectos destacados.</p>
+            <div class="hero-content">
+                <h1>Música</h1>
+                <p>Explora mis trabajos musicales y proyectos destacados.</p>
+            </div>
         </section>
 
         <section>
             <h2>Proyectos Musicales</h2>
             <div class="music">
                 <p>Descripción de tus trabajos musicales.</p>
-                <!-- Añadir más contenido musical aquí -->
+                <!-- Aquí puedes añadir más contenido musical -->
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Neogeo - Todos los derechos reservados</p>
     </footer>
 
     <script>
-        // Función para desplegar y plegar el menú al hacer clic en el ícono
+        // Función para desplegar y plegar el menú
         document.getElementById('nav-toggle').addEventListener('click', function() {
             const navContent = document.getElementById('nav-content');
             navContent.classList.toggle('open');
