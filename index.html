@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neogeo Portafolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
-        <!-- Botón para desplegar el menú -->
         <div class="nav-toggle" id="nav-toggle">
             <span>☰</span>
         </div>
-
-        <!-- Menú de navegación -->
         <nav class="nav-content" id="nav-content">
             <a href="index.html">Inicio</a>
             <a href="projects.html">Proyectos</a>
@@ -62,7 +58,6 @@
     </footer>
 
     <script>
-        // Función para desplegar y plegar el menú
         document.getElementById('nav-toggle').addEventListener('click', function() {
             const navContent = document.getElementById('nav-content');
             navContent.classList.toggle('open');
