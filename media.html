@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - Mi Portafolio Multimedia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="projects.html">Proyectos</a></li>
-                <li><a href="media.html">Medios</a></li>
-                <li><a href="music.html">Música</a></li>
-                <li><a href="visuals.html">Visuales</a></li>
-            </ul>
+        <div class="nav-toggle" id="nav-toggle">
+            <span>☰</span>
+        </div>
+        <nav class="nav-content" id="nav-content">
+            <a href="index.html">Inicio</a>
+            <a href="projects.html">Proyectos</a>
+            <a href="media.html">Medios</a>
+            <a href="music.html">Música</a>
+            <a href="visuals.html">Visuales</a>
         </nav>
     </header>
 
@@ -25,39 +27,21 @@
             <h1>Bienvenido a Mi Portafolio Multimedia</h1>
             <p>Explora mis trabajos creativos y proyectos</p>
             <div id="3d-models-container">
-                <model-viewer id="modelo-izquierdo" src="model-left.glb"
-                              alt="Modelo 3D Izquierdo"
-                              auto-rotate
-                              camera-controls
-                              background-color="#ffffff">
-                </model-viewer>
-
-                <model-viewer id="mi-modelo" src="model.glb"
-                              alt="Modelo 3D"
-                              auto-rotate
-                              camera-controls
-                              background-color="#ffffff">
-                </model-viewer>
-
-                <model-viewer id="modelo-derecho" src="model-right.glb"
-                              alt="Modelo 3D Derecho"
-                              auto-rotate
-                              camera-controls
-                              background-color="#ffffff">
-                </model-viewer>
+                <model-viewer src="model-left.glb" alt="Modelo 3D Izquierdo" auto-rotate camera-controls background-color="#ffffff"></model-viewer>
+                <model-viewer src="model.glb" alt="Modelo 3D" auto-rotate camera-controls background-color="#ffffff"></model-viewer>
+                <model-viewer src="model-right.glb" alt="Modelo 3D Derecho" auto-rotate camera-controls background-color="#ffffff"></model-viewer>
             </div>
         </section>
     </main>
 
     <footer>
-        <!-- Contenido del pie de página -->
+        <p>&copy; 2024 Neogeo - Todos los derechos reservados</p>
     </footer>
 
     <script>
-        const modelViewer = document.getElementById('mi-modelo');
-
-        modelViewer.addEventListener('click', () => {
-            window.location.href = 'projects.html';
+        document.getElementById('nav-toggle').addEventListener('click', function() {
+            const navContent = document.getElementById('nav-content');
+            navContent.classList.toggle('open');
         });
     </script>
 </body>
