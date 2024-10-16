@@ -3,32 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título de la Página</title>
+    <title>Neogeo Portafolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
-        <div class="nav-toggle" id="nav-toggle">☰</div>
+        <!-- Botón para desplegar el menú -->
+        <div class="nav-toggle" id="nav-toggle">
+            <span>☰</span>
+        </div>
+
+        <!-- Menú de navegación -->
         <nav class="nav-content" id="nav-content">
-            <a href="index.html">Inicio</a>
-            <a href="projects.html">Proyectos</a>
-            <a href="media.html">Medios</a>
+            <a href="#hero">Inicio</a>
+            <a href="#work">Proyectos</a>
+            <a href="projects.html">Más Proyectos</a>
             <a href="music.html">Música</a>
             <a href="visuals.html">Visuales</a>
         </nav>
     </header>
 
     <main>
-        <section class="section-hero">
-            <h1>Título de la Sección</h1>
-            <p>Descripción de la sección.</p>
+        <section id="hero" class="section-hero">
+            <div class="hero-content">
+                <h1>Bienvenido a Mi Portafolio Multimedia</h1>
+                <p>Explora mis trabajos creativos y proyectos</p>
+            </div>
+            <div id="3d-models-container" class="models">
+                <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                              alt="Modelo 3D Izquierdo"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
+
+                <model-viewer src="model.glb"
+                              alt="Modelo 3D"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
+
+                <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                              alt="Modelo 3D Derecho"
+                              auto-rotate
+                              camera-controls
+                              background-color="#ffffff">
+                </model-viewer>
+            </div>
         </section>
 
-        <section>
-            <h2>Contenido de la Página</h2>
-            <p>Aquí puedes añadir más contenido.</p>
+        <section id="work">
+            <h2>Proyectos</h2>
+            <!-- Aquí puedes agregar contenido sobre tus proyectos -->
         </section>
     </main>
 
@@ -37,6 +65,7 @@
     </footer>
 
     <script>
+        // Función para desplegar y plegar el menú
         document.getElementById('nav-toggle').addEventListener('click', function() {
             const navContent = document.getElementById('nav-content');
             navContent.classList.toggle('open');
