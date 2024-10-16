@@ -1,54 +1,133 @@
+/* Estilos globales */
 body {
     margin: 0;
+    padding: 0;
     font-family: 'Inter', sans-serif;
     background-color: black; /* Fondo negro */
     color: white; /* Color de texto blanco */
 }
 
+/* Estilos del header y el menú de navegación */
 header {
-    position: relative; /* Para que el menú no tape el botón */
     background-color: black; /* Fondo del header negro */
-    padding: 10px 0; /* Espaciado en el header */
+    color: white;
+    padding: 10px 20px; /* Espaciado en el header */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Posiciona el header en la parte superior */
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Mantiene el header por encima */
 }
 
 .nav-toggle {
     cursor: pointer;
-    padding: 10px;
+    font-size: 24px;
     z-index: 10; /* Asegura que esté encima del menú */
 }
 
 .nav-content {
-    display: none; /* Oculta el menú por defecto */
-    position: absolute;
-    top: 50px; /* Coloca el menú debajo del botón */
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
     left: 0;
+    height: 100%;
+    width: 250px;
     background-color: black; /* Fondo negro para el menú */
-    border: 1px solid white; /* Opcional: Borde blanco para el menú */
-    width: 100%; /* Ancho completo */
-    z-index: 5; /* Asegura que el menú esté por debajo del botón */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    padding-top: 60px;
 }
 
 .nav-content.open {
-    display: block; /* Muestra el menú al abrir */
+    transform: translateX(0); /* Muestra el menú al abrir */
 }
 
 .nav-content a {
-    display: block; /* Estilo de enlaces en bloque */
-    padding: 10px;
-    color: white; /* Color del texto del menú */
-    text-decoration: none; /* Sin subrayado */
+    color: white; /* Color de texto del menú */
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid #444; /* Línea divisoria */
+    transition: background-color 0.3s;
 }
 
 .nav-content a:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Efecto hover */
+    background-color: #444; /* Efecto hover */
 }
 
+/* Sección de héroe */
 .section-hero {
-    padding: 20px;
-    text-align: center; /* Centrar el contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura completa de la ventana */
+    background-color: black; /* Fondo negro */
+    color: white;
+    text-align: center;
+    padding-top: 60px; /* Espaciado para el contenido */
 }
 
-footer {
+.section-hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.section-hero p {
+    font-size: 1.5em;
+}
+
+/* Contenedor de modelos 3D */
+#3d-models-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+model-viewer {
+    width: 300px; /* Ancho de los modelos 3D */
+    height: 300px; /* Alto de los modelos 3D */
+}
+
+/* Secciones */
+section {
+    padding: 60px 20px;
     text-align: center;
-    padding: 20px 0;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    #3d-models-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    model-viewer {
+        width: 250px; /* Ancho para móviles */
+        height: 250px; /* Alto para móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-hero h1 {
+        font-size: 2em; /* Tamaño de fuente para móviles */
+    }
+
+    .section-hero p {
+        font-size: 1.2em; /* Tamaño de fuente para móviles */
+    }
+
+    model-viewer {
+        width: 200px; /* Ancho para móviles */
+        height: 200px; /* Alto para móviles */
+    }
 }
