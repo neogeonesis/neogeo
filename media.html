@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Mi Portafolio Multimedia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Medios - Neogeo Portafolio</title>
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
@@ -23,13 +22,27 @@
     </header>
 
     <main>
-        <section id="hero">
-            <h1>Bienvenido a Mi Portafolio Multimedia</h1>
-            <p>Explora mis trabajos creativos y proyectos</p>
-            <div id="3d-models-container">
-                <model-viewer src="model-left.glb" alt="Modelo 3D Izquierdo" auto-rotate camera-controls background-color="#ffffff"></model-viewer>
-                <model-viewer src="model.glb" alt="Modelo 3D" auto-rotate camera-controls background-color="#ffffff"></model-viewer>
-                <model-viewer src="model-right.glb" alt="Modelo 3D Derecho" auto-rotate camera-controls background-color="#ffffff"></model-viewer>
+        <section class="section-hero">
+            <div class="hero-content">
+                <h1>Medios</h1>
+                <p>Explora mis trabajos en diferentes medios y proyectos destacados.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Lista de Proyectos en Medios</h2>
+            <div class="projects">
+                <p>Aquí puedes describir tus proyectos en diferentes medios, incluir enlaces, imágenes o cualquier contenido adicional.</p>
+                <!-- Ejemplo de proyecto en medios -->
+                <div class="project">
+                    <h3>Nombre del Proyecto en Medios 1</h3>
+                    <p>Descripción breve del proyecto en medios y su propósito.</p>
+                </div>
+                <div class="project">
+                    <h3>Nombre del Proyecto en Medios 2</h3>
+                    <p>Descripción breve del proyecto en medios y su propósito.</p>
+                </div>
+                <!-- Añade más proyectos en medios según sea necesario -->
             </div>
         </section>
     </main>
@@ -39,6 +52,7 @@
     </footer>
 
     <script>
+        // Función para desplegar y plegar el menú
         document.getElementById('nav-toggle').addEventListener('click', function() {
             const navContent = document.getElementById('nav-content');
             navContent.classList.toggle('open');
