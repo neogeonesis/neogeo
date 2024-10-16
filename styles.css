@@ -1,98 +1,51 @@
-/* Estilos globales */
 body {
     margin: 0;
-    padding: 0;
     font-family: 'Inter', sans-serif;
-    background-color: #f4f4f4; /* Color de fondo */
-    color: #333; /* Color del texto */
+    background-color: black; /* Fondo negro */
+    color: white; /* Color de texto blanco */
 }
 
-/* Estilos del header y el menú de navegación */
 header {
-    background-color: #000;
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+    position: relative; /* Para que el menú no tape el botón */
+}
+
+.nav-toggle {
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10; /* Asegura que esté encima del menú */
 }
 
 .nav-content {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
+    display: none; /* Oculta el menú por defecto */
+    position: absolute;
+    top: 40px; /* Coloca el menú debajo del botón */
     left: 0;
-    height: 100%;
-    width: 250px;
-    background-color: #000;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    padding-top: 60px;
+    background-color: black; /* Fondo negro para el menú */
+    border: 1px solid white; /* Opcional: Borde blanco para el menú */
+    width: 100%; /* Ancho completo */
 }
 
 .nav-content.open {
-    transform: translateX(0);
+    display: block; /* Muestra el menú al abrir */
 }
 
 .nav-content a {
-    color: white;
-    padding: 15px;
-    text-decoration: none;
-    font-size: 18px;
-    border-bottom: 1px solid #444;
-    transition: background-color 0.3s;
+    display: block; /* Estilo de enlaces en bloque */
+    padding: 10px;
+    color: white; /* Color del texto del menú */
+    text-decoration: none; /* Sin subrayado */
 }
 
 .nav-content a:hover {
-    background-color: #444;
+    background-color: rgba(255, 255, 255, 0.1); /* Efecto hover */
 }
 
-/* Sección de héroe */
 .section-hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Asegúrate de que esto se mantenga */
-    background-color: #111;
-    color: white;
-    text-align: center;
-    padding-top: 60px; /* Espacio para el header */
-}
-
-#3d-models-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 40px;
-}
-
-model-viewer {
-    width: 300px;
-    height: 300px;
+    padding: 20px;
+    text-align: center; /* Centrar el contenido */
 }
 
 footer {
     text-align: center;
     padding: 20px 0;
-    background-color: #000;
-    color: white;
-}
-
-/* Ajustes para dispositivos móviles */
-@media (max-width: 768px) {
-    #3d-models-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    model-viewer {
-        width: 250px;
-        height: 250px;
-    }
 }
