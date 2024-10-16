@@ -7,6 +7,8 @@ body {
 
 header {
     position: relative; /* Para que el menú no tape el botón */
+    background-color: black; /* Fondo del header negro */
+    padding: 10px 0; /* Espaciado en el header */
 }
 
 .nav-toggle {
@@ -18,11 +20,12 @@ header {
 .nav-content {
     display: none; /* Oculta el menú por defecto */
     position: absolute;
-    top: 40px; /* Coloca el menú debajo del botón */
+    top: 50px; /* Coloca el menú debajo del botón */
     left: 0;
     background-color: black; /* Fondo negro para el menú */
     border: 1px solid white; /* Opcional: Borde blanco para el menú */
     width: 100%; /* Ancho completo */
+    z-index: 5; /* Asegura que el menú esté por debajo del botón */
 }
 
 .nav-content.open {
