@@ -9,12 +9,13 @@ header {
     position: relative; /* Para que el menú no tape el botón */
     background-color: black; /* Fondo del header negro */
     padding: 10px 0; /* Espaciado en el header */
+    z-index: 10; /* Asegura que el header esté encima */
 }
 
 .nav-toggle {
     cursor: pointer;
     padding: 10px;
-    z-index: 10; /* Asegura que esté encima del menú */
+    z-index: 15; /* Asegura que esté encima del menú */
 }
 
 .nav-content {
