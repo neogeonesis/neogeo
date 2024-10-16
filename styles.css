@@ -5,7 +5,6 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #f4f4f4;
     color: #333;
-    height: 100vh;
 }
 
 /* Estilos del header y el menú de navegación */
@@ -80,6 +79,18 @@ header {
     font-size: 1.5em;
 }
 
+/* Secciones */
+section {
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 80px; /* Asegúrate de que no esté detrás del header */
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
 /* Contenedor de modelos 3D */
 #3d-models-container {
     display: flex;
@@ -91,17 +102,6 @@ header {
 model-viewer {
     width: 300px;
     height: 300px;
-}
-
-/* Secciones */
-section {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
 }
 
 /* Estilos para dispositivos móviles */
