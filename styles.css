@@ -5,102 +5,107 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
-    display: flex;                     /* Usar flexbox para el diseño */
+    display: flex;                      /* Usar flexbox para el diseño */
+    height: 100vh;                      /* Altura completa de la pantalla */
 }
 
 /* Estilos del header y el menú de navegación */
 header {
     background-color: #333;
     color: white;
-    position: relative;
     display: flex;
-    flex-direction: row;
-    align-items: center;              /* Centrar verticalmente el contenido */
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
 }
 
 .nav-toggle {
     cursor: pointer;
-    padding: 10px 15px;
-    background-color: #444;           /* Color de fondo del botón */
+    padding: 15px 20px;
+    background-color: #444;             /* Fondo del botón */
     color: white;
-    transition: background-color 0.3s; /* Transición suave */
+    font-size: 24px;                    /* Aumenta el tamaño del ícono */
+    transition: background-color 0.3s;
 }
 
 .nav-toggle:hover {
-    background-color: #555;           /* Color al pasar el mouse */
+    background-color: #555;
 }
 
-/* Contenido del menú */
+/* Menú desplegable */
 .nav-content {
-    display: none;                     /* Oculta el contenido inicialmente */
+    display: none;
     flex-direction: column;
-    background-color: #444;
-    position: absolute;
-    top: 40px;                        /* Para que no cubra el encabezado */
+    background-color: #222;             /* Fondo oscuro para que contraste mejor */
+    position: fixed;
     left: 0;
-    width: 200px;                     /* Ancho fijo para el menú */
-    padding: 10px 0;
-    z-index: 1000;                   /* Asegurar que esté sobre otros elementos */
+    top: 0;
+    width: 250px;                       /* Ancho fijo del menú */
+    height: 100%;                       /* Ocupa toda la altura de la pantalla */
+    padding-top: 60px;                  /* Separar opciones del borde superior */
+    transition: transform 0.3s ease-in-out;  /* Transición suave */
+    transform: translateX(-100%);       /* Inicialmente fuera de pantalla */
+    z-index: 1000;
 }
 
 .nav-content.open {
-    display: flex;                    /* Mostrar el menú cuando está abierto */
+    display: flex;
+    transform: translateX(0);           /* Deslizar el menú dentro de la pantalla */
 }
 
 .nav-content a {
-    display: block;
     color: white;
-    padding: 10px 15px;
+    padding: 15px 20px;
     text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
 .nav-content a:hover {
-    background-color: #555;
+    background-color: #444;
 }
 
 /* Estilos principales */
 main {
     padding: 20px;
-    flex-grow: 1;                     /* Permite que el main ocupe el espacio restante */
-    display: flex;                    /* Usar flexbox para alinear modelos 3D */
-    justify-content: flex-start;      /* Alinear modelos a la izquierda */
+    flex-grow: 1;                       /* El main ocupa el espacio restante */
+    display: flex;
     align-items: center;
+    justify-content: center;            /* Centra los modelos 3D horizontalmente */
 }
 
 /* Contenedor de los modelos 3D */
 #3d-models-container {
-    display: flex;                    /* Usar flexbox para la disposición */
-    justify-content: flex-start;      /* Alinear los modelos a la izquierda */
-    align-items: center;              /* Centrar verticalmente los modelos */
-    margin: 20px 0;
-    gap: 40px;                        /* Espacio entre modelos */
+    display: flex;                      /* Usar flexbox para organizar los modelos */
+    justify-content: center;
+    align-items: center;
+    gap: 40px;                          /* Espacio entre los modelos */
 }
 
 /* Modelos 3D */
 model-viewer {
-    flex: 0 0 auto;                   /* Evitar que el modelo crezca automáticamente */
-    width: 500px;                     /* Ancho fijo para cada modelo */
-    height: 500px;                    /* Altura fija para cada modelo */
+    width: 300px;                       /* Ajusta el tamaño del modelo */
+    height: 300px;
 }
 
 /* Estilos responsivos */
 @media (max-width: 1024px) {
     model-viewer {
-        width: 350px;                 /* Ancho ajustado en pantallas medianas */
-        height: 350px;                /* Altura ajustada en pantallas medianas */
+        width: 250px;
+        height: 250px;
     }
 }
 
 @media (max-width: 768px) {
     model-viewer {
-        width: 250px;                 /* Ancho ajustado en pantallas pequeñas */
-        height: 250px;                /* Altura ajustada en pantallas pequeñas */
+        width: 200px;
+        height: 200px;
     }
 }
 
 @media (max-width: 480px) {
     model-viewer {
-        width: 200px;                 /* Ancho ajustado en pantallas muy pequeñas */
-        height: 200px;                /* Altura ajustada en pantallas muy pequeñas */
+        width: 150px;
+        height: 150px;
     }
 }
