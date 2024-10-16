@@ -1,22 +1,62 @@
-/* Estilos generales para la lista de proyectos */
-#projects-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 40px;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos - Neogeo Portafolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="nav-toggle" id="nav-toggle">
+            <span>☰</span>
+        </div>
+        <nav class="nav-content" id="nav-content">
+            <a href="index.html">Inicio</a>
+            <a href="projects.html">Proyectos</a>
+            <a href="media.html">Medios</a>
+            <a href="music.html">Música</a>
+            <a href="visuals.html">Visuales</a>
+        </nav>
+    </header>
 
-.project-item {
-    background-color: #222; /* Fondo gris oscuro para los proyectos */
-    color: white; /* Texto blanco */
-    margin: 20px 0;
-    padding: 20px;
-    width: 80%; /* Ancho del 80% del contenedor */
-    border-radius: 8px; /* Bordes redondeados */
-    text-align: left; /* Alinear el texto a la izquierda */
-    transition: background-color 0.3s;
-}
+    <main>
+        <section class="section-hero">
+            <div class="hero-content">
+                <h1>Proyectos</h1>
+                <p>Explora mis trabajos y proyectos destacados en el campo de la multimedia.</p>
+            </div>
+        </section>
 
-.project-item:hover {
-    background-color: #444; /* Cambio de fondo al pasar el mouse */
-}
+        <section>
+            <h2>Lista de Proyectos</h2>
+            <div class="projects">
+                <p>Aquí puedes describir tus proyectos, incluir enlaces, imágenes o cualquier contenido adicional.</p>
+                <!-- Ejemplo de proyecto -->
+                <div class="project">
+                    <h3>Nombre del Proyecto 1</h3>
+                    <p>Descripción breve del proyecto y su propósito.</p>
+                </div>
+                <div class="project">
+                    <h3>Nombre del Proyecto 2</h3>
+                    <p>Descripción breve del proyecto y su propósito.</p>
+                </div>
+                <!-- Añade más proyectos según sea necesario -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Neogeo - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para desplegar y plegar el menú
+        document.getElementById('nav-toggle').addEventListener('click', function() {
+            const navContent = document.getElementById('nav-content');
+            navContent.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
