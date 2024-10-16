@@ -2,110 +2,132 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
-    display: flex;                      /* Usar flexbox para el diseño */
-    height: 100vh;                      /* Altura completa de la pantalla */
+    height: 100vh;
 }
 
 /* Estilos del header y el menú de navegación */
 header {
-    background-color: #333;
+    background-color: #000;
     color: white;
+    padding: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
 .nav-toggle {
     cursor: pointer;
-    padding: 15px 20px;
-    background-color: #444;             /* Fondo del botón */
-    color: white;
-    font-size: 24px;                    /* Aumenta el tamaño del ícono */
-    transition: background-color 0.3s;
+    font-size: 24px;
 }
 
-.nav-toggle:hover {
-    background-color: #555;
-}
-
-/* Menú desplegable */
 .nav-content {
-    display: none;
+    display: flex;
     flex-direction: column;
-    background-color: #222;             /* Fondo oscuro para que contraste mejor */
     position: fixed;
-    left: 0;
     top: 0;
-    width: 250px;                       /* Ancho fijo del menú */
-    height: 100%;                       /* Ocupa toda la altura de la pantalla */
-    padding-top: 60px;                  /* Separar opciones del borde superior */
-    transition: transform 0.3s ease-in-out;  /* Transición suave */
-    transform: translateX(-100%);       /* Inicialmente fuera de pantalla */
-    z-index: 1000;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    padding-top: 60px;
 }
 
 .nav-content.open {
-    display: flex;
-    transform: translateX(0);           /* Deslizar el menú dentro de la pantalla */
+    transform: translateX(0);
 }
 
 .nav-content a {
     color: white;
-    padding: 15px 20px;
+    padding: 15px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    font-size: 18px;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s;
 }
 
 .nav-content a:hover {
     background-color: #444;
 }
 
-/* Estilos principales */
-main {
-    padding: 20px;
-    flex-grow: 1;                       /* El main ocupa el espacio restante */
+/* Sección de héroe */
+.section-hero {
     display: flex;
-    align-items: center;
-    justify-content: center;            /* Centra los modelos 3D horizontalmente */
-}
-
-/* Contenedor de los modelos 3D */
-#3d-models-container {
-    display: flex;                      /* Usar flexbox para organizar los modelos */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;                          /* Espacio entre los modelos */
+    height: 100vh;
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding-top: 60px;
 }
 
-/* Modelos 3D */
+.section-hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.section-hero p {
+    font-size: 1.5em;
+}
+
+/* Contenedor de modelos 3D */
+#3d-models-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
 model-viewer {
-    width: 300px;                       /* Ajusta el tamaño del modelo */
+    width: 300px;
     height: 300px;
 }
 
-/* Estilos responsivos */
-@media (max-width: 1024px) {
+/* Secciones */
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    #3d-models-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
     model-viewer {
         width: 250px;
         height: 250px;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+    .section-hero h1 {
+        font-size: 2em;
+    }
+
+    .section-hero p {
+        font-size: 1.2em;
+    }
+
     model-viewer {
         width: 200px;
         height: 200px;
-    }
-}
-
-@media (max-width: 480px) {
-    model-viewer {
-        width: 150px;
-        height: 150px;
     }
 }
