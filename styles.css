@@ -130,4 +130,16 @@ h2 {
         width: 200px; /* Ancho para móviles */
         height: 200px; /* Alto para móviles */
     }
+    .line {
+    position: absolute;
+    width: 2px; /* Ancho de la línea */
+    height: 100%; /* Altura de la línea */
+    background: #ff5500; /* Color de la línea */
+    top: 0;
+    left: 0;
+    pointer-events: none; /* Ignorar interacciones del mouse */
+    transform: translate(-50%, 0); /* Centrar la línea */
+    transition: transform 0.1s ease; /* Suaviza el movimiento */
+}
+
 }
