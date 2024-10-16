@@ -9,17 +9,15 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="nav-toggle" onclick="toggleMenu()">
-                <span>☰</span>
-            </div>
-            <div class="nav-content" id="nav-content">
-                <a href="index.html">Inicio</a>
-                <a href="projects.html">Proyectos</a>
-                <a href="media.html">Medios</a>
-                <a href="music.html">Música</a>
-                <a href="visuals.html">Visuales</a>
-            </div>
+        <div class="nav-toggle" onclick="toggleMenu()">
+            <span>☰ Menu</span>
+        </div>
+        <nav class="nav-content" id="nav-content">
+            <a href="index.html">Inicio</a>
+            <a href="projects.html">Proyectos</a>
+            <a href="media.html">Medios</a>
+            <a href="music.html">Música</a>
+            <a href="visuals.html">Visuales</a>
         </nav>
     </header>
 
@@ -59,7 +57,7 @@
     <script>
         function toggleMenu() {
             const navContent = document.getElementById('nav-content');
-            navContent.style.display = navContent.style.display === 'block' ? 'none' : 'block';
+            navContent.classList.toggle('open');
         }
 
         const modelViewer = document.getElementsByTagName('model-viewer');
