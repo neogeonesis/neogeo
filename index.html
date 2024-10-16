@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Mi Portafolio Multimedia</title>
+    <title>Neogeo Portafolio</title>
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
-        <div class="nav-toggle" onclick="toggleMenu()">
+        <!-- Botón para desplegar el menú -->
+        <div class="nav-toggle" id="nav-toggle">
             <span>☰</span>
         </div>
+
+        <!-- Menú de navegación -->
         <nav class="nav-content" id="nav-content">
-            <a href="index.html">Inicio</a>
-            <a href="projects.html">Proyectos</a>
-            <a href="media.html">Medios</a>
-            <a href="music.html">Música</a>
-            <a href="visuals.html">Visuales</a>
+            <a href="#hero">Inicio</a>
+            <a href="#work">Proyectos</a>
+            <a href="#media">Medios</a>
+            <a href="#music">Música</a>
+            <a href="#visuals">Visuales</a>
         </nav>
     </header>
 
     <main>
-        <section id="hero">
-            <h1>Bienvenido a Mi Portafolio Multimedia</h1>
-            <p>Explora mis trabajos creativos y proyectos</p>
-            <div id="3d-models-container">
+        <section id="hero" class="section-hero">
+            <div class="hero-content">
+                <h1>Bienvenido a Mi Portafolio Multimedia</h1>
+                <p>Explora mis trabajos creativos y proyectos</p>
+            </div>
+            <div id="3d-models-container" class="models">
                 <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
                               alt="Modelo 3D Izquierdo"
                               auto-rotate
@@ -48,25 +53,38 @@
                 </model-viewer>
             </div>
         </section>
+
+        <section id="work">
+            <h2>Proyectos</h2>
+            <!-- Contenido de los proyectos -->
+        </section>
+
+        <section id="media">
+            <h2>Medios</h2>
+            <!-- Contenido sobre medios -->
+        </section>
+
+        <section id="music">
+            <h2>Música</h2>
+            <!-- Contenido sobre música -->
+        </section>
+
+        <section id="visuals">
+            <h2>Visuales</h2>
+            <!-- Contenido sobre visuales -->
+        </section>
     </main>
 
     <footer>
-        <!-- Contenido del pie de página -->
+        <p>&copy; 2024 Neogeo - Todos los derechos reservados</p>
     </footer>
 
     <script>
-        function toggleMenu() {
+        // Función para desplegar y plegar el menú
+        document.getElementById('nav-toggle').addEventListener('click', function() {
             const navContent = document.getElementById('nav-content');
             navContent.classList.toggle('open');
-        }
-
-        const modelViewer = document.getElementsByTagName('model-viewer');
-
-        for (let i = 0; i < modelViewer.length; i++) {
-            modelViewer[i].addEventListener('click', () => {
-                window.location.href = 'projects.html';
-            });
-        }
+        });
     </script>
 </body>
 </html>
