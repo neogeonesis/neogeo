@@ -9,22 +9,22 @@ body {
 
 /* Estilos del header y el menú de navegación */
 header {
-    background-color: black; /* Fondo del header negro */
+    background-color: black;
     color: white;
-    padding: 10px 20px; /* Espaciado en el header */
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed; /* Posiciona el header en la parte superior */
+    position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000; /* Mantiene el header por encima */
+    z-index: 1000;
 }
 
 .nav-toggle {
     cursor: pointer;
     font-size: 24px;
-    z-index: 10; /* Asegura que esté encima del menú */
+    z-index: 10;
 }
 
 .nav-content {
@@ -35,27 +35,27 @@ header {
     left: 0;
     height: 100%;
     width: 250px;
-    background-color: black; /* Fondo negro para el menú */
+    background-color: black;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     padding-top: 60px;
 }
 
 .nav-content.open {
-    transform: translateX(0); /* Muestra el menú al abrir */
+    transform: translateX(0);
 }
 
 .nav-content a {
-    color: white; /* Color de texto del menú */
+    color: white;
     padding: 15px;
     text-decoration: none;
     font-size: 18px;
-    border-bottom: 1px solid #444; /* Línea divisoria */
+    border-bottom: 1px solid #444;
     transition: background-color 0.3s;
 }
 
 .nav-content a:hover {
-    background-color: #444; /* Efecto hover */
+    background-color: #444;
 }
 
 /* Sección de héroe */
@@ -64,11 +64,11 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Altura completa de la ventana */
-    background-color: black; /* Fondo negro */
+    height: 100vh;
+    background-color: black;
     color: white;
     text-align: center;
-    padding-top: 60px; /* Espaciado para el contenido */
+    padding-top: 60px;
 }
 
 .section-hero h1 {
@@ -89,8 +89,21 @@ header {
 }
 
 model-viewer {
-    width: 300px; /* Ancho de los modelos 3D */
-    height: 300px; /* Alto de los modelos 3D */
+    width: 100%; /* Ocupa el ancho completo */
+    height: 500px; /* Mayor altura para hacer el modelo más prominente */
+    background-color: transparent;
+}
+
+@media (max-width: 768px) {
+    model-viewer {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    model-viewer {
+        height: 300px;
+    }
 }
 
 /* Secciones */
@@ -104,6 +117,17 @@ h2 {
     margin-bottom: 40px;
 }
 
+/* Contenedor del reproductor de música */
+.music-player {
+    margin-top: 40px;
+    text-align: center;
+}
+
+audio {
+    width: 100%;
+    max-width: 600px; /* Aumenta el ancho del reproductor */
+}
+
 /* Estilos para dispositivos móviles */
 @media (max-width: 768px) {
     #3d-models-container {
@@ -112,47 +136,34 @@ h2 {
     }
 
     model-viewer {
-        width: 250px; /* Ancho para móviles */
-        height: 250px; /* Alto para móviles */
+        width: 250px;
+        height: 250px;
     }
 }
 
 @media (max-width: 480px) {
     .section-hero h1 {
-        font-size: 2em; /* Tamaño de fuente para móviles */
+        font-size: 2em;
     }
 
     .section-hero p {
-        font-size: 1.2em; /* Tamaño de fuente para móviles */
+        font-size: 1.2em;
     }
 
     model-viewer {
-        width: 200px; /* Ancho para móviles */
-        height: 200px; /* Alto para móviles */
+        width: 200px;
+        height: 200px;
     }
+
     .line {
-    position: absolute;
-    width: 2px; /* Ancho de la línea */
-    height: 100%; /* Altura de la línea */
-    background: #ff5500; /* Color de la línea */
-    top: 0;
-    left: 0;
-    pointer-events: none; /* Ignorar interacciones del mouse */
-    transform: translate(-50%, 0); /* Centrar la línea */
-    transition: transform 0.1s ease; /* Suaviza el movimiento */
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background: #ff5500;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        transform: translate(-50%, 0);
+        transition: transform 0.1s ease;
+    }
 }
-
-}
-/* Estilos globales y de navegación ya establecidos */
-
-/* Estilo para el contenedor del reproductor de música */
-.music-player {
-    margin-top: 20px;
-    text-align: center;
-}
-
-audio {
-    width: 100%;
-    max-width: 400px;
-}
-
