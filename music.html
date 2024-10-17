@@ -1,92 +1,169 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Música - Neogeo Portafolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-</head>
-<body>
-    <header>
-        <!-- Botón para desplegar el menú -->
-        <div class="nav-toggle" id="nav-toggle">
-            <span>☰</span>
-        </div>
+/* Estilos globales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: black; /* Fondo negro */
+    color: white; /* Color de texto blanco */
+}
 
-        <!-- Menú de navegación -->
-        <nav class="nav-content" id="nav-content">
-            <a href="index.html">Inicio</a>
-            <a href="projects.html">Proyectos</a>
-            <a href="media.html">Medios</a>
-            <a href="music.html">Música</a>
-            <a href="visuals.html">Visuales</a>
-        </nav>
-    </header>
+/* Estilos del header y el menú de navegación */
+header {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
 
-    <main>
-        <section class="section-hero">
-            <div class="hero-content">
-                <h1>Música</h1>
-                <p>Explora mis trabajos musicales y proyectos destacados.</p>
-            </div>
-        </section>
+.nav-toggle {
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 10;
+}
 
-        <section>
-            <h2>Proyectos Musicales</h2>
-            <div class="music">
-                <p>Descripción de tus trabajos musicales.</p>
+.nav-content {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: black;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    padding-top: 60px;
+}
 
-                <!-- Modelo 3D Interactivo del CDJ como reproductor de música -->
-                <div id="3d-models-container">
-                    <model-viewer 
-                        src="cdj.glb" 
-                        alt="DJ Mixer" 
-                        ar 
-                        autoplay 
-                        camera-controls 
-                        touch-action="pan-y" 
-                        shadow-intensity="1" 
-                        environment-image="neutral" 
-                        auto-rotate 
-                        exposure="1" 
-                        shadow-softness="1">
-                    </model-viewer>
-                </div>
+.nav-content.open {
+    transform: translateX(0);
+}
 
-                <!-- Enlace de SoundCloud -->
-                <h3>Escucha en SoundCloud</h3>
-                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-                <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
-                    <a href="https://soundcloud.com/neogeo222" title="Neo Geo 222" target="_blank" style="color: #cccccc; text-decoration: none;">
-                        Neo Geo 222</a> · 
-                    <a href="https://soundcloud.com/neogeo222/bruja1" title="Bruja - arca x dilunar mix" target="_blank" style="color: #cccccc; text-decoration: none;">
-                        Bruja - arca x dilunar mix</a>
-                </div>
+.nav-content a {
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s;
+}
 
-                <!-- Perfil de SoundCloud -->
-                <h3>Visita mi perfil en SoundCloud</h3>
-                <a href="https://soundcloud.com/neogeo222" target="_blank">Mi Perfil en SoundCloud</a>
+.nav-content a:hover {
+    background-color: #444;
+}
 
-                <!-- Perfil de Bandcamp -->
-                <h3>Visita mi perfil en Bandcamp</h3>
-                <a href="https://neogeo222.bandcamp.com/" target="_blank">Mi Perfil en Bandcamp</a>
-            </div>
-        </section>
-    </main>
+/* Sección de héroe */
+.section-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+}
 
-    <footer>
-        <p>&copy; 2024 Neogeo - Todos los derechos reservados</p>
-    </footer>
+.section-hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
 
-    <script>
-        // Función para desplegar y plegar el menú
-        document.getElementById('nav-toggle').addEventListener('click', function() {
-            const navContent = document.getElementById('nav-content');
-            navContent.classList.toggle('open');
-        });
-    </script>
-</body>
-</html>
+.section-hero p {
+    font-size: 1.5em;
+}
+
+/* Contenedor de modelos 3D */
+#3d-models-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+model-viewer {
+    width: 100%; /* Ocupa el ancho completo */
+    height: 500px; /* Mayor altura para hacer el modelo más prominente */
+    background-color: transparent;
+}
+
+@media (max-width: 768px) {
+    model-viewer {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    model-viewer {
+        height: 300px;
+    }
+}
+
+/* Secciones */
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+/* Contenedor del reproductor de música */
+.music-player {
+    margin-top: 40px;
+    text-align: center;
+}
+
+audio {
+    width: 100%;
+    max-width: 600px; /* Aumenta el ancho del reproductor */
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    #3d-models-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    model-viewer {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-hero h1 {
+        font-size: 2em;
+    }
+
+    .section-hero p {
+        font-size: 1.2em;
+    }
+
+    model-viewer {
+        width: 200px;
+        height: 200px;
+    }
+
+    .line {
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background: #ff5500;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        transform: translate(-50%, 0);
+        transition: transform 0.1s ease;
+    }
+}
