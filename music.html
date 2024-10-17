@@ -15,13 +15,13 @@
         }
 
         .music-player {
-            margin-bottom: 10px; /* Menos espacio debajo del reproductor */
+            margin-bottom: 10px; /* Espacio debajo del reproductor */
             width: 70%; /* Ancho del reproductor de música más pequeño */
             max-width: 300px; /* Ancho máximo del reproductor */
             margin-left: auto; /* Centrar el reproductor horizontalmente */
             margin-right: auto; /* Centrar el reproductor horizontalmente */
             position: absolute; /* Posición absoluta para superponerse al modelo */
-            top: 50px; /* Distancia desde la parte superior del modelo */
+            top: 50px; /* Distancia desde la parte superior de la página */
             left: 50%;
             transform: translate(-50%, 0); /* Centra el reproductor */
             z-index: 10; /* Asegura que el reproductor esté por encima del modelo */
@@ -30,6 +30,7 @@
         model-viewer {
             width: 100%; /* Ancho del modelo 3D */
             height: 500px; /* Alto del modelo 3D */
+            z-index: 1; /* Asegura que el modelo esté detrás */
         }
 
         .soundcloud-players {
@@ -132,3 +133,4 @@
     </script>
 </body>
 </html>
+
