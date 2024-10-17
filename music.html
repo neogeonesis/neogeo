@@ -71,6 +71,7 @@
                 ar 
                 style="z-index: 1;">
             </model-viewer>
+
             <!-- Bandcamp -->
             <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=0000000/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless>
                 <a href="https://neogeo222.bandcamp.com/">Mi Perfil en Bandcamp</a>
@@ -81,11 +82,43 @@
         </section>
     </main>
 
+    <footer>
+        <p>&copy; 2024 Neogeo - Todos los derechos reservados</p>
+    </footer>
 
     <script>
         document.getElementById('nav-toggle').addEventListener('click', function() {
             const navContent = document.getElementById('nav-content');
             navContent.classList.toggle('open');
+        });
+
+        const modelViewer = document.querySelector('model-viewer');
+
+        // Permitir arrastrar el modelo
+        modelViewer.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            const startX = event.clientX;
+            const startY = event.clientY;
+
+            const onMouseMove = (moveEvent) => {
+                const deltaX = moveEvent.clientX - startX;
+                const deltaY = moveEvent.clientY - startY;
+
+                // Rota el modelo basado en el movimiento del mouse
+                const rotationY = modelViewer.getAttribute('rotation').split(' ')[1];
+                modelViewer.setAttribute('rotation', `${modelViewer.getAttribute('rotation').split(' ')[0]} ${Number(rotationY) - deltaX / 2} ${modelViewer.getAttribute('rotation').split(' ')[2]}`);
+                
+                const rotationX = modelViewer.getAttribute('rotation').split(' ')[0];
+                modelViewer.setAttribute('rotation', `${Number(rotationX) + deltaY / 2} ${rotationY} ${modelViewer.getAttribute('rotation').split(' ')[2]}`);
+            };
+
+            const onMouseUp = () => {
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+            };
+
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
         });
     </script>
 </body>
