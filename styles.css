@@ -167,3 +167,16 @@ audio {
         transition: transform 0.1s ease;
     }
 }
+.announcement-banner {
+    position: fixed; /* Fijo en la parte superior */
+    top: 0; /* Alineado al top de la página */
+    left: 0;
+    right: 0; /* Abarca todo el ancho de la página */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    color: white; /* Color del texto */
+    text-align: center; /* Centrado */
+    padding: 10px; /* Espaciado alrededor del texto */
+    font-size: 16px; /* Tamaño de la fuente */
+    z-index: 100; /* Asegura que esté sobre otros elementos */
+}
+
