@@ -19,12 +19,13 @@
             top: 20px; /* Distancia desde la parte superior */
             left: 50%;
             transform: translateX(-50%); /* Centra el reproductor */
-            z-index: 10; /* Asegura que el reproductor esté por encima del modelo */
+            z-index: 20; /* Asegura que el reproductor esté por encima del modelo */
         }
 
         model-viewer {
             width: 100%; /* Ancho del modelo 3D */
             height: 500px; /* Alto del modelo 3D */
+            z-index: 1; /* Asegura que el modelo esté detrás del reproductor */
         }
 
         /* Estilos para los reproductores de SoundCloud */
@@ -59,7 +60,7 @@
     <main>
         <section class="music-container">
             <div class="music-player">
-                <!-- Reproductor de MP3 con archivo de prueba -->
+                <!-- Reproductor de MP3 -->
                 <audio controls style="width: 100%;">
                     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
                     Tu navegador no soporta el elemento de audio.
@@ -71,8 +72,7 @@
                 alt="DJ Mixer" 
                 camera-controls 
                 auto-rotate 
-                ar 
-                style="z-index: 1;">
+                ar>
             </model-viewer>
 
             <!-- Contenedor para los reproductores de SoundCloud -->
