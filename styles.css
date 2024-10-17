@@ -143,3 +143,16 @@ h2 {
 }
 
 }
+/* Estilos globales y de navegación ya establecidos */
+
+/* Estilo para el contenedor del reproductor de música */
+.music-player {
+    margin-top: 20px;
+    text-align: center;
+}
+
+audio {
+    width: 100%;
+    max-width: 400px;
+}
+
