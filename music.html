@@ -15,11 +15,16 @@
         }
 
         .music-player {
-            margin-bottom: 20px; /* Espacio debajo del reproductor */
-            width: 80%; /* Ancho del reproductor de música */
-            max-width: 400px; /* Ancho máximo del reproductor */
+            margin-bottom: 10px; /* Menos espacio debajo del reproductor */
+            width: 70%; /* Ancho del reproductor de música más pequeño */
+            max-width: 300px; /* Ancho máximo del reproductor */
             margin-left: auto; /* Centrar el reproductor horizontalmente */
             margin-right: auto; /* Centrar el reproductor horizontalmente */
+            position: absolute; /* Posición absoluta para superponerse al modelo */
+            top: 50px; /* Distancia desde la parte superior del modelo */
+            left: 50%;
+            transform: translate(-50%, 0); /* Centra el reproductor */
+            z-index: 10; /* Asegura que el reproductor esté por encima del modelo */
         }
 
         model-viewer {
