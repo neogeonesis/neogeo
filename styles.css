@@ -167,6 +167,8 @@ audio {
         transition: transform 0.1s ease;
     }
 }
+
+/* Banner de anuncio con animación CSS */
 .announcement-banner {
     position: fixed; /* Fijo en la parte superior */
     top: 0; /* Alineado al top de la página */
@@ -178,5 +180,15 @@ audio {
     padding: 10px; /* Espaciado alrededor del texto */
     font-size: 16px; /* Tamaño de la fuente */
     z-index: 100; /* Asegura que esté sobre otros elementos */
+    overflow: hidden; /* Para que el texto no se desborde */
 }
 
+.announcement-text {
+    display: inline-block;
+    animation: marquee 10s linear infinite; /* La animación de deslizamiento */
+}
+
+@keyframes marquee {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
