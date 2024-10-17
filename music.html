@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Música - Neogeo Portafolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <header>
+        <!-- Botón para desplegar el menú -->
         <div class="nav-toggle" id="nav-toggle">
             <span>☰</span>
         </div>
+
+        <!-- Menú de navegación -->
         <nav class="nav-content" id="nav-content">
             <a href="index.html">Inicio</a>
             <a href="projects.html">Proyectos</a>
@@ -30,42 +34,46 @@
         </section>
 
         <section>
-            <h2>CDJ Interactivo</h2>
-            <div id="3d-models-container">
-                <!-- Modelo 3D del DJ -->
-                <model-viewer src="cdj.glb" alt="DJ Mixer" ar autoplay camera-controls touch-action="pan-y" shadow-intensity="1" id="cdj" environment-image="neutral" auto-rotate>
-                </model-viewer>
-            </div>
+            <h2>Proyectos Musicales</h2>
+            <div class="music">
+                <p>Descripción de tus trabajos musicales.</p>
 
-            <!-- Control de reproducción de música -->
-            <div class="music-player">
-                <audio id="audio-player" controls>
-                    <source src="tu-cancion.mp3" type="audio/mp3">
-                    Tu navegador no soporta la reproducción de audio.
-                </audio>
-            </div>
-        </section>
+                <!-- Modelo 3D Interactivo del CDJ como reproductor de música -->
+                <div id="3d-models-container">
+                    <model-viewer 
+                        src="cdj.glb" 
+                        alt="DJ Mixer" 
+                        ar 
+                        autoplay 
+                        camera-controls 
+                        touch-action="pan-y" 
+                        shadow-intensity="1" 
+                        environment-image="neutral" 
+                        auto-rotate 
+                        exposure="1" 
+                        shadow-softness="1">
+                    </model-viewer>
+                </div>
 
-        <section>
-            <h2>Mis Pistas en SoundCloud</h2>
-            <!-- Incrustar track de SoundCloud -->
-            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" 
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-            </iframe>
-            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
-                <a href="https://soundcloud.com/neogeo222" title="Neo Geo 222" target="_blank" style="color: #cccccc; text-decoration: none;">Neo Geo 222</a> · 
-                <a href="https://soundcloud.com/neogeo222/bruja1" title="Bruja - arca x dilunar mix" target="_blank" style="color: #cccccc; text-decoration: none;">Bruja - arca x dilunar mix</a>
-            </div>
-        </section>
+                <!-- Enlace de SoundCloud -->
+                <h3>Escucha en SoundCloud</h3>
+                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+                    <a href="https://soundcloud.com/neogeo222" title="Neo Geo 222" target="_blank" style="color: #cccccc; text-decoration: none;">
+                        Neo Geo 222</a> · 
+                    <a href="https://soundcloud.com/neogeo222/bruja1" title="Bruja - arca x dilunar mix" target="_blank" style="color: #cccccc; text-decoration: none;">
+                        Bruja - arca x dilunar mix</a>
+                </div>
 
-        <section>
-            <h2>Mis Pistas en Bandcamp</h2>
-            <!-- Incrustar perfil de Bandcamp -->
-            <iframe style="border: 0; width: 100%; height: 120px;" 
-                src="https://bandcamp.com/EmbeddedPlayer/album=2061439673/size=large/bgcol=333333/linkcol=ffffff/transparent=true/" 
-                seamless>
-                <a href="https://neogeo222.bandcamp.com/album/your-album">Your Album by NeoGeo</a>
-            </iframe>
+                <!-- Perfil de SoundCloud -->
+                <h3>Visita mi perfil en SoundCloud</h3>
+                <a href="https://soundcloud.com/neogeo222" target="_blank">Mi Perfil en SoundCloud</a>
+
+                <!-- Perfil de Bandcamp -->
+                <h3>Visita mi perfil en Bandcamp</h3>
+                <a href="https://neogeo222.bandcamp.com/" target="_blank">Mi Perfil en Bandcamp</a>
+            </div>
         </section>
     </main>
 
@@ -74,18 +82,6 @@
     </footer>
 
     <script>
-        // Función para reproducir música cuando se haga clic en el modelo
-        const cdjModel = document.getElementById('cdj');
-        const audioPlayer = document.getElementById('audio-player');
-
-        cdjModel.addEventListener('click', function() {
-            if (audioPlayer.paused) {
-                audioPlayer.play();
-            } else {
-                audioPlayer.pause();
-            }
-        });
-
         // Función para desplegar y plegar el menú
         document.getElementById('nav-toggle').addEventListener('click', function() {
             const navContent = document.getElementById('nav-content');
