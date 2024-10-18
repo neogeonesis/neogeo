@@ -73,7 +73,7 @@
             100% { background-color: #33FFBD; }
         }
 
-        /* Estilo para las imágenes de las manos */
+        /* Estilo para la imagen de la mano */
         .hand-image {
             position: absolute;
             left: 10px; /* Ajusta según sea necesario */
@@ -83,6 +83,7 @@
             z-index: 20; /* Asegúrate de que esté encima del modelo 3D */
         }
 
+        /* Estilo para la mano derecha */
         .hand-image-right {
             position: absolute;
             right: 10px; /* Ajusta según sea necesario */
@@ -151,16 +152,15 @@
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
                     src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
             </div>
 
             <!-- Imagen de la mano izquierda -->
             <img src="manoizq.png" class="hand-image" id="hand-image" alt="Mano Izquierda">
-
             <!-- Imagen de la mano derecha -->
             <img src="manoder.png" class="hand-image-right" id="hand-image-right" alt="Mano Derecha">
         </section>
@@ -190,6 +190,9 @@
 
                 const rotationY = modelViewer.getAttribute('rotation').split(' ')[1];
                 modelViewer.setAttribute('rotation', `${modelViewer.getAttribute('rotation').split(' ')[0]} ${Number(rotationY) - deltaX / 2} ${modelViewer.getAttribute('rotation').split(' ')[2]}`);
+
+                const rotationX = modelViewer.getAttribute('rotation').split(' ')[0];
+                modelViewer.setAttribute('rotation', `${Number(rotationX) + deltaY / 2} ${rotationY} ${modelViewer.getAttribute('rotation').split(' ')[2]}`);
             };
 
             const onMouseUp = () => {
@@ -201,46 +204,73 @@
             document.addEventListener('mouseup', onMouseUp);
         });
 
-        // Configuración de WaveSurfer
-        const audioPlayer = document.getElementById('audio-player');
-        const waveform = document.getElementById('waveform');
+        // Arrastrar la imagen de la mano izquierda
+        dragElement(document.getElementById("hand-image"));
+
+        // Arrastrar la imagen de la mano derecha
+        dragElement(document.getElementById("hand-image-right"));
+
+        function dragElement(elmnt) {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                // Si el encabezado es un div, usa un elemento específico para el arrastre
+                elmnt.onmousedown = dragMouseDown;
+            } else {
+                // Si no, aplica el evento al elemento mismo
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e.preventDefault();
+                // Obtener la posición del cursor al presionar el ratón
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // Llama a la función para mover el elemento
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e.preventDefault();
+                // Calcular la nueva posición del cursor
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // Establecer la nueva posición del elemento
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                // Detener el movimiento al soltar el ratón
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        // Configuración de la forma de onda
+        const audioElement = document.getElementById('audio-player');
+        const waveformElement = document.getElementById('waveform');
+
         const wavesurfer = WaveSurfer.create({
-            container: waveform,
+            container: waveformElement,
             waveColor: 'violet',
-            progressColor: 'purple',
+            progressColor: 'purple'
         });
 
-        audioPlayer.onplay = () => wavesurfer.load(audioPlayer.src);
-        audioPlayer.onpause = () => wavesurfer.pause();
-        audioPlayer.onseeked = () => wavesurfer.seekTo(audioPlayer.currentTime / audioPlayer.duration);
-        wavesurfer.on('seek', () => audioPlayer.currentTime = wavesurfer.getCurrentTime());
-        wavesurfer.on('finish', () => audioPlayer.pause());
+        audioElement.onplay = () => wavesurfer.load(audioElement.src);
+        audioElement.onpause = () => wavesurfer.pause();
+        audioElement.onended = () => wavesurfer.stop();
 
-        // Permitir arrastrar las imágenes de las manos
-        const handImages = document.querySelectorAll('.hand-image, .hand-image-right');
-
-        handImages.forEach(image => {
-            image.addEventListener('mousedown', (event) => {
-                event.preventDefault();
-                const startX = event.clientX;
-                const startY = event.clientY;
-                const imgRect = image.getBoundingClientRect();
-
-                const onMouseMove = (moveEvent) => {
-                    const deltaX = moveEvent.clientX - startX;
-                    const deltaY = moveEvent.clientY - startY;
-                    image.style.left = `${imgRect.left + deltaX}px`;
-                    image.style.top = `${imgRect.top + deltaY}px`;
-                };
-
-                const onMouseUp = () => {
-                    document.removeEventListener('mousemove', onMouseMove);
-                    document.removeEventListener('mouseup', onMouseUp);
-                };
-
-                document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('mouseup', onMouseUp);
-            });
+        // Sincronizar el audio con el control de reproducción
+        audioElement.addEventListener('play', () => wavesurfer.play());
+        audioElement.addEventListener('pause', () => wavesurfer.pause());
+        audioElement.addEventListener('seeked', () => wavesurfer.seekTo(audioElement.currentTime / audioElement.duration));
+        audioElement.addEventListener('timeupdate', () => {
+            if (!audioElement.paused) {
+                wavesurfer.seekTo(audioElement.currentTime / audioElement.duration);
+            }
         });
     </script>
 </body>
