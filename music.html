@@ -6,6 +6,7 @@
     <title>Música - Neogeo Portafolio</title>
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/4.0.1/wavesurfer.min.js"></script>
     <style>
         /* Estilo adicional para el contenedor */
         .music-container {
@@ -81,6 +82,15 @@
             cursor: pointer; /* Indica que la imagen es arrastrable */
             z-index: 20; /* Asegúrate de que esté encima del modelo 3D */
         }
+
+        /* Estilo para la forma de onda */
+        #waveform {
+            width: 100%;
+            height: 128px;
+            margin: 10px auto;
+            position: relative;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
@@ -105,7 +115,7 @@
     <main>
         <section class="music-container">
             <div class="music-player">
-                <audio controls>
+                <audio id="audio-player" controls>
                     <source src="micancion.mp3" type="audio/mpeg">
                     Tu navegador no soporta el reproductor de audio.
                 </audio>
@@ -118,6 +128,8 @@
                 auto-rotate 
                 ar>
             </model-viewer>
+
+            <div id="waveform"></div> <!-- Contenedor para la forma de onda -->
 
             <div class="soundcloud-players">
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
@@ -198,6 +210,6 @@
             window.addEventListener('mousemove', onMouseMove);
             window.addEventListener('mouseup', onMouseUp);
         });
-    </script>
-</body>
-</html>
+
+        // Inicializar Wavesurfer.js
+        const audioElement = document.getElementById('
