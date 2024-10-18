@@ -96,6 +96,7 @@
             margin: 10px; /* Espacio entre reproductores */
             border-radius: 10px; /* Bordes redondeados si lo deseas */
             overflow: hidden; /* Para asegurarte de que el contenido no se salga del iframe */
+            cursor: pointer; /* Indica que el reproductor es arrastrable */
         }
     </style>
 </head>
@@ -196,15 +197,12 @@
 
         handImage.addEventListener('mousedown', (event) => {
             event.preventDefault();
-            const startX = event.clientX;
-            const startY = event.clientY;
+            const startX = event.clientX - handImage.offsetLeft;
+            const startY = event.clientY - handImage.offsetTop;
 
             const onMouseMove = (moveEvent) => {
-                const deltaX = moveEvent.clientX - startX;
-                const deltaY = moveEvent.clientY - startY;
-
-                handImage.style.left = (handImage.offsetLeft + deltaX) + 'px';
-                handImage.style.top = (handImage.offsetTop + deltaY) + 'px';
+                handImage.style.left = moveEvent.clientX - startX + 'px';
+                handImage.style.top = moveEvent.clientY - startY + 'px';
             };
 
             const onMouseUp = () => {
@@ -216,20 +214,19 @@
             window.addEventListener('mouseup', onMouseUp);
         });
 
-        // Crear el visualizador de la forma de onda
-        const waveform = WaveSurfer.create({
-            container: '#waveform',
+        // Crear el visualizador de forma de onda
+        const audioElement = document.getElementById('audio-player');
+        const waveformElement = document.getElementById('waveform');
+        const wavesurfer = WaveSurfer.create({
+            container: waveformElement,
             waveColor: 'violet',
             progressColor: 'purple',
-            height: 100,
-            barWidth: 2,
+            height: 84,
             responsive: true,
-            scrollParent: true
         });
 
-        waveform.load('micancion.mp3');
-        document.getElementById('audio-player').addEventListener('play', () => waveform.play());
-        document.getElementById('audio-player').addEventListener('pause', () => waveform.pause());
+        audioElement.onplay = () => wavesurfer.load(audioElement.src);
+        audioElement.onpause = () => wavesurfer.pause();
     </script>
 </body>
 </html>
