@@ -96,8 +96,7 @@
             margin: 10px; /* Espacio entre reproductores */
             border-radius: 10px; /* Bordes redondeados si lo deseas */
             overflow: hidden; /* Para asegurarte de que el contenido no se salga del iframe */
-            cursor: move; /* Indica que los reproductores son arrastrables */
-            position: absolute; /* Permite mover el reproductor */
+            position: relative; /* Necesario para el arrastre */
         }
     </style>
 </head>
@@ -143,11 +142,11 @@
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
             </div>
 
             <!-- Imagen de la mano -->
@@ -195,19 +194,17 @@
 
         // Permitir arrastrar la imagen de la mano
         const handImage = document.getElementById('hand-image');
+
         handImage.addEventListener('mousedown', (event) => {
             event.preventDefault();
             const startX = event.clientX;
             const startY = event.clientY;
-            const origX = handImage.offsetLeft;
-            const origY = handImage.offsetTop;
 
             const onMouseMove = (moveEvent) => {
                 const deltaX = moveEvent.clientX - startX;
                 const deltaY = moveEvent.clientY - startY;
 
-                handImage.style.left = origX + deltaX + 'px';
-                handImage.style.top = origY + deltaY + 'px';
+                handImage.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
             };
 
             const onMouseUp = () => {
@@ -219,46 +216,21 @@
             window.addEventListener('mouseup', onMouseUp);
         });
 
-        // Hacer que los reproductores de SoundCloud sean arrastrables
-        const soundcloudPlayers = document.querySelectorAll('.soundcloud-player');
-
-        soundcloudPlayers.forEach(player => {
-            player.addEventListener('mousedown', (event) => {
-                event.preventDefault();
-                const startX = event.clientX;
-                const startY = event.clientY;
-                const origX = player.offsetLeft;
-                const origY = player.offsetTop;
-
-                const onMouseMove = (moveEvent) => {
-                    const deltaX = moveEvent.clientX - startX;
-                    const deltaY = moveEvent.clientY - startY;
-
-                    player.style.left = origX + deltaX + 'px';
-                    player.style.top = origY + deltaY + 'px';
-                };
-
-                const onMouseUp = () => {
-                    window.removeEventListener('mousemove', onMouseMove);
-                    window.removeEventListener('mouseup', onMouseUp);
-                };
-
-                window.addEventListener('mousemove', onMouseMove);
-                window.addEventListener('mouseup', onMouseUp);
-            });
-        });
-
-        // Inicializa WaveSurfer
+        // Configuración de Wavesurfer.js
         const wavesurfer = WaveSurfer.create({
             container: '#waveform',
             waveColor: 'violet',
-            progressColor: 'purple'
+            progressColor: 'purple',
+            height: 84, // Altura del visualizador de forma de onda
+            barWidth: 2, // Ancho de las barras
+            responsive: true,
+            normalize: true
         });
 
-        // Cargar la canción
+        // Cargar el audio
         wavesurfer.load('micancion.mp3');
 
-        // Sincronizar el audio y la forma de onda
+        // Sincronizar el reproductor de audio con Wavesurfer.js
         const audioPlayer = document.getElementById('audio-player');
         audioPlayer.addEventListener('play', () => wavesurfer.play());
         audioPlayer.addEventListener('pause', () => wavesurfer.pause());
@@ -266,6 +238,7 @@
             wavesurfer.seekTo(audioPlayer.currentTime / audioPlayer.duration);
         });
 
+        // Sincronizar el evento de Wavesurfer.js
         wavesurfer.on('seek', (progress) => {
             audioPlayer.currentTime = progress * audioPlayer.duration;
         });
