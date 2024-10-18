@@ -8,53 +8,44 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/4.0.1/wavesurfer.min.js"></script>
     <style>
-        /* Estilo para el contenedor de música */
+        /* Estilo adicional para el contenedor */
         .music-container {
             position: relative;
-            width: 100%;
-            height: 500px;
+            text-align: center;
         }
 
-        /* Estilo para el modelo 3D (GLB) */
+        .music-player {
+            margin-bottom: 10px;
+            width: 20%;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            position: absolute;
+            top: 300px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            z-index: 10; /* Asegúrate de que esté encima */
+        }
+
         model-viewer {
             width: 100%;
-            height: 100%;
-            z-index: 5;
-            position: relative;
+            height: 500px;
+            z-index: 1; /* El más bajo para el modelo 3D */
         }
 
-        /* Reproductor de música nativo */
-        .music-player {
-            position: absolute;
-            top: 200px; /* Ajusta según sea necesario */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10; /* Más alto que el modelo 3D */
-            width: 200px; /* Ajusta el tamaño según sea necesario */
-        }
-
-        /* Forma de onda detrás del modelo 3D */
+        /* Estilo para la forma de onda */
         #waveform {
-            width: 80%;
-            height: 150px;
-            position: absolute;
-            bottom: 0;
+            width: 100%;
+            height: 84px; /* Tamaño más pequeño */
+            margin: 10px auto;
+            position: absolute; /* Cambiado a absolute para que pueda moverse */
+            top: 250px; /* Ajusta la posición desde arriba */
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1; /* Más bajo que el modelo 3D */
+            z-index: 9; /* Más alto que el modelo 3D, más bajo que el reproductor */
         }
 
-        /* Estilos adicionales para la imagen de la mano */
-        .hand-image {
-            position: absolute;
-            left: 10px;
-            top: 350px;
-            width: 100px;
-            cursor: pointer;
-            z-index: 20; /* Asegúrate de que esté encima de todos los elementos */
-        }
-
-        /* Estilo para el anuncio */
+        /* Estilos para el anuncio */
         .announcement-banner {
             position: fixed;
             bottom: 0;
@@ -81,6 +72,16 @@
             80% { background-color: #33FF57; }
             100% { background-color: #33FFBD; }
         }
+
+        /* Estilo para la imagen de la mano */
+        .hand-image {
+            position: absolute;
+            left: 10px; /* Ajusta según sea necesario */
+            top: 350px; /* Ajusta según sea necesario */
+            width: 400px; /* Ajusta el tamaño según sea necesario */
+            cursor: pointer; /* Indica que la imagen es arrastrable */
+            z-index: 20; /* Asegúrate de que esté encima del modelo 3D */
+        }
     </style>
 </head>
 <body>
@@ -104,16 +105,14 @@
 
     <main>
         <section class="music-container">
-            <!-- Reproductor de música nativo -->
             <div class="music-player">
                 <audio id="audio-player" controls>
                     <source src="micancion.mp3" type="audio/mpeg">
                     Tu navegador no soporta el reproductor de audio.
                 </audio>
             </div>
-
-            <!-- Modelo 3D (GLB) -->
-            <model-viewer 
+     
+            <model-viewer  
                 src="cdj.glb" 
                 alt="DJ Mixer" 
                 camera-controls 
@@ -121,8 +120,18 @@
                 ar>
             </model-viewer>
 
-            <!-- Forma de onda detrás del modelo 3D -->
-            <div id="waveform"></div>
+            <div id="waveform"></div> <!-- Contenedor para la forma de onda -->
+
+            <div class="soundcloud-players">
+                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
+                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+            </div>
 
             <!-- Imagen de la mano -->
             <img src="manoizq.png" class="hand-image" id="hand-image" alt="Mano Izquierda">
@@ -139,6 +148,60 @@
             navContent.classList.toggle('open');
         });
 
+        const modelViewer = document.querySelector('model-viewer');
+
+        // Permitir arrastrar el modelo
+        modelViewer.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            const startX = event.clientX;
+            const startY = event.clientY;
+
+            const onMouseMove = (moveEvent) => {
+                const deltaX = moveEvent.clientX - startX;
+                const deltaY = moveEvent.clientY - startY;
+
+                const rotationY = modelViewer.getAttribute('rotation').split(' ')[1];
+                modelViewer.setAttribute('rotation', `${modelViewer.getAttribute('rotation').split(' ')[0]} ${Number(rotationY) - deltaX / 2} ${modelViewer.getAttribute('rotation').split(' ')[2]}`);
+
+                const rotationX = modelViewer.getAttribute('rotation').split(' ')[0];
+                modelViewer.setAttribute('rotation', `${Number(rotationX) + deltaY / 2} ${rotationY} ${modelViewer.getAttribute('rotation').split(' ')[2]}`);
+            };
+
+            const onMouseUp = () => {
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+            };
+
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+        });
+
+        // Permitir arrastrar la imagen de la mano
+        const handImage = document.getElementById('hand-image');
+
+        handImage.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            const startX = event.clientX;
+            const startY = event.clientY;
+            const initialLeft = handImage.offsetLeft;
+            const initialTop = handImage.offsetTop;
+
+            const onMouseMove = (moveEvent) => {
+                const deltaX = moveEvent.clientX - startX;
+                const deltaY = moveEvent.clientY - startY;
+                handImage.style.left = `${initialLeft + deltaX}px`;
+                handImage.style.top = `${initialTop + deltaY}px`;
+            };
+
+            const onMouseUp = () => {
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+            };
+
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+        });
+
         // Inicializar Wavesurfer.js
         const audioElement = document.getElementById('audio-player');
         const waveformContainer = document.getElementById('waveform');
@@ -146,13 +209,13 @@
             container: waveformContainer,
             waveColor: 'rgba(255, 87, 51, 1)',
             progressColor: 'rgba(255, 255, 255, 1)',
-            height: 128
+            height: 50
         });
 
         // Cargar el archivo de audio
         wavesurfer.load('micancion.mp3');
 
-        // Sincronizar el reproductor de audio con Wavesurfer
+        // Vincular el reproductor de audio con Wavesurfer
         audioElement.addEventListener('play', () => wavesurfer.play());
         audioElement.addEventListener('pause', () => wavesurfer.pause());
         audioElement.addEventListener('timeupdate', () => {
