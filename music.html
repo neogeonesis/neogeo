@@ -3,91 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio Multimedia</title>
+    <title>Música - Neogeo Portafolio</title>
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        /* Estilo adicional para el contenedor */
+        .music-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .music-player {
+            margin-bottom: 10px;
+            width: 20%;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            position: absolute;
+            top: 300px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            z-index: 10;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 500px;
+            z-index: 1;
+        }
+
+        .soundcloud-players {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .soundcloud-player {
+            width: 300px;
+            height: 300px;
+            margin: 20px;
+        }
+
+        /* Estilos para el anuncio */
+        .announcement-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+            z-index: 100;
+            animation: randomColors 5s linear infinite;
+        }
+
+        .announcement-banner marquee {
+            font-weight: bold;
+        }
+
+        @keyframes randomColors {
+            0% { background-color: #FF5733; }
+            20% { background-color: #FFBD33; }
+            40% { background-color: #DBFF33; }
+            60% { background-color: #75FF33; }
+            80% { background-color: #33FF57; }
+            100% { background-color: #33FFBD; }
+        }
+
+        /* Estilo para la imagen de la mano */
+        .hand-image {
+            position: absolute;
+            left: 10px; /* Ajusta según sea necesario */
+            top: 350px; /* Ajusta según sea necesario */
+            width: 100px; /* Ajusta el tamaño según sea necesario */
+            cursor: pointer; /* Indica que la imagen es arrastrable */
+            z-index: 20; /* Asegúrate de que esté encima del modelo 3D */
+        }
+    </style>
 </head>
 <body>
-
-<header>
-    <div class="nav-toggle">☰</div>
-    <nav class="nav-content">
-        <a href="#section1">Música</a>
-        <a href="#section2">Visuales</a>
-    </nav>
-</header>
-
-<section class="section-hero">
-    <h1>Bienvenido a Mi Portafolio</h1>
-    <p>Explora mis proyectos multimedia.</p>
-</section>
-
-<section class="music-container">
-    <div class="music-player">
-        <!-- Reproductor nativo de música -->
-        <audio controls>
-            <source src="tu-cancion.mp3" type="audio/mpeg">
-            Tu navegador no soporta el reproductor de audio.
-        </audio>
+    <!-- Cartel de anuncio -->
+    <div class="announcement-banner">
+        <marquee behavior="scroll" direction="left">¡Interactúa con el modelo 3D y controla el reproductor de música!</marquee>
     </div>
 
-    <!-- Imagen de la mano a la izquierda -->
-    <img src="manoizq.png" alt="Mano Izquierda" class="draggable-hand" style="width: 150px; position: absolute; top: 300px; left: 10px; z-index: 10; cursor: pointer;">
+    <header>
+        <div class="nav-toggle" id="nav-toggle">
+            <span>☰</span>
+        </div>
+        <nav class="nav-content" id="nav-content">
+            <a href="index.html">Inicio</a>
+            <a href="projects.html">Proyectos</a>
+            <a href="media.html">Medios</a>
+            <a href="music.html">Música</a>
+            <a href="visuals.html">Visuales</a>
+        </nav>
+    </header>
 
-    <model-viewer 
-        src="cdj.glb" 
-        alt="DJ Mixer" 
-        camera-controls 
-        auto-rotate 
-        ar>
-    </model-viewer>
+    <main>
+        <section class="music-container">
+            <div class="music-player">
+                <audio controls>
+                    <source src="tu-cancion.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el reproductor de audio.
+                </audio>
+            </div>
 
-    <div class="soundcloud-players">
-        <!-- Cuatro reproductores de SoundCloud en horizontal -->
-        <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-        <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-        <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-        <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-    </div>
-</section>
+            <model-viewer 
+                src="cdj.glb" 
+                alt="DJ Mixer" 
+                camera-controls 
+                auto-rotate 
+                ar>
+            </model-viewer>
 
-<!-- Banner de anuncio -->
-<div class="announcement-banner">
-    <span class="announcement-text">Instrucciones: Arrastra el modelo 3D y la mano.</span>
-</div>
+            <div class="soundcloud-players">
+                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+            </div>
 
-<script>
-    const handImage = document.querySelector('.draggable-hand');
+            <!-- Imagen de la mano -->
+            <img src="manoizq.png" class="hand-image" id="hand-image" alt="Mano Izquierda">
+        </section>
+    </main>
 
-    handImage.addEventListener('mousedown', (event) => {
-        event.preventDefault();
-        let startX = event.clientX;
-        let startY = event.clientY;
+    <footer>
+        <p>&copy; 2024 Neogeo - Todos los derechos reservados</p>
+    </footer>
 
-        const onMouseMove = (moveEvent) => {
-            const deltaX = moveEvent.clientX - startX;
-            const deltaY = moveEvent.clientY - startY;
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function() {
+            const navContent = document.getElementById('nav-content');
+            navContent.classList.toggle('open');
+        });
 
-            // Actualiza la posición de la imagen de la mano
-            handImage.style.left = `${handImage.offsetLeft + deltaX}px`;
-            handImage.style.top = `${handImage.offsetTop + deltaY}px`;
+        const modelViewer = document.querySelector('model-viewer');
 
-            startX = moveEvent.clientX;
-            startY = moveEvent.clientY;
-        };
+        // Permitir arrastrar el modelo
+        modelViewer.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            const startX = event.clientX;
+            const startY = event.clientY;
 
-        const onMouseUp = () => {
-            window.removeEventListener('mousemove', onMouseMove);
-            window.removeEventListener('mouseup', onMouseUp);
-        };
+            const onMouseMove = (moveEvent) => {
+                const deltaX = moveEvent.clientX - startX;
+                const deltaY = moveEvent.clientY - startY;
 
-        window.addEventListener('mousemove', onMouseMove);
-        window.addEventListener('mouseup', onMouseUp);
-    });
-</script>
+                const rotationY = modelViewer.getAttribute('rotation').split(' ')[1];
+                modelViewer.setAttribute('rotation', `${modelViewer.getAttribute('rotation').split(' ')[0]} ${Number(rotationY) - deltaX / 2} ${modelViewer.getAttribute('rotation').split(' ')[2]}`);
 
+                const rotationX = modelViewer.getAttribute('rotation').split(' ')[0];
+                modelViewer.setAttribute('rotation', `${Number(rotationX) + deltaY / 2} ${rotationY} ${modelViewer.getAttribute('rotation').split(' ')[2]}`);
+            };
+
+            const onMouseUp = () => {
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+            };
+
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+        });
+
+        // Permitir arrastrar la imagen de la mano
+        const handImage = document.getElementById('hand-image');
+
+        handImage.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            const startX = event.clientX;
+            const startY = event.clientY;
+            const initialLeft = handImage.offsetLeft;
+            const initialTop = handImage.offsetTop;
+
+            const onMouseMove = (moveEvent) => {
+                const deltaX = moveEvent.clientX - startX;
+                const deltaY = moveEvent.clientY - startY;
+                handImage.style.left = `${initialLeft + deltaX}px`;
+                handImage.style.top = `${initialTop + deltaY}px`;
+            };
+
+            const onMouseUp = () => {
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+            };
+
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+        });
+    </script>
 </body>
 </html>
