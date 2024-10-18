@@ -240,15 +240,13 @@
             });
         });
 
-       const audioPlayer = document.getElementById('audio-player');
-const waveform = document.getElementById('waveform');
-
-const audioPlayer = document.getElementById('audio-player');
+        // Inicializar Wavesurfer.js
+        const audioPlayer = document.getElementById('audio-player');
         const waveform = document.getElementById('waveform');
 
         const waveSurfer = WaveSurfer.create({
-            container: waveGraphic,
-            waveColor: 'orange',
+            container: waveform,
+            waveColor: 'violet',
             progressColor: 'purple',
         });
 
