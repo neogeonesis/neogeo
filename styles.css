@@ -168,42 +168,27 @@ audio {
     }
 }
 
-/* Banner de anuncio con animación CSS */
+/* Banner de anuncio con animación de colores brillantes */
 .announcement-banner {
-    position: fixed; /* Fijo en la parte inferior */
-    bottom: 0; /* Alineado al bottom de la página */
+    position: fixed;
+    bottom: 0; /* Fijo en la parte inferior */
     left: 0;
     right: 0; /* Abarca todo el ancho de la página */
     background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
     color: black; /* Color del texto */
-    text-align: center; /* Centrado */
-    padding: 10px; /* Espaciado alrededor del texto */
-    font-size: 16px; /* Tamaño de la fuente */
-    z-index: 100; /* Asegura que esté sobre otros elementos */
-    overflow: hidden; /* Para que el texto no se desborde */
-    animation: slide 5s linear infinite; /* Añadir animación de deslizamiento */
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    z-index: 100; /* Sobre otros elementos */
+    animation: randomColors 5s linear infinite; /* Colores aleatorios */
 }
 
-/* Animación de deslizamiento de izquierda a derecha */
-@keyframes slide {
-    0% { transform: translateX(100%); }
-    50% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-/* Texto del banner */
-.announcement-text {
-    display: inline-block;
-    font-weight: bold; /* Negrita */
-    animation: marquee 10s linear infinite; /* La animación de deslizamiento */
-}
-
-/* Colores brillantes aleatorios */
+/* Animación de colores brillantes */
 @keyframes randomColors {
-    0% { background-color: #FF5733; } /* Color 1 */
-    20% { background-color: #FFBD33; } /* Color 2 */
-    40% { background-color: #DBFF33; } /* Color 3 */
-    60% { background-color: #75FF33; } /* Color 4 */
-    80% { background-color: #33FF57; } /* Color 5 */
-    100% { background-color: #33FFBD; } /* Color 6 */
+    0% { background-color: #FF5733; }
+    20% { background-color: #FFBD33; }
+    40% { background-color: #DBFF33; }
+    60% { background-color: #75FF33; }
+    80% { background-color: #33FF57; }
+    100% { background-color: #33FFBD; }
 }
