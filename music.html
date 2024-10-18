@@ -243,18 +243,14 @@
        const audioPlayer = document.getElementById('audio-player');
 const waveform = document.getElementById('waveform');
 
-const waveSurfer = WaveSurfer.create({
-    container: waveform,
-    waveColor: 'rgba(255, 165, 0, 0.7)', // Color naranja con un poco de transparencia
-    progressColor: 'rgba(128, 0, 128, 1)', // Color púrpura sólido
-    barWidth: 3, // Ancho de las barras
-    barHeight: 2, // Altura de las barras
-    cursorColor: '#ffffff', // Color blanco para el cursor
-    cursorWidth: 1, // Ancho del cursor
-    barGap: 2, // Espacio entre las barras
-    responsive: true,
-    scrollParent: true
-});
+const audioPlayer = document.getElementById('audio-player');
+        const waveform = document.getElementById('waveform');
+
+        const waveSurfer = WaveSurfer.create({
+            container: waveform,
+            waveColor: 'orange',
+            progressColor: 'purple',
+        });
 
         waveSurfer.load('micancion.mp3');
 
