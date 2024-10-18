@@ -82,6 +82,15 @@
             cursor: pointer; /* Indica que la imagen es arrastrable */
             z-index: 20; /* Asegúrate de que esté encima del modelo 3D */
         }
+
+        /* Estilo para los reproductores de SoundCloud */
+        .soundcloud-player {
+            width: 200px; /* Ancho del reproductor */
+            height: 200px; /* Alto del reproductor */
+            border: 1px solid #ccc; /* Borde para visualizar mejor */
+            margin: 10px;
+            cursor: move; /* Indica que se pueden arrastrar */
+        }
     </style>
 </head>
 <body>
@@ -126,9 +135,9 @@
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
                     src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
             </div>
@@ -202,59 +211,33 @@
             window.addEventListener('mouseup', onMouseUp);
         });
 
-        // Permitir arrastrar los reproductores de SoundCloud
-        const soundcloudPlayers = document.querySelectorAll('.soundcloud-player');
-
-        soundcloudPlayers.forEach(player => {
-            player.addEventListener('mousedown', (event) => {
-                event.preventDefault();
-                const startX = event.clientX;
-                const startY = event.clientY;
-                const initialLeft = player.offsetLeft;
-                const initialTop = player.offsetTop;
-
-                const onMouseMove = (moveEvent) => {
-                    const deltaX = moveEvent.clientX - startX;
-                    const deltaY = moveEvent.clientY - startY;
-                    player.style.position = 'absolute'; // Asegura que el reproductor se pueda mover
-                    player.style.left = `${initialLeft + deltaX}px`;
-                    player.style.top = `${initialTop + deltaY}px`;
-                };
-
-                const onMouseUp = () => {
-                    window.removeEventListener('mousemove', onMouseMove);
-                    window.removeEventListener('mouseup', onMouseUp);
-                };
-
-                window.addEventListener('mousemove', onMouseMove);
-                window.addEventListener('mouseup', onMouseUp);
-            });
-        });
-
-        // Crear forma de onda
+        // Configuración de Wavesurfer.js para la forma de onda
         const audioPlayer = document.getElementById('audio-player');
-        const waveform = document.getElementById('waveform');
+        const waveformContainer = document.getElementById('waveform');
         const wavesurfer = WaveSurfer.create({
-            container: waveform,
-            waveColor: 'orange',
-            progressColor: 'yellow'
+            container: waveformContainer,
+            waveColor: 'purple',
+            progressColor: 'orange',
+            height: 64,
+            barWidth: 2,
         });
 
-        audioPlayer.onplay = () => wavesurfer.load('micancion.mp3');
-        audioPlayer.onpause = () => wavesurfer.pause();
-        audioPlayer.onended = () => wavesurfer.stop();
+        audioPlayer.addEventListener('play', () => {
+            wavesurfer.load(audioPlayer.src);
+            wavesurfer.play();
+        });
+
+        audioPlayer.addEventListener('pause', () => {
+            wavesurfer.pause();
+        });
 
         audioPlayer.addEventListener('timeupdate', () => {
             wavesurfer.setCurrentTime(audioPlayer.currentTime);
         });
 
-        // Sincronizar tiempo de la forma de onda con el reproductor
         wavesurfer.on('seek', (progress) => {
-            audioPlayer.currentTime = progress * audioPlayer.duration;
+            audioPlayer.currentTime = wavesurfer.getCurrentTime();
         });
-
-        // Cargar el audio en el visualizador de forma de onda
-        wavesurfer.load('micancion.mp3');
     </script>
 </body>
 </html>
