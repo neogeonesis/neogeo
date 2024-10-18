@@ -151,6 +151,8 @@
 
             <!-- Imagen de la mano -->
             <img src="manoizq.png" class="hand-image" id="hand-image" alt="Mano Izquierda">
+            <!-- Imagen de la mano derecha -->
+             <img src="manoder.png" class="hand-image" id="hand-image-right" alt="Mano Derecha">
         </section>
     </main>
 
@@ -258,6 +260,29 @@
         waveSurfer.on('seek', (progress) => {
             audioPlayer.currentTime = progress * audioPlayer.duration;
         });
+
+         // Permitir arrastrar la imagen de la mano derecha
+    const handImageRight = document.getElementById('hand-image-right');
+
+    handImageRight.addEventListener('mousedown', (event) => {
+        event.preventDefault();
+        const startX = event.clientX - handImageRight.getBoundingClientRect().left;
+        const startY = event.clientY - handImageRight.getBoundingClientRect().top;
+
+        const onMouseMove = (moveEvent) => {
+            handImageRight.style.position = 'absolute';
+            handImageRight.style.left = `${moveEvent.clientX - startX}px`;
+            handImageRight.style.top = `${moveEvent.clientY - startY}px`;
+        };
+
+        const onMouseUp = () => {
+            window.removeEventListener('mousemove', onMouseMove);
+            window.removeEventListener('mouseup', onMouseUp);
+        };
+
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+    });
     </script>
 </body>
 </html>
