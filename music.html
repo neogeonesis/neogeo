@@ -146,7 +146,7 @@
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
             </div>
 
             <!-- Imagen de la mano -->
@@ -192,22 +192,42 @@
             window.addEventListener('mouseup', onMouseUp);
         });
 
-        // Arrastre de los reproductores de SoundCloud
-        const players = document.querySelectorAll('.soundcloud-player');
-        players.forEach(player => {
+        // Permitir arrastrar la imagen de la mano
+        const handImage = document.getElementById('hand-image');
+
+        handImage.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            const startX = event.clientX - handImage.getBoundingClientRect().left;
+            const startY = event.clientY - handImage.getBoundingClientRect().top;
+
+            const onMouseMove = (moveEvent) => {
+                handImage.style.position = 'absolute';
+                handImage.style.left = `${moveEvent.clientX - startX}px`;
+                handImage.style.top = `${moveEvent.clientY - startY}px`;
+            };
+
+            const onMouseUp = () => {
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+            };
+
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+        });
+
+        // Permitir arrastrar los reproductores de SoundCloud
+        const soundcloudPlayers = document.querySelectorAll('.soundcloud-player');
+
+        soundcloudPlayers.forEach(player => {
             player.addEventListener('mousedown', (event) => {
                 event.preventDefault();
-                const startX = event.clientX;
-                const startY = event.clientY;
-
-                const rect = player.getBoundingClientRect();
-                const offsetX = startX - rect.left;
-                const offsetY = startY - rect.top;
+                const startX = event.clientX - player.getBoundingClientRect().left;
+                const startY = event.clientY - player.getBoundingClientRect().top;
 
                 const onMouseMove = (moveEvent) => {
                     player.style.position = 'absolute';
-                    player.style.left = `${moveEvent.clientX - offsetX}px`;
-                    player.style.top = `${moveEvent.clientY - offsetY}px`;
+                    player.style.left = `${moveEvent.clientX - startX}px`;
+                    player.style.top = `${moveEvent.clientY - startY}px`;
                 };
 
                 const onMouseUp = () => {
@@ -220,20 +240,24 @@
             });
         });
 
-        // Inicializa Wavesurfer
+        // Inicializar Wavesurfer.js
         const audioPlayer = document.getElementById('audio-player');
-        const wavesurfer = WaveSurfer.create({
-            container: '#waveform',
-            waveColor: 'white',
-            progressColor: 'orange'
+        const waveform = document.getElementById('waveform');
+
+        const waveSurfer = WaveSurfer.create({
+            container: waveform,
+            waveColor: 'violet',
+            progressColor: 'purple',
         });
 
-        audioPlayer.onplay = () => wavesurfer.play();
-        audioPlayer.onpause = () => wavesurfer.pause();
-        audioPlayer.onended = () => wavesurfer.stop();
-        audioPlayer.onloadedmetadata = () => {
-            wavesurfer.load(audioPlayer.src);
-        };
+        waveSurfer.load('micancion.mp3');
+
+        audioPlayer.addEventListener('play', () => waveSurfer.play());
+        audioPlayer.addEventListener('pause', () => waveSurfer.pause());
+        audioPlayer.addEventListener('seeked', () => waveSurfer.seekTo(audioPlayer.currentTime / audioPlayer.duration));
+        waveSurfer.on('seek', (progress) => {
+            audioPlayer.currentTime = progress * audioPlayer.duration;
+        });
     </script>
 </body>
 </html>
