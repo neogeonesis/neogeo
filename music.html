@@ -73,10 +73,19 @@
             100% { background-color: #33FFBD; }
         }
 
-        /* Estilo para la imagen de la mano */
+        /* Estilo para las imágenes de las manos */
         .hand-image {
             position: absolute;
             left: 10px; /* Ajusta según sea necesario */
+            top: 350px; /* Ajusta según sea necesario */
+            width: 400px; /* Ajusta el tamaño según sea necesario */
+            cursor: pointer; /* Indica que la imagen es arrastrable */
+            z-index: 20; /* Asegúrate de que esté encima del modelo 3D */
+        }
+
+        .hand-image-right {
+            position: absolute;
+            right: 10px; /* Ajusta según sea necesario */
             top: 350px; /* Ajusta según sea necesario */
             width: 400px; /* Ajusta el tamaño según sea necesario */
             cursor: pointer; /* Indica que la imagen es arrastrable */
@@ -142,9 +151,9 @@
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
                     src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
             </div>
@@ -153,7 +162,7 @@
             <img src="manoizq.png" class="hand-image" id="hand-image" alt="Mano Izquierda">
 
             <!-- Imagen de la mano derecha -->
-            <img src="manoder.png" class="hand-image" id="hand-image-right" alt="Mano Derecha">
+            <img src="manoder.png" class="hand-image-right" id="hand-image-right" alt="Mano Derecha">
         </section>
     </main>
 
@@ -162,50 +171,76 @@
     </footer>
 
     <script>
-        // Permitir arrastrar la imagen de la mano izquierda
-        const handImage = document.getElementById('hand-image');
-
-        handImage.addEventListener('mousedown', (event) => {
-            event.preventDefault();
-            const startX = event.clientX - handImage.getBoundingClientRect().left;
-            const startY = event.clientY - handImage.getBoundingClientRect().top;
-
-            const onMouseMove = (moveEvent) => {
-                handImage.style.position = 'absolute';
-                handImage.style.left = `${moveEvent.clientX - startX}px`;
-                handImage.style.top = `${moveEvent.clientY - startY}px`;
-            };
-
-            const onMouseUp = () => {
-                window.removeEventListener('mousemove', onMouseMove);
-                window.removeEventListener('mouseup', onMouseUp);
-            };
-
-            window.addEventListener('mousemove', onMouseMove);
-            window.addEventListener('mouseup', onMouseUp);
+        document.getElementById('nav-toggle').addEventListener('click', function() {
+            const navContent = document.getElementById('nav-content');
+            navContent.classList.toggle('open');
         });
 
-        // Permitir arrastrar la imagen de la mano derecha
-        const handImageRight = document.getElementById('hand-image-right');
+        const modelViewer = document.querySelector('model-viewer');
 
-        handImageRight.addEventListener('mousedown', (event) => {
+        // Permitir arrastrar el modelo
+        modelViewer.addEventListener('mousedown', (event) => {
             event.preventDefault();
-            const startX = event.clientX - handImageRight.getBoundingClientRect().left;
-            const startY = event.clientY - handImageRight.getBoundingClientRect().top;
+            const startX = event.clientX;
+            const startY = event.clientY;
 
             const onMouseMove = (moveEvent) => {
-                handImageRight.style.position = 'absolute';
-                handImageRight.style.left = `${moveEvent.clientX - startX}px`;
-                handImageRight.style.top = `${moveEvent.clientY - startY}px`;
+                const deltaX = moveEvent.clientX - startX;
+                const deltaY = moveEvent.clientY - startY;
+
+                const rotationY = modelViewer.getAttribute('rotation').split(' ')[1];
+                modelViewer.setAttribute('rotation', `${modelViewer.getAttribute('rotation').split(' ')[0]} ${Number(rotationY) - deltaX / 2} ${modelViewer.getAttribute('rotation').split(' ')[2]}`);
             };
 
             const onMouseUp = () => {
-                window.removeEventListener('mousemove', onMouseMove);
-                window.removeEventListener('mouseup', onMouseUp);
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
             };
 
-            window.addEventListener('mousemove', onMouseMove);
-            window.addEventListener('mouseup', onMouseUp);
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // Configuración de WaveSurfer
+        const audioPlayer = document.getElementById('audio-player');
+        const waveform = document.getElementById('waveform');
+        const wavesurfer = WaveSurfer.create({
+            container: waveform,
+            waveColor: 'violet',
+            progressColor: 'purple',
+        });
+
+        audioPlayer.onplay = () => wavesurfer.load(audioPlayer.src);
+        audioPlayer.onpause = () => wavesurfer.pause();
+        audioPlayer.onseeked = () => wavesurfer.seekTo(audioPlayer.currentTime / audioPlayer.duration);
+        wavesurfer.on('seek', () => audioPlayer.currentTime = wavesurfer.getCurrentTime());
+        wavesurfer.on('finish', () => audioPlayer.pause());
+
+        // Permitir arrastrar las imágenes de las manos
+        const handImages = document.querySelectorAll('.hand-image, .hand-image-right');
+
+        handImages.forEach(image => {
+            image.addEventListener('mousedown', (event) => {
+                event.preventDefault();
+                const startX = event.clientX;
+                const startY = event.clientY;
+                const imgRect = image.getBoundingClientRect();
+
+                const onMouseMove = (moveEvent) => {
+                    const deltaX = moveEvent.clientX - startX;
+                    const deltaY = moveEvent.clientY - startY;
+                    image.style.left = `${imgRect.left + deltaX}px`;
+                    image.style.top = `${imgRect.top + deltaY}px`;
+                };
+
+                const onMouseUp = () => {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                };
+
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            });
         });
     </script>
 </body>
