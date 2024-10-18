@@ -15,31 +15,27 @@
         }
 
         .music-player {
-            margin-bottom: 10px;
             width: 20%;
             max-width: 250px;
-            margin-left: auto;
-            margin-right: auto;
-            position: absolute;
-            top: 300px;
-            left: 50%;
-            transform: translate(-50%, 0);
-            z-index: 10;
+            margin: 10px auto;
+            z-index: 20; /* Más alto que el modelo y la forma de onda */
+            position: relative;
         }
 
         model-viewer {
             width: 100%;
             height: 500px;
-            z-index: 2;
+            z-index: 10; /* En medio */
+            position: relative;
         }
 
         /* Estilo para la forma de onda */
         #waveform {
             width: 80%;
             height: 80px;
-            margin: 80px auto;
+            margin: 20px auto;
+            z-index: 1; /* Debajo del modelo y el reproductor */
             position: relative;
-            z-index: 1;
         }
 
         /* Estilos para el anuncio */
@@ -77,7 +73,7 @@
             top: 350px; /* Ajusta según sea necesario */
             width: 100px; /* Ajusta el tamaño según sea necesario */
             cursor: pointer; /* Indica que la imagen es arrastrable */
-            z-index: 20; /* Asegúrate de que esté encima del modelo 3D */
+            z-index: 30; /* Asegúrate de que esté encima del modelo 3D */
         }
     </style>
 </head>
@@ -102,14 +98,15 @@
 
     <main>
         <section class="music-container">
+            <!-- Reproductor de música nativo encima -->
             <div class="music-player">
                 <audio id="audio-player" controls>
                     <source src="micancion.mp3" type="audio/mpeg">
                     Tu navegador no soporta el reproductor de audio.
                 </audio>
             </div>
- <div id="waveform"></div> <!-- Contenedor para la forma de onda -->
 
+            <!-- Modelo 3D al medio -->
             <model-viewer 
                 src="cdj.glb" 
                 alt="DJ Mixer" 
@@ -118,17 +115,8 @@
                 ar>
             </model-viewer>
 
-           
-            <div class="soundcloud-players">
-                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-                <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-            </div>
+            <!-- Forma de onda detrás del modelo -->
+            <div id="waveform"></div>
 
             <!-- Imagen de la mano -->
             <img src="manoizq.png" class="hand-image" id="hand-image" alt="Mano Izquierda">
