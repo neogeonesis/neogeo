@@ -32,22 +32,16 @@
             z-index: 1;
         }
 
-        .hand-image {
-            position: absolute;
-            width: 150px; /* Ajusta el tamaño de la imagen de la mano aquí */
-            left: 10%; /* Ajusta la posición horizontal según sea necesario */
-            top: 200px; /* Ajusta la posición vertical según sea necesario */
-            z-index: 20;
-            cursor: grab;
+        .soundcloud-players {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        /* Estilos para el visualizador de forma de onda */
-        .waveform {
-            width: 100%;
-            height: 120px;
-            margin-top: 10px;
-            z-index: 5;
-            position: relative;
+        .soundcloud-player {
+            width: 300px;
+            height: 300px;
+            margin: 20px;
         }
 
         /* Estilos para el anuncio */
@@ -77,6 +71,16 @@
             80% { background-color: #33FF57; }
             100% { background-color: #33FFBD; }
         }
+
+        /* Estilo para la imagen de la mano */
+        .hand-image {
+            position: absolute;
+            left: 10px; /* Ajusta según sea necesario */
+            top: 350px; /* Ajusta según sea necesario */
+            width: 100px; /* Ajusta el tamaño según sea necesario */
+            cursor: pointer; /* Indica que la imagen es arrastrable */
+            z-index: 20; /* Asegúrate de que esté encima del modelo 3D */
+        }
     </style>
 </head>
 <body>
@@ -101,13 +105,11 @@
     <main>
         <section class="music-container">
             <div class="music-player">
-                <audio controls id="audioPlayer">
+                <audio controls>
                     <source src="micancion.mp3" type="audio/mpeg">
                     Tu navegador no soporta el reproductor de audio.
                 </audio>
             </div>
-
-            <img src="manoizq.png" class="hand-image" id="handImage" draggable="true" alt="Mano">
 
             <model-viewer 
                 src="cdj.glb" 
@@ -117,19 +119,19 @@
                 ar>
             </model-viewer>
 
-            <!-- Visualizador de forma de onda -->
-            <canvas class="waveform" id="waveformCanvas"></canvas>
-
             <div class="soundcloud-players">
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
             </div>
+
+            <!-- Imagen de la mano -->
+            <img src="manoizq.png" class="hand-image" id="hand-image" alt="Mano Izquierda">
         </section>
     </main>
 
@@ -172,34 +174,30 @@
         });
 
         // Permitir arrastrar la imagen de la mano
-        const handImage = document.getElementById('handImage');
-        handImage.addEventListener('dragstart', (event) => {
-            event.dataTransfer.setData('text/plain', null);
+        const handImage = document.getElementById('hand-image');
+
+        handImage.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            const startX = event.clientX;
+            const startY = event.clientY;
+            const initialLeft = handImage.offsetLeft;
+            const initialTop = handImage.offsetTop;
+
+            const onMouseMove = (moveEvent) => {
+                const deltaX = moveEvent.clientX - startX;
+                const deltaY = moveEvent.clientY - startY;
+                handImage.style.left = `${initialLeft + deltaX}px`;
+                handImage.style.top = `${initialTop + deltaY}px`;
+            };
+
+            const onMouseUp = () => {
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+            };
+
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
         });
-
-        // Configuración del visualizador de forma de onda
-        const audioPlayer = document.getElementById('audioPlayer');
-        const waveformCanvas = document.getElementById('waveformCanvas');
-        const ctx = waveformCanvas.getContext('2d');
-
-        audioPlayer.addEventListener('play', () => {
-            drawWaveform();
-        });
-
-        function drawWaveform() {
-            const width = waveformCanvas.width;
-            const height = waveformCanvas.height;
-
-            // Lógica para dibujar la forma de onda
-            ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = '#ff5500'; // Color de la forma de onda
-            ctx.fillRect(0, height / 2 - 2, width, 4); // Simulación de forma de onda
-
-            // Redibujar mientras se reproduce
-            if (!audioPlayer.paused) {
-                requestAnimationFrame(drawWaveform);
-            }
-        }
     </script>
 </body>
 </html>
