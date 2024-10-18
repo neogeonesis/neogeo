@@ -20,10 +20,6 @@
             max-width: 250px;
             margin-left: auto;
             margin-right: auto;
-            position: absolute;
-            top: 300px;
-            left: 50%;
-            transform: translate(-50%, 0);
             z-index: 10; /* Asegúrate de que esté encima */
         }
 
@@ -38,10 +34,6 @@
             width: 85%;
             height: 84px; /* Tamaño más pequeño */
             margin: 10px auto;
-            position: absolute; /* Cambiado a absolute para que pueda moverse */
-            top: 250px; /* Ajusta la posición desde arriba */
-            left: 50%;
-            transform: translateX(-50%);
             z-index: 1; /* Más alto que el modelo 3D, más bajo que el reproductor */
         }
 
@@ -88,6 +80,7 @@
             display: flex; /* Para alinear los reproductores en una fila */
             flex-wrap: wrap; /* Para permitir que se ajusten en varias filas si es necesario */
             justify-content: center; /* Centra los reproductores horizontalmente */
+            position: relative; /* Necesario para el arrastre */
         }
 
         .soundcloud-player {
@@ -96,7 +89,7 @@
             margin: 10px; /* Espacio entre reproductores */
             border-radius: 10px; /* Bordes redondeados si lo deseas */
             overflow: hidden; /* Para asegurarte de que el contenido no se salga del iframe */
-            position: relative; /* Necesario para el arrastre */
+            cursor: grab; /* Indica que los reproductores son arrastrables */
         }
     </style>
 </head>
@@ -190,6 +183,35 @@
 
             window.addEventListener('mousemove', onMouseMove);
             window.addEventListener('mouseup', onMouseUp);
+        });
+
+        // Permitir arrastrar los reproductores de SoundCloud
+        const soundcloudPlayers = document.querySelectorAll('.soundcloud-player');
+        soundcloudPlayers.forEach(player => {
+            player.addEventListener('mousedown', (event) => {
+                event.preventDefault();
+                const startX = event.clientX;
+                const startY = event.clientY;
+                const rect = player.getBoundingClientRect();
+                const offsetX = startX - rect.left;
+                const offsetY = startY - rect.top;
+
+                const onMouseMove = (moveEvent) => {
+                    const newX = moveEvent.clientX - offsetX;
+                    const newY = moveEvent.clientY - offsetY;
+                    player.style.position = 'absolute';
+                    player.style.left = `${newX}px`;
+                    player.style.top = `${newY}px`;
+                };
+
+                const onMouseUp = () => {
+                    window.removeEventListener('mousemove', onMouseMove);
+                    window.removeEventListener('mouseup', onMouseUp);
+                };
+
+                window.addEventListener('mousemove', onMouseMove);
+                window.addEventListener('mouseup', onMouseUp);
+            });
         });
 
         // Permitir arrastrar la imagen de la mano
