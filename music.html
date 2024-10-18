@@ -6,7 +6,6 @@
     <title>Música - Neogeo Portafolio</title>
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/5.0.0/wavesurfer.min.js"></script>
     <style>
         /* Estilo adicional para el contenedor */
         .music-container {
@@ -31,6 +30,15 @@
             width: 100%;
             height: 500px;
             z-index: 1;
+        }
+
+        .hand-image {
+            position: absolute;
+            width: 150px; /* Ajusta el tamaño de la imagen de la mano aquí */
+            left: 10%; /* Ajusta la posición horizontal según sea necesario */
+            top: 200px; /* Ajusta la posición vertical según sea necesario */
+            z-index: 20;
+            cursor: grab;
         }
 
         .soundcloud-players {
@@ -72,13 +80,6 @@
             80% { background-color: #33FF57; }
             100% { background-color: #33FFBD; }
         }
-
-        /* Estilo para el contenedor de la forma de onda */
-        #waveform {
-            width: 100%;
-            height: 128px; /* Ajusta la altura según prefieras */
-            margin-top: 20px; /* Espaciado arriba */
-        }
     </style>
 </head>
 <body>
@@ -103,11 +104,13 @@
     <main>
         <section class="music-container">
             <div class="music-player">
-                <audio id="audio" controls>
+                <audio controls>
                     <source src="tu-cancion.mp3" type="audio/mpeg">
                     Tu navegador no soporta el reproductor de audio.
                 </audio>
             </div>
+
+            <img src="manoizq.png" class="hand-image" id="handImage" draggable="true" alt="Mano">
 
             <model-viewer 
                 src="cdj.glb" 
@@ -117,8 +120,15 @@
                 ar>
             </model-viewer>
 
-            <!-- Contenedor para la forma de onda -->
-            <div id="waveform"></div>
+            <!-- Visualizador de forma de onda -->
+            <iframe
+                width="100%"
+                height="120"
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+            </iframe>
 
             <div class="soundcloud-players">
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
@@ -171,22 +181,11 @@
             window.addEventListener('mouseup', onMouseUp);
         });
 
-        // Inicializar WaveSurfer
-        const wavesurfer = WaveSurfer.create({
-            container: '#waveform',
-            waveColor: '#ff5500',
-            progressColor: '#ffffff',
-            height: 128, // Ajusta la altura según prefieras
+        // Permitir arrastrar la imagen de la mano
+        const handImage = document.getElementById('handImage');
+        handImage.addEventListener('dragstart', (event) => {
+            event.dataTransfer.setData('text/plain', null);
         });
-
-        // Cargar el audio
-        const audioElement = document.getElementById('audio');
-        wavesurfer.load(audioElement.src);
-
-        // Sincronizar el reproductor de audio con WaveSurfer
-        audioElement.addEventListener('play', () => wavesurfer.play());
-        audioElement.addEventListener('pause', () => wavesurfer.pause());
-        audioElement.addEventListener('ended', () => wavesurfer.stop());
     </script>
 </body>
 </html>
