@@ -149,8 +149,11 @@
                     src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
             </div>
 
-            <!-- Imagen de la mano -->
+            <!-- Imagen de la mano izquierda -->
             <img src="manoizq.png" class="hand-image" id="hand-image" alt="Mano Izquierda">
+
+            <!-- Imagen de la mano derecha -->
+            <img src="manoder.png" class="hand-image" id="hand-image-right" alt="Mano Derecha">
         </section>
     </main>
 
@@ -159,40 +162,7 @@
     </footer>
 
     <script>
-        document.getElementById('nav-toggle').addEventListener('click', function() {
-            const navContent = document.getElementById('nav-content');
-            navContent.classList.toggle('open');
-        });
-
-        const modelViewer = document.querySelector('model-viewer');
-
-        // Permitir arrastrar el modelo
-        modelViewer.addEventListener('mousedown', (event) => {
-            event.preventDefault();
-            const startX = event.clientX;
-            const startY = event.clientY;
-
-            const onMouseMove = (moveEvent) => {
-                const deltaX = moveEvent.clientX - startX;
-                const deltaY = moveEvent.clientY - startY;
-
-                const rotationY = modelViewer.getAttribute('rotation').split(' ')[1];
-                modelViewer.setAttribute('rotation', `${modelViewer.getAttribute('rotation').split(' ')[0]} ${Number(rotationY) - deltaX / 2} ${modelViewer.getAttribute('rotation').split(' ')[2]}`);
-
-                const rotationX = modelViewer.getAttribute('rotation').split(' ')[0];
-                modelViewer.setAttribute('rotation', `${Number(rotationX) + deltaY / 2} ${rotationY} ${modelViewer.getAttribute('rotation').split(' ')[2]}`);
-            };
-
-            const onMouseUp = () => {
-                window.removeEventListener('mousemove', onMouseMove);
-                window.removeEventListener('mouseup', onMouseUp);
-            };
-
-            window.addEventListener('mousemove', onMouseMove);
-            window.addEventListener('mouseup', onMouseUp);
-        });
-
-        // Permitir arrastrar la imagen de la mano
+        // Permitir arrastrar la imagen de la mano izquierda
         const handImage = document.getElementById('hand-image');
 
         handImage.addEventListener('mousedown', (event) => {
@@ -215,48 +185,27 @@
             window.addEventListener('mouseup', onMouseUp);
         });
 
-        // Permitir arrastrar los reproductores de SoundCloud
-        const soundcloudPlayers = document.querySelectorAll('.soundcloud-player');
+        // Permitir arrastrar la imagen de la mano derecha
+        const handImageRight = document.getElementById('hand-image-right');
 
-        soundcloudPlayers.forEach(player => {
-            player.addEventListener('mousedown', (event) => {
-                event.preventDefault();
-                const startX = event.clientX - player.getBoundingClientRect().left;
-                const startY = event.clientY - player.getBoundingClientRect().top;
+        handImageRight.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            const startX = event.clientX - handImageRight.getBoundingClientRect().left;
+            const startY = event.clientY - handImageRight.getBoundingClientRect().top;
 
-                const onMouseMove = (moveEvent) => {
-                    player.style.position = 'absolute';
-                    player.style.left = `${moveEvent.clientX - startX}px`;
-                    player.style.top = `${moveEvent.clientY - startY}px`;
-                };
+            const onMouseMove = (moveEvent) => {
+                handImageRight.style.position = 'absolute';
+                handImageRight.style.left = `${moveEvent.clientX - startX}px`;
+                handImageRight.style.top = `${moveEvent.clientY - startY}px`;
+            };
 
-                const onMouseUp = () => {
-                    window.removeEventListener('mousemove', onMouseMove);
-                    window.removeEventListener('mouseup', onMouseUp);
-                };
+            const onMouseUp = () => {
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+            };
 
-                window.addEventListener('mousemove', onMouseMove);
-                window.addEventListener('mouseup', onMouseUp);
-            });
-        });
-
-        // Inicializar Wavesurfer.js
-        const audioPlayer = document.getElementById('audio-player');
-        const waveform = document.getElementById('waveform');
-
-        const waveSurfer = WaveSurfer.create({
-            container: waveform,
-            waveColor: 'violet',
-            progressColor: 'purple',
-        });
-
-        waveSurfer.load('micancion.mp3');
-
-        audioPlayer.addEventListener('play', () => waveSurfer.play());
-        audioPlayer.addEventListener('pause', () => waveSurfer.pause());
-        audioPlayer.addEventListener('seeked', () => waveSurfer.seekTo(audioPlayer.currentTime / audioPlayer.duration));
-        waveSurfer.on('seek', (progress) => {
-            audioPlayer.currentTime = progress * audioPlayer.duration;
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
         });
     </script>
 </body>
