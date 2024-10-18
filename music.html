@@ -197,10 +197,11 @@
 
         handImage.addEventListener('mousedown', (event) => {
             event.preventDefault();
-            const startX = event.clientX - handImage.offsetLeft;
-            const startY = event.clientY - handImage.offsetTop;
+            const startX = event.clientX - handImage.getBoundingClientRect().left;
+            const startY = event.clientY - handImage.getBoundingClientRect().top;
 
             const onMouseMove = (moveEvent) => {
+                handImage.style.position = 'absolute';
                 handImage.style.left = `${moveEvent.clientX - startX}px`;
                 handImage.style.top = `${moveEvent.clientY - startY}px`;
             };
@@ -220,11 +221,11 @@
         soundcloudPlayers.forEach(player => {
             player.addEventListener('mousedown', (event) => {
                 event.preventDefault();
-                const startX = event.clientX - player.offsetLeft;
-                const startY = event.clientY - player.offsetTop;
+                const startX = event.clientX - player.getBoundingClientRect().left;
+                const startY = event.clientY - player.getBoundingClientRect().top;
 
                 const onMouseMove = (moveEvent) => {
-                    player.style.position = 'absolute'; // Asegúrate de que esté en posición absoluta
+                    player.style.position = 'absolute';
                     player.style.left = `${moveEvent.clientX - startX}px`;
                     player.style.top = `${moveEvent.clientY - startY}px`;
                 };
@@ -239,23 +240,24 @@
             });
         });
 
-        // Configuración de Wavesurfer
-        const audioElement = document.getElementById('audio-player');
+        // Inicializar Wavesurfer.js
+        const audioPlayer = document.getElementById('audio-player');
         const waveform = document.getElementById('waveform');
-        const wavesurfer = WaveSurfer.create({
+
+        const waveSurfer = WaveSurfer.create({
             container: waveform,
-            waveColor: 'purple',
-            progressColor: 'orange'
+            waveColor: 'orange',
+            progressColor: 'purple',
         });
 
-        audioElement.onplay = () => {
-            wavesurfer.load('micancion.mp3'); // Asegúrate de que la ruta sea correcta
-            wavesurfer.play();
-        };
+        waveSurfer.load('micancion.mp3');
 
-        audioElement.onpause = () => {
-            wavesurfer.pause();
-        };
+        audioPlayer.addEventListener('play', () => waveSurfer.play());
+        audioPlayer.addEventListener('pause', () => waveSurfer.pause());
+        audioPlayer.addEventListener('seeked', () => waveSurfer.seekTo(audioPlayer.currentTime / audioPlayer.duration));
+        waveSurfer.on('seek', (progress) => {
+            audioPlayer.currentTime = progress * audioPlayer.duration;
+        });
     </script>
 </body>
 </html>
