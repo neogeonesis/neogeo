@@ -76,17 +76,7 @@
         /* Estilo para la imagen de la mano */
         .hand-image {
             position: absolute;
-            left: 10px; /* Ajusta según sea necesario */
-            top: 350px; /* Ajusta según sea necesario */
-            width: 400px; /* Ajusta el tamaño según sea necesario */
-            cursor: pointer; /* Indica que la imagen es arrastrable */
-            z-index: 20; /* Asegúrate de que esté encima del modelo 3D */
-        }
-
-        /* Estilo para la mano derecha */
-        .hand-image-right {
-            position: absolute;
-            right: 10px; /* Ajusta según sea necesario */
+            right: 10px; /* Ajustado a la derecha */
             top: 350px; /* Ajusta según sea necesario */
             width: 400px; /* Ajusta el tamaño según sea necesario */
             cursor: pointer; /* Indica que la imagen es arrastrable */
@@ -156,13 +146,11 @@
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
             </div>
 
-            <!-- Imagen de la mano izquierda -->
-            <img src="manoizq.png" class="hand-image" id="hand-image" alt="Mano Izquierda">
-            <!-- Imagen de la mano derecha -->
-            <img src="manoder.png" class="hand-image-right" id="hand-image-right" alt="Mano Derecha">
+            <!-- Imagen de la mano -->
+            <img src="manoder.png" class="hand-image" id="hand-image" alt="Mano Derecha">
         </section>
     </main>
 
@@ -196,81 +184,62 @@
             };
 
             const onMouseUp = () => {
-                document.removeEventListener('mousemove', onMouseMove);
-                document.removeEventListener('mouseup', onMouseUp);
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
             };
 
-            document.addEventListener('mousemove', onMouseMove);
-            document.addEventListener('mouseup', onMouseUp);
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
         });
 
-        // Arrastrar la imagen de la mano izquierda
-        dragElement(document.getElementById("hand-image"));
+        // Permitir arrastrar la imagen de la mano
+        const handImage = document.getElementById('hand-image');
 
-        // Arrastrar la imagen de la mano derecha
-        dragElement(document.getElementById("hand-image-right"));
+        handImage.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            const startX = event.clientX - handImage.offsetLeft;
+            const startY = event.clientY - handImage.offsetTop;
 
-        function dragElement(elmnt) {
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            if (document.getElementById(elmnt.id)) {
-                // Si el encabezado es un div, usa un elemento específico para el arrastre
-                elmnt.onmousedown = dragMouseDown;
-            } else {
-                // Si no, aplica el evento al elemento mismo
-                elmnt.onmousedown = dragMouseDown;
-            }
+            const onMouseMove = (moveEvent) => {
+                handImage.style.left = `${moveEvent.clientX - startX}px`;
+                handImage.style.top = `${moveEvent.clientY - startY}px`;
+            };
 
-            function dragMouseDown(e) {
-                e.preventDefault();
-                // Obtener la posición del cursor al presionar el ratón
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                document.onmouseup = closeDragElement;
-                // Llama a la función para mover el elemento
-                document.onmousemove = elementDrag;
-            }
+            const onMouseUp = () => {
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+            };
 
-            function elementDrag(e) {
-                e.preventDefault();
-                // Calcular la nueva posición del cursor
-                pos1 = pos3 - e.clientX;
-                pos2 = pos4 - e.clientY;
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                // Establecer la nueva posición del elemento
-                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-            }
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+        });
 
-            function closeDragElement() {
-                // Detener el movimiento al soltar el ratón
-                document.onmouseup = null;
-                document.onmousemove = null;
-            }
-        }
-
-        // Configuración de la forma de onda
-        const audioElement = document.getElementById('audio-player');
-        const waveformElement = document.getElementById('waveform');
+        // Configuración de Wavesurfer.js
+        const audioPlayer = document.getElementById('audio-player');
+        const waveformContainer = document.getElementById('waveform');
 
         const wavesurfer = WaveSurfer.create({
-            container: waveformElement,
+            container: waveformContainer,
             waveColor: 'violet',
-            progressColor: 'purple'
+            progressColor: 'purple',
         });
 
-        audioElement.onplay = () => wavesurfer.load(audioElement.src);
-        audioElement.onpause = () => wavesurfer.pause();
-        audioElement.onended = () => wavesurfer.stop();
+        wavesurfer.load('micancion.mp3');
 
-        // Sincronizar el audio con el control de reproducción
-        audioElement.addEventListener('play', () => wavesurfer.play());
-        audioElement.addEventListener('pause', () => wavesurfer.pause());
-        audioElement.addEventListener('seeked', () => wavesurfer.seekTo(audioElement.currentTime / audioElement.duration));
-        audioElement.addEventListener('timeupdate', () => {
-            if (!audioElement.paused) {
-                wavesurfer.seekTo(audioElement.currentTime / audioElement.duration);
-            }
+        audioPlayer.addEventListener('play', () => {
+            wavesurfer.play();
+        });
+
+        audioPlayer.addEventListener('pause', () => {
+            wavesurfer.pause();
+        });
+
+        audioPlayer.addEventListener('timeupdate', () => {
+            wavesurfer.seekTo(audioPlayer.currentTime / audioPlayer.duration);
+        });
+
+        wavesurfer.on('finish', () => {
+            audioPlayer.pause();
         });
     </script>
 </body>
