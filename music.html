@@ -76,7 +76,7 @@
         /* Estilo para la imagen de la mano */
         .hand-image {
             position: absolute;
-            right: 10px; /* Ajustado a la derecha */
+            left: 10px; /* Ajusta según sea necesario */
             top: 350px; /* Ajusta según sea necesario */
             width: 400px; /* Ajusta el tamaño según sea necesario */
             cursor: pointer; /* Indica que la imagen es arrastrable */
@@ -146,11 +146,11 @@
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                 <iframe class="soundcloud-player" scrolling="no" frameborder="no" allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    src="https%3A//api.soundcloud.com/tracks/1295655508&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
             </div>
 
             <!-- Imagen de la mano -->
-            <img src="manoder.png" class="hand-image" id="hand-image" alt="Mano Derecha">
+            <img src="manoizq.png" class="hand-image" id="hand-image" alt="Mano Izquierda">
         </section>
     </main>
 
@@ -197,10 +197,11 @@
 
         handImage.addEventListener('mousedown', (event) => {
             event.preventDefault();
-            const startX = event.clientX - handImage.offsetLeft;
-            const startY = event.clientY - handImage.offsetTop;
+            const startX = event.clientX - handImage.getBoundingClientRect().left;
+            const startY = event.clientY - handImage.getBoundingClientRect().top;
 
             const onMouseMove = (moveEvent) => {
+                handImage.style.position = 'absolute';
                 handImage.style.left = `${moveEvent.clientX - startX}px`;
                 handImage.style.top = `${moveEvent.clientY - startY}px`;
             };
@@ -214,32 +215,48 @@
             window.addEventListener('mouseup', onMouseUp);
         });
 
-        // Configuración de Wavesurfer.js
-        const audioPlayer = document.getElementById('audio-player');
-        const waveformContainer = document.getElementById('waveform');
+        // Permitir arrastrar los reproductores de SoundCloud
+        const soundcloudPlayers = document.querySelectorAll('.soundcloud-player');
 
-        const wavesurfer = WaveSurfer.create({
-            container: waveformContainer,
+        soundcloudPlayers.forEach(player => {
+            player.addEventListener('mousedown', (event) => {
+                event.preventDefault();
+                const startX = event.clientX - player.getBoundingClientRect().left;
+                const startY = event.clientY - player.getBoundingClientRect().top;
+
+                const onMouseMove = (moveEvent) => {
+                    player.style.position = 'absolute';
+                    player.style.left = `${moveEvent.clientX - startX}px`;
+                    player.style.top = `${moveEvent.clientY - startY}px`;
+                };
+
+                const onMouseUp = () => {
+                    window.removeEventListener('mousemove', onMouseMove);
+                    window.removeEventListener('mouseup', onMouseUp);
+                };
+
+                window.addEventListener('mousemove', onMouseMove);
+                window.addEventListener('mouseup', onMouseUp);
+            });
+        });
+
+        // Inicializar Wavesurfer.js
+        const audioPlayer = document.getElementById('audio-player');
+        const waveform = document.getElementById('waveform');
+
+        const waveSurfer = WaveSurfer.create({
+            container: waveform,
             waveColor: 'violet',
             progressColor: 'purple',
         });
 
-        wavesurfer.load('micancion.mp3');
+        waveSurfer.load('micancion.mp3');
 
-        audioPlayer.addEventListener('play', () => {
-            wavesurfer.play();
-        });
-
-        audioPlayer.addEventListener('pause', () => {
-            wavesurfer.pause();
-        });
-
-        audioPlayer.addEventListener('timeupdate', () => {
-            wavesurfer.seekTo(audioPlayer.currentTime / audioPlayer.duration);
-        });
-
-        wavesurfer.on('finish', () => {
-            audioPlayer.pause();
+        audioPlayer.addEventListener('play', () => waveSurfer.play());
+        audioPlayer.addEventListener('pause', () => waveSurfer.pause());
+        audioPlayer.addEventListener('seeked', () => waveSurfer.seekTo(audioPlayer.currentTime / audioPlayer.duration));
+        waveSurfer.on('seek', (progress) => {
+            audioPlayer.currentTime = progress * audioPlayer.duration;
         });
     </script>
 </body>
