@@ -56,6 +56,22 @@
             padding: 10px;
             font-size: 16px; /* Tamaño de la fuente */
             z-index: 100; /* Asegura que esté sobre otros elementos */
+            animation: randomColors 5s linear infinite; /* Animación de colores brillantes */
+        }
+
+        /* Animación de deslizamiento */
+        .announcement-banner marquee {
+            font-weight: bold;
+        }
+
+        /* Animación de colores brillantes aleatorios */
+        @keyframes randomColors {
+            0% { background-color: #FF5733; } /* Color 1 */
+            20% { background-color: #FFBD33; } /* Color 2 */
+            40% { background-color: #DBFF33; } /* Color 3 */
+            60% { background-color: #75FF33; } /* Color 4 */
+            80% { background-color: #33FF57; } /* Color 5 */
+            100% { background-color: #33FFBD; } /* Color 6 */
         }
     </style>
 </head>
