@@ -88,6 +88,10 @@
             display: flex; /* Para alinear los reproductores en una fila */
             flex-wrap: wrap; /* Para permitir que se ajusten en varias filas si es necesario */
             justify-content: center; /* Centra los reproductores horizontalmente */
+            position: absolute; /* Para poder mover los reproductores */
+            top: 400px; /* Ajusta la posición desde arriba */
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .soundcloud-player {
@@ -194,7 +198,6 @@
 
         // Permitir arrastrar la imagen de la mano
         const handImage = document.getElementById('hand-image');
-
         handImage.addEventListener('mousedown', (event) => {
             event.preventDefault();
             const startX = event.clientX - handImage.offsetLeft;
