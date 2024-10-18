@@ -96,7 +96,6 @@
             margin: 10px; /* Espacio entre reproductores */
             border-radius: 10px; /* Bordes redondeados si lo deseas */
             overflow: hidden; /* Para asegurarte de que el contenido no se salga del iframe */
-            cursor: move; /* Indica que el reproductor es arrastrable */
         }
     </style>
 </head>
@@ -197,13 +196,15 @@
 
         handImage.addEventListener('mousedown', (event) => {
             event.preventDefault();
-            const startX = event.clientX - handImage.getBoundingClientRect().left;
-            const startY = event.clientY - handImage.getBoundingClientRect().top;
+            const startX = event.clientX;
+            const startY = event.clientY;
 
             const onMouseMove = (moveEvent) => {
-                handImage.style.position = 'absolute';
-                handImage.style.left = `${moveEvent.clientX - startX}px`;
-                handImage.style.top = `${moveEvent.clientY - startY}px`;
+                const deltaX = moveEvent.clientX - startX;
+                const deltaY = moveEvent.clientY - startY;
+
+                handImage.style.left = (handImage.offsetLeft + deltaX) + 'px';
+                handImage.style.top = (handImage.offsetTop + deltaY) + 'px';
             };
 
             const onMouseUp = () => {
@@ -215,49 +216,20 @@
             window.addEventListener('mouseup', onMouseUp);
         });
 
-        // Permitir arrastrar los reproductores de SoundCloud
-        const soundcloudPlayers = document.querySelectorAll('.soundcloud-player');
-
-        soundcloudPlayers.forEach(player => {
-            player.addEventListener('mousedown', (event) => {
-                event.preventDefault();
-                const startX = event.clientX - player.getBoundingClientRect().left;
-                const startY = event.clientY - player.getBoundingClientRect().top;
-
-                const onMouseMove = (moveEvent) => {
-                    player.style.position = 'absolute';
-                    player.style.left = `${moveEvent.clientX - startX}px`;
-                    player.style.top = `${moveEvent.clientY - startY}px`;
-                };
-
-                const onMouseUp = () => {
-                    window.removeEventListener('mousemove', onMouseMove);
-                    window.removeEventListener('mouseup', onMouseUp);
-                };
-
-                window.addEventListener('mousemove', onMouseMove);
-                window.addEventListener('mouseup', onMouseUp);
-            });
-        });
-
-        // Inicializar Wavesurfer.js
-        const audioPlayer = document.getElementById('audio-player');
-        const waveform = document.getElementById('waveform');
-
-        const waveSurfer = WaveSurfer.create({
-            container: waveform,
+        // Crear el visualizador de la forma de onda
+        const waveform = WaveSurfer.create({
+            container: '#waveform',
             waveColor: 'violet',
             progressColor: 'purple',
+            height: 100,
+            barWidth: 2,
+            responsive: true,
+            scrollParent: true
         });
 
-        waveSurfer.load('micancion.mp3');
-
-        audioPlayer.addEventListener('play', () => waveSurfer.play());
-        audioPlayer.addEventListener('pause', () => waveSurfer.pause());
-        audioPlayer.addEventListener('seeked', () => waveSurfer.seekTo(audioPlayer.currentTime / audioPlayer.duration));
-        waveSurfer.on('seek', (progress) => {
-            audioPlayer.currentTime = progress * audioPlayer.duration;
-        });
+        waveform.load('micancion.mp3');
+        document.getElementById('audio-player').addEventListener('play', () => waveform.play());
+        document.getElementById('audio-player').addEventListener('pause', () => waveform.pause());
     </script>
 </body>
 </html>
