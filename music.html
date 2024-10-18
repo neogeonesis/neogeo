@@ -212,4 +212,38 @@
         });
 
         // Inicializar Wavesurfer.js
-        const audioElement = document.getElementById('
+        const audioElement = document.getElementById('audio-player');
+        const waveformContainer = document.getElementById('waveform');
+
+        const wavesurfer = WaveSurfer.create({
+            container: waveformContainer,
+            waveColor: 'rgba(255, 255, 255, 0.7)',
+            progressColor: 'rgba(255, 87, 51, 1)',
+            height: 128,
+            barWidth: 2,
+            responsive: true,
+        });
+
+        // Cargar el archivo de audio en Wavesurfer
+        wavesurfer.load(audioElement.src);
+
+        // Sincronizar Wavesurfer con el reproductor de audio
+        audioElement.addEventListener('play', () => {
+            wavesurfer.play();
+        });
+
+        audioElement.addEventListener('pause', () => {
+            wavesurfer.pause();
+        });
+
+        audioElement.addEventListener('seeked', () => {
+            wavesurfer.seekTo(audioElement.currentTime / audioElement.duration);
+        });
+
+        // Actualizar el reproductor de audio cuando se hace clic en la forma de onda
+        wavesurfer.on('seek', (progress) => {
+            audioElement.currentTime = progress * audioElement.duration;
+        });
+    </script>
+</body>
+</html>
