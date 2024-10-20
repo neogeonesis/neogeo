@@ -132,17 +132,21 @@
         <img src="manoder.png" alt="Foto de Neogeo" style="width: 80%; border-radius: 10px;">
     </div>
 </section>
-        <section class="music-container">
-   <section class="music-container">
+       
+ <section class="music-container">
     <div class="music-player">
-        <audio id="audio-player">
-            <source id="audio-source" src="micancion.mp3" type="audio/mpeg">
+        <audio id="audio-player" preload="auto">
+            <source src="micancion.mp3" type="audio/mpeg">
             Tu navegador no soporta el reproductor de audio.
         </audio>
-        <button id="play-btn">Play</button>
-        <button id="pause-btn">Pause</button>
-        <button id="next-btn">Siguiente Tema</button>
+        <div class="controls">
+            <button id="play-btn">Reproducir</button>
+            <button id="pause-btn">Pausar</button>
+            <button id="stop-btn">Detener</button>
+        </div>
     </div>
+</section>
+
 
      
             <model-viewer  
@@ -347,6 +351,32 @@
     document.getElementById('pause-button').addEventListener('click', () => {
         wavesurfer.pause();
     });
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+<script>
+    const sound = new Howl({
+        src: ['micancion.mp3'],
+        preload: true,
+        html5: true, // Para evitar problemas de reproducción en dispositivos móviles
+    });
+
+    document.getElementById('play-btn').addEventListener('click', function () {
+        sound.play();
+    });
+
+    document.getElementById('pause-btn').addEventListener('click', function () {
+        sound.pause();
+    });
+
+    document.getElementById('stop-btn').addEventListener('click', function () {
+        sound.stop();
+    });
+</script>
+
 </script>
 
 </body>
