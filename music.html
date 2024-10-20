@@ -254,61 +254,33 @@
             });
         });
 
-        // Inicializar Wavesurfer.js
-        const audioPlayer = document.getElementById('audio-player');
-        const waveform = document.getElementById('waveform');
-
-        const waveSurfer = WaveSurfer.create({
-            container: waveform,
-            waveColor: 'orange',
-            progressColor: 'green',
-        });
-
-        waveSurfer.load('micancion.mp3');
-
-        audioPlayer.addEventListener('play', () => waveSurfer.play());
-        audioPlayer.addEventListener('pause', () => waveSurfer.pause());
-        audioPlayer.addEventListener('seeked', () => waveSurfer.seekTo(audioPlayer.currentTime / audioPlayer.duration));
-        waveSurfer.on('seek', (progress) => {
-            audioPlayer.currentTime = progress * audioPlayer.duration;
-        });
-
-         // Permitir arrastrar la imagen de la mano derecha
-    const handImageRight = document.getElementById('hand-image-right');
-
-    handImageRight.addEventListener('mousedown', (event) => {
-        event.preventDefault();
-        const startX = event.clientX - handImageRight.getBoundingClientRect().left;
-        const startY = event.clientY - handImageRight.getBoundingClientRect().top;
-
-        const onMouseMove = (moveEvent) => {
-            handImageRight.style.position = 'absolute';
-            handImageRight.style.left = `${moveEvent.clientX - startX}px`;
-            handImageRight.style.top = `${moveEvent.clientY - startY}px`;
-        };
-
-        const onMouseUp = () => {
-            window.removeEventListener('mousemove', onMouseMove);
-            window.removeEventListener('mouseup', onMouseUp);
-        };
-
-        window.addEventListener('mousemove', onMouseMove);
-        window.addEventListener('mouseup', onMouseUp);
-    });
-    </script>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var audioElement = document.getElementById('audio-player');
-
-        // Evita que el menú contextual se muestre al hacer clic derecho
-        audioElement.addEventListener('contextmenu', function(event) {
-            event.preventDefault();
-        });
-
-        // Si quieres que el audio no se reproduzca automáticamente, asegúrate de no usar "autoplay"
-    });
 </script>
- 
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar Wavesurfer.js
+            const waveform = document.getElementById('waveform');
+            const waveSurfer = WaveSurfer.create({
+                container: waveform,
+                waveColor: 'orange',
+                progressColor: 'green',
+            });
+
+            // Cargar el audio
+            waveSurfer.load('micancion.mp3');
+
+            // Controlar la reproducción entre el reproductor de audio y Wavesurfer
+            const audioElement = document.getElementById('audio-player');
+
+            audioElement.addEventListener('play', () => waveSurfer.play());
+            audioElement.addEventListener('pause', () => waveSurfer.pause());
+            audioElement.addEventListener('seeked', () => {
+                waveSurfer.seekTo(audioElement.currentTime / audioElement.duration);
+            });
+
+            waveSurfer.on('seek', (progress) => {
+                audioElement.currentTime = progress * audioElement.duration;
+            });
+        });
+    </script>
 </body>
 </html>
