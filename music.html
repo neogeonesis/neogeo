@@ -14,18 +14,27 @@
             text-align: center;
         }
 
-        .music-player {
-            margin-bottom: 10px;
-            width: 20%;
-            max-width: 250px;
-            margin-left: auto;
-            margin-right: auto;
-            position: absolute;
-            top: 300px;
-            left: 50%;
-            transform: translate(-50%, 0);
-            z-index: 10; /* Asegúrate de que esté encima */
-        }
+.music-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.music-player button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ff5500; /* Ajusta según el color de tu página */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Efecto al pasar el mouse */
+}
+
+.music-player button:hover {
+    background-color: #e64a00; /* Un color más oscuro para el efecto hover */
+}
+
 
         model-viewer {
             width: 100%;
@@ -133,13 +142,21 @@
     </div>
 </section>
         <section class="music-container">
-          <div class="music-player">
+    <div class="music-player">
     <audio id="audio-player">
         <source src="micancion.mp3" type="audio/mpeg">
         Tu navegador no soporta el reproductor de audio.
     </audio>
     <button id="play-btn">Reproducir</button>
     <button id="pause-btn">Pausar</button>
+</div>
+<div class="music-player">
+    <audio id="audio-player-2">
+        <source src="otra-cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el reproductor de audio.
+    </audio>
+    <button id="play-btn-2">Reproducir</button>
+    <button id="pause-btn-2">Pausar</button>
 </div>
 
     
