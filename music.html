@@ -133,13 +133,12 @@
     </div>
 </section>
         <section class="music-container">
-    <div class="music-player">
-        <audio id="audio-player" preload="auto">
-            <source src="micancion.mp3" type="audio/mpeg">
-            Tu navegador no soporta el reproductor de audio.
-        </audio>
-        <div class="audiojs" id="audiojs-player"></div>
-    </div>
+            <div class="music-player">
+                <audio id="audio-player" controls>
+                    <source src="micancion.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el reproductor de audio.
+                </audio>
+            </div>
      
             <model-viewer  
                 src="cdj.glb" 
@@ -254,17 +253,7 @@
                 window.addEventListener('mouseup', onMouseUp);
             });
         });
-// Inicializar audio.js
-    var audiojs = audiojs.createAll();
 
-    // Obtener el reproductor de audio
-    var audioElement = document.getElementById('audio-player');
-    var wavesurfer = WaveSurfer.create({
-        container: '#waveform',
-        waveColor: 'violet',
-        progressColor: 'purple',
-        height: 75,
-    });
         // Inicializar Wavesurfer.js
         const audioPlayer = document.getElementById('audio-player');
         const waveform = document.getElementById('waveform');
@@ -307,5 +296,19 @@
         window.addEventListener('mouseup', onMouseUp);
     });
     </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var audioElement = document.getElementById('audio-player');
+
+        // Evita que el menú contextual se muestre al hacer clic derecho
+        audioElement.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+
+        // Si quieres que el audio no se reproduzca automáticamente, asegúrate de no usar "autoplay"
+    });
+</script>
+ 
 </body>
 </html>
