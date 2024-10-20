@@ -132,22 +132,13 @@
         <img src="manoder.png" alt="Foto de Neogeo" style="width: 80%; border-radius: 10px;">
     </div>
 </section>
-       
- <section class="music-container">
-    <div class="music-player">
-        <audio id="audio-player" preload="auto">
-            <source src="micancion.mp3" type="audio/mpeg">
-            Tu navegador no soporta el reproductor de audio.
-        </audio>
-        <div class="controls">
-            <button id="play-btn">Reproducir</button>
-            <button id="pause-btn">Pausar</button>
-            <button id="stop-btn">Detener</button>
-        </div>
-    </div>
-</section>
-
-
+        <section class="music-container">
+            <div class="music-player">
+                <audio id="audio-player" controls>
+                    <source src="micancion.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el reproductor de audio.
+                </audio>
+            </div>
      
             <model-viewer  
                 src="cdj.glb" 
@@ -305,80 +296,5 @@
         window.addEventListener('mouseup', onMouseUp);
     });
     </script>
-    <script>
-    const audioPlayer = document.getElementById('audio-player');
-    const audioSource = document.getElementById('audio-source');
-    const nextBtn = document.getElementById('next-btn');
-
-    // Array de temas de música
-    const tracks = [
-        'micancion.mp3',
-        'otra-cancion.mp3', // Agrega más archivos de audio aquí
-        'tercera-cancion.mp3'
-    ];
-
-    let currentTrack = 0;
-
-    // Función para cambiar la canción
-    function playNextTrack() {
-        currentTrack = (currentTrack + 1) % tracks.length; // Ciclo a través de las canciones
-        audioSource.src = tracks[currentTrack]; // Cambia la fuente
-        audioPlayer.load(); // Recarga el reproductor
-        audioPlayer.play(); // Reproduce la nueva canción
-    }
-
-    nextBtn.addEventListener('click', playNextTrack); // Asigna el evento al botón
-</script>
-<script>
-    // Crear una instancia de Wavesurfer
-    const wavesurfer = WaveSurfer.create({
-        container: '#waveform',
-        waveColor: 'violet',
-        progressColor: 'purple',
-        height: 75,
-        barWidth: 2,
-        responsive: true,
-    });
-
-    // Cargar el archivo de audio
-    wavesurfer.load('tu-audio.mp3'); // Cambia 'tu-audio.mp3' por la URL de tu archivo de audio
-
-    // Funciones para manejar la reproducción
-    document.getElementById('play-button').addEventListener('click', () => {
-        wavesurfer.play();
-    });
-
-    document.getElementById('pause-button').addEventListener('click', () => {
-        wavesurfer.pause();
-    });
-
-
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-<script>
-    const sound = new Howl({
-        src: ['micancion.mp3'],
-        preload: true,
-        html5: true, // Para evitar problemas de reproducción en dispositivos móviles
-    });
-
-    document.getElementById('play-btn').addEventListener('click', function () {
-        sound.play();
-    });
-
-    document.getElementById('pause-btn').addEventListener('click', function () {
-        sound.pause();
-    });
-
-    document.getElementById('stop-btn').addEventListener('click', function () {
-        sound.stop();
-    });
-</script>
-
-</script>
-
 </body>
-    
 </html>
