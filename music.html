@@ -311,41 +311,50 @@
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
     });
-     <script>
-        // Obtener el reproductor de audio y los controles del ecualizador
-        const audioPlayer = document.getElementById('audio-player');
-        const bassControl = document.getElementById('bass');
-        const midControl = document.getElementById('mid');
-        const trebleControl = document.getElementById('treble');
+  
+<script>
+    // Obtener el reproductor de audio y los controles del ecualizador
+    const audioPlayer = document.getElementById('audio-player');
+    const bassControl = document.getElementById('bass');
+    const midControl = document.getElementById('mid');
+    const trebleControl = document.getElementById('treble');
 
-        // Crear un nuevo contexto de audio
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const source = audioContext.createMediaElementSource(audioPlayer);
-        const bassGain = audioContext.createGain();
-        const midGain = audioContext.createGain();
-        const trebleGain = audioContext.createGain();
+    // Crear un nuevo contexto de audio
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-        // Conectar los nodos
-        source.connect(bassGain);
-        source.connect(midGain);
-        source.connect(trebleGain);
-        bassGain.connect(audioContext.destination);
-        midGain.connect(audioContext.destination);
-        trebleGain.connect(audioContext.destination);
+    // Asegurarse de que el audio esté en contexto
+    const source = audioContext.createMediaElementSource(audioPlayer);
+    const bassGain = audioContext.createGain();
+    const midGain = audioContext.createGain();
+    const trebleGain = audioContext.createGain();
 
-        // Ajustar las ganancias en función de los controles deslizantes
-        const updateEqualizer = () => {
-            bassGain.gain.value = Math.pow(10, bassControl.value / 20); // Convertir dB a factor lineal
-            midGain.gain.value = Math.pow(10, midControl.value / 20); // Convertir dB a factor lineal
-            trebleGain.gain.value = Math.pow(10, trebleControl.value / 20); // Convertir dB a factor lineal
-        };
+    // Conectar los nodos
+    source.connect(bassGain);
+    source.connect(midGain);
+    source.connect(trebleGain);
+    bassGain.connect(audioContext.destination);
+    midGain.connect(audioContext.destination);
+    trebleGain.connect(audioContext.destination);
 
-        // Escuchar cambios en los controles deslizantes
-        bassControl.addEventListener('input', updateEqualizer);
-        midControl.addEventListener('input', updateEqualizer);
-        trebleControl.addEventListener('input', updateEqualizer);
-    </script>
+    // Ajustar las ganancias en función de los controles deslizantes
+    const updateEqualizer = () => {
+        bassGain.gain.value = Math.pow(10, bassControl.value / 20); // Convertir dB a factor lineal
+        midGain.gain.value = Math.pow(10, midControl.value / 20); // Convertir dB a factor lineal
+        trebleGain.gain.value = Math.pow(10, trebleControl.value / 20); // Convertir dB a factor lineal
+    };
 
+    // Escuchar cambios en los controles deslizantes
+    bassControl.addEventListener('input', updateEqualizer);
+    midControl.addEventListener('input', updateEqualizer);
+    trebleControl.addEventListener('input', updateEqualizer);
+
+    // Activar el contexto de audio al hacer clic en el reproductor
+    audioPlayer.addEventListener('play', () => {
+        audioContext.resume().then(() => {
+            console.log('Playback resumed successfully');
+        });
+    });
+</script>
     
 </body>
 </html>
