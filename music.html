@@ -139,7 +139,31 @@
                     Tu navegador no soporta el reproductor de audio.
                 </audio>
             </div>
-     
+     <style>
+    .music-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .music-player {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: #ff5500;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
             <model-viewer  
                 src="cdj.glb" 
                 alt="DJ Mixer" 
@@ -295,6 +319,17 @@
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
     });
-    </script>
+    </script
+        <script>
+    const audioPlayer = document.getElementById('audio-player');
+
+    document.getElementById('play-btn').addEventListener('click', () => {
+        audioPlayer.play();
+    });
+
+    document.getElementById('pause-btn').addEventListener('click', () => {
+        audioPlayer.pause();
+    });
+</script>
 </body>
 </html>
