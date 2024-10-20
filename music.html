@@ -133,36 +133,16 @@
     </div>
 </section>
         <section class="music-container">
-            <div class="music-player">
-                <audio id="audio-player" controls>
-                    <source src="micancion.mp3" type="audio/mpeg">
-                    Tu navegador no soporta el reproductor de audio.
-                </audio>
-            </div>
-     <style>
-    .music-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
+          <div class="music-player">
+    <audio id="audio-player">
+        <source src="micancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el reproductor de audio.
+    </audio>
+    <button id="play-btn">Reproducir</button>
+    <button id="pause-btn">Pausar</button>
+</div>
 
-    .music-player {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    button {
-        margin-top: 10px;
-        padding: 10px 20px;
-        background-color: #ff5500;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-</style>
+    
 
             <model-viewer  
                 src="cdj.glb" 
@@ -331,5 +311,21 @@
         audioPlayer.pause();
     });
 </script>
+
+    <script>
+    // ... tu código existente ...
+
+    // Controlar la reproducción con botones
+    document.getElementById('play-btn').addEventListener('click', () => {
+        document.getElementById('audio-player').play();
+    });
+
+    document.getElementById('pause-btn').addEventListener('click', () => {
+        document.getElementById('audio-player').pause();
+    });
+
+    // ... el resto de tu código ...
+</script>
+
 </body>
 </html>
