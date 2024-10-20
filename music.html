@@ -25,7 +25,21 @@
             left: 50%;
             transform: translate(-50%, 0);
             z-index: 10; /* Asegúrate de que esté encima */
+
+            display: flex; /* Para alinear los controles en una fila */
+    align-items: center; /* Alinear verticalmente */
         }
+        #next-button {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    font-size: 20px; /* Tamaño de fuente para el botón */
+    cursor: pointer; /* Indicar que es interactivo */
+    margin-left: 10px; /* Espacio entre el reproductor y el botón */
+}
+
+#next-button:hover {
+    color: #FF5733; /* Cambiar color al pasar el mouse */
+}
 
         model-viewer {
             width: 100%;
@@ -138,7 +152,7 @@
                     <source src="micancion.mp3" type="audio/mpeg">
                     Tu navegador no soporta el reproductor de audio.
                 </audio>
-                 <button id="next-button">Siguiente</button> <!-- Botón para la siguiente canción -->
+                button id="next-button">➡️</button> <!-- Botón "Siguiente" -->
             </div>
      
             <model-viewer  
@@ -294,27 +308,19 @@ document.getElementById('next-button').addEventListener('click', () => {
     </script>
 
 <script>
-    const audioPlayer = document.getElementById("audio-player");
-    const nextButton = document.getElementById("next-button");
+const audioPlayer = document.getElementById("audio-player");
+const nextButton = document.getElementById("next-button");
 
-    // Lista de canciones (puedes agregar más URLs de tus canciones aquí)
-    const canciones = [
-        "micancion.mp3",
-        "micancion.mp3",
-        "mas-canciones.mp3"
-    ];
+const tracks = ['micancion.mp3', 'micancion.mp3', 'micancion3.mp3']; // Lista de canciones
+let currentTrackIndex = 0;
 
-    let currentIndex = 0;
+// Función para cambiar a la siguiente canción
+nextButton.addEventListener('click', () => {
+    currentTrackIndex = (currentTrackIndex + 1) % tracks.length; // Siguiente pista
+    audioPlayer.src = tracks[currentTrackIndex]; // Cambia la fuente del audio
+    audioPlayer.play(); // Reproduce la nueva canción
+});
 
-    // Función para cambiar a la siguiente canción
-    function playNextSong() {
-        currentIndex = (currentIndex + 1) % canciones.length; // Cambia al siguiente índice, reinicia si llega al final
-        audioPlayer.src = canciones[currentIndex]; // Cambia la fuente del audio
-        audioPlayer.play(); // Reproduce automáticamente la siguiente canción
-    }
-
-    // Evento para el botón "Siguiente"
-    nextButton.addEventListener("click", playNextSong);
 </script>
     
 </body>
