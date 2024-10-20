@@ -133,13 +133,17 @@
     </div>
 </section>
         <section class="music-container">
-            <div class="music-player">
-        <audio id="audio-player" controls>
+   <section class="music-container">
+    <div class="music-player">
+        <audio id="audio-player">
             <source id="audio-source" src="micancion.mp3" type="audio/mpeg">
             Tu navegador no soporta el reproductor de audio.
         </audio>
+        <button id="play-btn">Play</button>
+        <button id="pause-btn">Pause</button>
         <button id="next-btn">Siguiente Tema</button>
     </div>
+
      
             <model-viewer  
                 src="cdj.glb" 
@@ -320,6 +324,29 @@
     }
 
     nextBtn.addEventListener('click', playNextTrack); // Asigna el evento al botón
+</script>
+<script>
+    // Crear una instancia de Wavesurfer
+    const wavesurfer = WaveSurfer.create({
+        container: '#waveform',
+        waveColor: 'violet',
+        progressColor: 'purple',
+        height: 75,
+        barWidth: 2,
+        responsive: true,
+    });
+
+    // Cargar el archivo de audio
+    wavesurfer.load('tu-audio.mp3'); // Cambia 'tu-audio.mp3' por la URL de tu archivo de audio
+
+    // Funciones para manejar la reproducción
+    document.getElementById('play-button').addEventListener('click', () => {
+        wavesurfer.play();
+    });
+
+    document.getElementById('pause-button').addEventListener('click', () => {
+        wavesurfer.pause();
+    });
 </script>
 
 </body>
