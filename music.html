@@ -139,6 +139,20 @@
                     Tu navegador no soporta el reproductor de audio.
                 </audio>
             </div>
+  <!-- Aquí empieza el código del ecualizador -->
+        <div class="equalizer-controls">
+            <h3>Ecualizador</h3>
+            <label for="bass">Bass</label>
+            <input type="range" id="bass" min="-10" max="10" value="0">
+            
+            <label for="mid">Mid</label>
+            <input type="range" id="mid" min="-10" max="10" value="0">
+            
+            <label for="treble">Treble</label>
+            <input type="range" id="treble" min="-10" max="10" value="0">
+        </div>
+        <!-- Aquí termina el código del ecualizador -->
+           
      
             <model-viewer  
                 src="cdj.glb" 
@@ -296,5 +310,60 @@
         window.addEventListener('mouseup', onMouseUp);
     });
     </script>
+<script>
+        // Inicializa la API de Web Audio
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const audioPlayer = document.getElementById('audio-player');
+        const analyser = audioContext.createAnalyser();
+        const source = audioContext.createMediaElementSource(audioPlayer);
+
+        // Conecta el source al analyzer y luego al destino
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+
+        // Crea filtros de frecuencia
+        const filters = {
+            bass: audioContext.createBiquadFilter(),
+            mid: audioContext.createBiquadFilter(),
+            treble: audioContext.createBiquadFilter()
+        };
+
+        // Configura los filtros
+        filters.bass.type = 'lowshelf';
+        filters.bass.frequency.setValueAtTime(200, audioContext.currentTime);
+        filters.bass.gain.setValueAtTime(0, audioContext.currentTime);
+
+        filters.mid.type = 'peaking';
+        filters.mid.frequency.setValueAtTime(1000, audioContext.currentTime);
+        filters.mid.gain.setValueAtTime(0, audioContext.currentTime);
+
+        filters.treble.type = 'highshelf';
+        filters.treble.frequency.setValueAtTime(3000, audioContext.currentTime);
+        filters.treble.gain.setValueAtTime(0, audioContext.currentTime);
+
+        // Conectar los filtros al audio
+        source.connect(filters.bass);
+        filters.bass.connect(filters.mid);
+        filters.mid.connect(filters.treble);
+        filters.treble.connect(audioContext.destination);
+
+        // Función para actualizar el ecualizador según los controles del usuario
+        function updateEqualizer() {
+            const bassValue = parseFloat(document.getElementById('bass').value);
+            const midValue = parseFloat(document.getElementById('mid').value);
+            const trebleValue = parseFloat(document.getElementById('treble').value);
+            
+            filters.bass.gain.setValueAtTime(bassValue, audioContext.currentTime);
+            filters.mid.gain.setValueAtTime(midValue, audioContext.currentTime);
+            filters.treble.gain.setValueAtTime(trebleValue, audioContext.currentTime);
+        }
+
+        // Añadir eventos para actualizar el ecualizador
+        document.getElementById('bass').addEventListener('input', updateEqualizer);
+        document.getElementById('mid').addEventListener('input', updateEqualizer);
+        document.getElementById('treble').addEventListener('input', updateEqualizer);
+    </script>
+
+    
 </body>
 </html>
