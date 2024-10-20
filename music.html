@@ -8,48 +8,24 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/4.0.1/wavesurfer.min.js"></script>
     <style>
-       .music-container {
-    position: relative;
-    text-align: center;
-}
+        /* Estilo adicional para el contenedor */
+        .music-container {
+            position: relative;
+            text-align: center;
+        }
 
-.music-player {
-    background-color: #3e3e3e; /* Fondo gris oscuro */
-    border: 3px solid #000; /* Borde negro */
-    border-radius: 8px;
-    width: 300px; /* Ancho fijo */
-    margin: 0 auto; /* Centrar horizontalmente */
-    padding: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.title {
-    color: #ffffff; /* Texto blanco */
-    font-size: 18px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.controls {
-    display: flex;
-    justify-content: center;
-    gap: 10px; /* Espacio entre botones */
-}
-
-.control-button {
-    background-color: #5c5c5c; /* Color de fondo de los botones */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.control-button:hover {
-    background-color: #777; /* Color más claro al pasar el mouse */
-}
+        .music-player {
+            margin-bottom: 10px;
+            width: 20%;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            position: absolute;
+            top: 300px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            z-index: 10; /* Asegúrate de que esté encima */
+        }
 
         model-viewer {
             width: 100%;
@@ -155,23 +131,15 @@
     <div class="bio-image" style="flex: 1; text-align: center;">
         <img src="manoder.png" alt="Foto de Neogeo" style="width: 80%; border-radius: 10px;">
     </div>
-
-    <section class="music-container">
-    <div class="music-player">
-        <div class="title">Mi Canción</div>
-        <audio id="audio-player" preload="metadata">
-            <source src="micancion.mp3" type="audio/mpeg">
-            Tu navegador no soporta el elemento de audio.
-        </audio>
-        <div class="controls">
-            <button id="play" class="control-button">▶</button>
-            <button id="pause" class="control-button" style="display: none;">❚❚</button>
-            <button id="stop" class="control-button">■</button>
-        </div>
-    </div>
 </section>
-
-
+        <section class="music-container">
+            <div class="music-player">
+                <audio id="audio-player" controls>
+                    <source src="micancion.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el reproductor de audio.
+                </audio>
+            </div>
+     
             <model-viewer  
                 src="cdj.glb" 
                 alt="DJ Mixer" 
@@ -327,35 +295,6 @@
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
     });
-    </script>
-
-        <script>
-        const audioPlayer = document.getElementById('audio-player');
-        const playButton = document.getElementById('play');
-        const pauseButton = document.getElementById('pause');
-        const stopButton = document.getElementById('stop');
-
-        // Reproducir audio
-        playButton.addEventListener('click', () => {
-            audioPlayer.play();
-            playButton.style.display = 'none'; // Ocultar botón de reproducir
-            pauseButton.style.display = 'inline-block'; // Mostrar botón de pausar
-        });
-
-        // Pausar audio
-        pauseButton.addEventListener('click', () => {
-            audioPlayer.pause();
-            pauseButton.style.display = 'none'; // Ocultar botón de pausar
-            playButton.style.display = 'inline-block'; // Mostrar botón de reproducir
-        });
-
-        // Detener audio
-        stopButton.addEventListener('click', () => {
-            audioPlayer.pause();
-            audioPlayer.currentTime = 0; // Reiniciar tiempo
-            pauseButton.style.display = 'none'; // Ocultar botón de pausar
-            playButton.style.display = 'inline-block'; // Mostrar botón de reproducir
-        });
     </script>
 </body>
 </html>
