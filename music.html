@@ -311,11 +311,11 @@ document.getElementById('next-button').addEventListener('click', () => {
 const audioPlayer = document.getElementById("audio-player");
 const nextButton = document.getElementById("next-button");
 
-// Lista de canciones (puedes agregar más URLs de tus canciones aquí)
+// Lista de canciones (asegúrate de que las rutas sean correctas)
 const canciones = [
-    "micancion.mp3",
-    "micancion2.mp3", // Reemplaza con la ruta de tu segunda canción
-    "micancion3.mp3", // Reemplaza con la ruta de tu tercera canción
+    "micancion.mp3",   // Primera canción
+    "micancion2.mp3",  // Segunda canción
+    "micancion3.mp3",  // Tercera canción
 ];
 
 let currentIndex = 0;
@@ -329,6 +329,7 @@ function playNextSong() {
 
 // Evento para el botón "Siguiente"
 nextButton.addEventListener("click", playNextSong);
+
 
 
 </script>
