@@ -131,31 +131,7 @@
     <div class="bio-image" style="flex: 1; text-align: center;">
         <img src="manoder.png" alt="Foto de Neogeo" style="width: 80%; border-radius: 10px;">
     </div>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-</head>
-<body>
-    <button id="play">Reproducir</button>
-    <button id="pause">Pausar</button>
-    <button id="stop">Detener</button>
 
-    <script>
-        var sound = new Howl({
-            src: ['micancion.mp3'],
-            html5: true // Asegúrate de usar el audio HTML5
-        });
-
-        document.getElementById('play').addEventListener('click', function() {
-            sound.play();
-        });
-
-        document.getElementById('pause').addEventListener('click', function() {
-            sound.pause();
-        });
-
-        document.getElementById('stop').addEventListener('click', function() {
-            sound.stop();
-        });
-    </script>
      
             <model-viewer  
                 src="cdj.glb" 
