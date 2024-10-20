@@ -138,7 +138,7 @@
                     <source src="micancion.mp3" type="audio/mpeg">
                     Tu navegador no soporta el reproductor de audio.
                 </audio>
-                 <button id="next-button">Siguiente</button>
+                 <button id="next-button">Siguiente</button> <!-- Botón para la siguiente canción -->
             </div>
      
             <model-viewer  
@@ -290,12 +290,32 @@ document.getElementById('next-button').addEventListener('click', () => {
     changeTrack(tracks[currentTrackIndex]);
 });
 
-function changeTrack(track) {
-    const audioPlayer = document.getElementById('audio-player');
-    const audioSource = document.getElementById('audio-source');
-    audioSource.src = track; // Cambia la fuente del audio
-    audioPlayer.load(); // Carga la nueva fuente
-    audioPlayer.play(); // Reproduce automáticamente la nueva pista
+
     </script>
+
+<script>
+    const audioPlayer = document.getElementById("audio-player");
+    const nextButton = document.getElementById("next-button");
+
+    // Lista de canciones (puedes agregar más URLs de tus canciones aquí)
+    const canciones = [
+        "micancion.mp3",
+        "micancion.mp3",
+        "mas-canciones.mp3"
+    ];
+
+    let currentIndex = 0;
+
+    // Función para cambiar a la siguiente canción
+    function playNextSong() {
+        currentIndex = (currentIndex + 1) % canciones.length; // Cambia al siguiente índice, reinicia si llega al final
+        audioPlayer.src = canciones[currentIndex]; // Cambia la fuente del audio
+        audioPlayer.play(); // Reproduce automáticamente la siguiente canción
+    }
+
+    // Evento para el botón "Siguiente"
+    nextButton.addEventListener("click", playNextSong);
+</script>
+    
 </body>
 </html>
