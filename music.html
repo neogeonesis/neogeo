@@ -311,15 +311,25 @@ document.getElementById('next-button').addEventListener('click', () => {
 const audioPlayer = document.getElementById("audio-player");
 const nextButton = document.getElementById("next-button");
 
-const tracks = ['micancion.mp3', 'micancion.mp3', 'micancion3.mp3']; // Lista de canciones
-let currentTrackIndex = 0;
+// Lista de canciones (puedes agregar más URLs de tus canciones aquí)
+const canciones = [
+    "micancion.mp3",
+    "micancion2.mp3", // Reemplaza con la ruta de tu segunda canción
+    "micancion3.mp3", // Reemplaza con la ruta de tu tercera canción
+];
+
+let currentIndex = 0;
 
 // Función para cambiar a la siguiente canción
-nextButton.addEventListener('click', () => {
-    currentTrackIndex = (currentTrackIndex + 1) % tracks.length; // Siguiente pista
-    audioPlayer.src = tracks[currentTrackIndex]; // Cambia la fuente del audio
-    audioPlayer.play(); // Reproduce la nueva canción
-});
+function playNextSong() {
+    currentIndex = (currentIndex + 1) % canciones.length; // Cambia al siguiente índice, reinicia si llega al final
+    audioPlayer.src = canciones[currentIndex]; // Cambia la fuente del audio
+    audioPlayer.play(); // Reproduce automáticamente la siguiente canción
+}
+
+// Evento para el botón "Siguiente"
+nextButton.addEventListener("click", playNextSong);
+
 
 </script>
     
