@@ -138,6 +138,7 @@
                     <source src="micancion.mp3" type="audio/mpeg">
                     Tu navegador no soporta el reproductor de audio.
                 </audio>
+                 <button id="next-button">Siguiente</button>
             </div>
      
             <model-viewer  
@@ -280,6 +281,21 @@
                 audioElement.currentTime = progress * audioElement.duration;
             });
         });
+
+        const tracks = ['micancion1.mp3', 'micancion2.mp3', 'micancion3.mp3']; // Añade más pistas si es necesario
+let currentTrackIndex = 0;
+
+document.getElementById('next-button').addEventListener('click', () => {
+    currentTrackIndex = (currentTrackIndex + 1) % tracks.length; // Aumenta el índice de la pista, reiniciando si se pasa
+    changeTrack(tracks[currentTrackIndex]);
+});
+
+function changeTrack(track) {
+    const audioPlayer = document.getElementById('audio-player');
+    const audioSource = document.getElementById('audio-source');
+    audioSource.src = track; // Cambia la fuente del audio
+    audioPlayer.load(); // Carga la nueva fuente
+    audioPlayer.play(); // Reproduce automáticamente la nueva pista
     </script>
 </body>
 </html>
